@@ -1,7 +1,5 @@
-using UnityEngine.Audio;
 using System;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class AudioManager : MonoBehaviour
 {
@@ -42,7 +40,10 @@ public class AudioManager : MonoBehaviour
         }
         //TODO: Check with saving manager if the game is muted when started, if so call MuteAll()
     }
-
+    /// <summary>
+    /// Play sound by its name.
+    /// </summary>
+    /// <param name="name"></param>
     public void Play(string name)  //this function will play any sound by its name, usage: AudioManager.instance.Play("soundName");
     {
         if (Muted)
@@ -58,6 +59,10 @@ public class AudioManager : MonoBehaviour
         s.source.Play();
 
     }
+    /// <summary>
+    /// Stop the sound by its name.
+    /// </summary>
+    /// <param name="name"></param>
     public void Stop(string name)   //this function will stop any sound by its name, usage: AudioManager.instance.Stop("soundName"); 
     {
         if (Muted)
@@ -72,6 +77,11 @@ public class AudioManager : MonoBehaviour
         }
         s.source.Stop();
     }
+    /// <summary>
+    /// Add volume to the current sound (you can use - to for decrement).
+    /// </summary>
+    /// <param name="name"></param>
+    /// <param name="amount"></param>
     public void AddVolume(string name, float amount)    //this function will add volume to any sound by its name
     {                                                       //usage: AudioManager.instance.AddVolume("soundName", 0.5f);
         if (Muted)
@@ -100,7 +110,11 @@ public class AudioManager : MonoBehaviour
             s.source.volume += amount;
         }
     }
-
+    /// <summary>
+    /// Check if the sound has a max volume (1f).
+    /// </summary>
+    /// <param name="name"></param>
+    /// <returns></returns>
     public bool IsVolumeMax(string name)    //used to check the volume of a sound if it is max
     {
         if (Muted)
@@ -119,6 +133,11 @@ public class AudioManager : MonoBehaviour
         }
         return false;
     }
+    /// <summary>
+    /// Check whether the sound is playing or not.
+    /// </summary>
+    /// <param name="name"></param>
+    /// <returns></returns>
     public bool IsPlaying(string name)  //used to check whether the sound is playing or not
     {
         if (Muted)
@@ -133,6 +152,11 @@ public class AudioManager : MonoBehaviour
         }
         return s.source.isPlaying;
     }
+    /// <summary>
+    /// Get the volume level of the sound by its name (between 0f and 1f).
+    /// </summary>
+    /// <param name="name"></param>
+    /// <returns></returns>
     public float GetVolume(string name) //get volume of certain sound (between 0 and 1)
     {
         if (Muted)
@@ -147,7 +171,10 @@ public class AudioManager : MonoBehaviour
         }
         return s.source.volume;
     }
-    public void MuteAll()   //used to mute the game
+    /// <summary>
+    /// Mute the game.
+    /// </summary>
+    public void MuteAll()   //used to mute the game.
     {
         Muted = true;
         //TODO: Notify the saving manager that the game is muted 
@@ -161,7 +188,10 @@ public class AudioManager : MonoBehaviour
         }
     }
 
-    public void UnMuteAll() //used to unmute the game
+    /// <summary>
+    /// Unmute the game.
+    /// </summary>
+    public void UnMuteAll() //used to unmute the game.
     {
         Muted = false;
         //TODO: Notify the saving manager that the game is unmuted 
@@ -177,7 +207,14 @@ public class AudioManager : MonoBehaviour
         }
 
     }
-    public void GetAudio(GameObject addAudioTo, string name)    //Assign audio to specefic gameobject instead of playing them from
+
+
+    /// <summary>
+    /// Adds a sound source to the given game object with the provided sound name.
+    /// </summary>
+    /// <param name="addAudioTo"></param>
+    /// <param name="name"></param>
+    public void SetAudioSourceOnGameObject(GameObject addAudioTo, string name)    //Assign audio to specefic gameobject instead of playing them from
     {                                                          //AudioManager object (for 3d sounds)
         Sound s = Array.Find(sounds, sound => sound.name == name);
         if (s == null)
@@ -202,6 +239,10 @@ public class AudioManager : MonoBehaviour
         }
 
     }
+    /// <summary>
+    /// Returns whether the sound in muted or not.
+    /// </summary>
+    /// <returns></returns>
     public bool IsMuted()
     {
         return Muted;
