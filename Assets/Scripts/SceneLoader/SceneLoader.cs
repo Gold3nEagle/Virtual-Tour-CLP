@@ -8,10 +8,10 @@ public class SceneLoader : MonoBehaviour
 {
     public static SceneLoader instance;
     public float transitionSpeed = 0.8f;
-    public enum WhichScene { MainMenu, GameScene, LoadingScene, SampleScene};
+    public enum Scenes {MainMenu, LoadingScene, GameScene, SampleScene}; //the first scene in this enum should be the first scene in the game
     [SerializeField] private Image loadingImage;
     private float copyTransSpeed;
-    private string sceneName;
+    private Scenes currentScene; //it will take by default the first scene in the enum
     private enum Action { none, show, hide };
     private Action currentAction;
     void Awake()
@@ -27,7 +27,6 @@ public class SceneLoader : MonoBehaviour
         }
         DontDestroyOnLoad(gameObject);  //this will make the gameobject to move to all scenes not only main menu
         copyTransSpeed = transitionSpeed;
-        sceneName = SceneManager.GetActiveScene().name;
     }
 
     // Update is called once per frame
@@ -50,7 +49,7 @@ public class SceneLoader : MonoBehaviour
         loadingImage.color = tempClr;  // update the color of the black screen
         if (loadingImage.color.a >= 1f)   // check if black screen has fully appeared
         {
-            SceneManager.LoadScene(sceneName);  
+            SceneManager.LoadScene(currentScene.ToString());  
             currentAction = Action.hide;  
         }
     }
@@ -72,11 +71,11 @@ public class SceneLoader : MonoBehaviour
     /// Loads the specified scene by its name
     /// </summary>
     /// <param name="sceneName">The scene to be loaded</param>
-    public void LoadScene(WhichScene sceneName)   //this function will be called from any script to move to any scene
+    public void LoadScene(Scenes sceneName)   //this function will be called from any script to move to any scene
     {                                               //usage: SceneLoader.instance.LoadScene(SceneLoader.WhichScene.Level0);
         loadingImage.gameObject.SetActive(true);
         currentAction = Action.show;
-        this.sceneName = sceneName.ToString();
+        this.currentScene = sceneName;
     }
 
     /// <summary>
@@ -84,7 +83,7 @@ public class SceneLoader : MonoBehaviour
     /// </summary>
     /// <param name="sceneName">The scene to be loaded</param>
     /// <param name="transitioningSpeed">The speed of the transition</param>
-    public void LoadScene(WhichScene sceneName, float transitioningSpeed) //same as the previous function but with this function you can specifiy the speed of transitioning
+    public void LoadScene(Scenes sceneName, float transitioningSpeed) //same as the previous function but with this function you can specifiy the speed of transitioning
     {
         transitionSpeed = transitioningSpeed;
         LoadScene(sceneName);
@@ -95,8 +94,10 @@ public class SceneLoader : MonoBehaviour
     /// </summary>
     public void ReloadScene()   //reload the current scene
     {
-        loadingImage.gameObject.SetActive(true);
-        currentAction = Action.show;
+        LoadScene(currentScene);
+        //loadingImage.gameObject.SetActive(true);
+        //currentAction = Action.show;
+        
     }
 
     /// <summary>
