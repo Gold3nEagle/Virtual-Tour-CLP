@@ -1,53 +1,34 @@
 using UnityEngine;
-using UnityEngine.Events;
+using TMPro;
 
 public class CurrencySystem : MonoBehaviour
 {
 
-    public static CurrencySystem instance;//currency instance
+    public int startingCurrency = 0;
+    public TextMeshProUGUI currencyText;
 
-
-    private int currentMoney = 0; //current money value accessed inside the class
-
-    public UnityEvent onMoneyChanged;// unity event to invoke when the money is changed
-
-    public int CurrentMoney { get => currentMoney; }// to access currenct money value outside of the currency class
-
-    void Awake()
-    {
-        if (instance == null)
-        {
-            instance = this;
-            DontDestroyOnLoad(gameObject);
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
-    }
+    private int currentCurrency;
 
     void Start()
     {
-        InvokeMoneyEvent();
+        currentCurrency = startingCurrency;
+        UpdateCurrencyText();
     }
 
-    public void AddMoney(int amount)
+    public void AddCurrency(int amount)
     {
-        currentMoney += amount;
-        InvokeMoneyEvent();
+        currentCurrency += amount;
+        UpdateCurrencyText();
     }
 
-    public void SubtractMoney(int amount)
+    public void SubtractCurrency(int amount)
     {
-        currentMoney -= amount;
-        InvokeMoneyEvent();
+        currentCurrency -= amount;
+        UpdateCurrencyText();
     }
 
-    private void InvokeMoneyEvent()
+    private void UpdateCurrencyText()
     {
-        onMoneyChanged.Invoke();
+        currencyText.text =  currentCurrency.ToString() + " BHD";
     }
 }
-
-
-
