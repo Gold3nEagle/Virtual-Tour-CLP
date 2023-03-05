@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028352, g: 0.22571376, b: 0.30692244, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028305, g: 0.22571313, b: 0.3069213, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -220,10 +220,9 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 961739753}
   - {fileID: 1475324652}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &126249230
 MonoBehaviour:
@@ -237,15 +236,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9224764a6d746884db79b659f5a1f93e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerAnim: {fileID: 1475324654}
-  playerRigid: {fileID: 126249231}
-  w_speed: 100
-  wb_speed: 100
-  olw_speed: 100
-  rn_speed: 100
-  ro_speed: 100
-  walking: 0
-  playerTrans: {fileID: 126249229}
+  moveSpeed: 1
+  animator: {fileID: 1475324654}
+  rigidbody: {fileID: 126249231}
 --- !u!54 &126249231
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -488,12 +481,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 961739749}
   m_LocalRotation: {x: 0.09894134, y: -0, z: -0, w: 0.9950933}
-  m_LocalPosition: {x: 0, y: 1.1199999, z: -2.75}
+  m_LocalPosition: {x: 0, y: 2.12, z: -2.75}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 126249229}
-  m_RootOrder: 0
+  m_Father: {fileID: 0}
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 11.356, y: 0, z: 0}
 --- !u!1 &1160234425
 GameObject:

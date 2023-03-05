@@ -4,73 +4,39 @@ using UnityEngine;
 
 public class Controls : MonoBehaviour
 {
-    public Animator playerAnim;
-	public Rigidbody playerRigid;
-	public float w_speed, wb_speed, olw_speed, rn_speed, ro_speed;
-	public bool walking;
-	public Transform playerTrans;
-	
-	
-	void FixedUpdate(){
-		if(Input.GetKey(KeyCode.W)){
-			playerRigid.velocity = transform.forward * w_speed * Time.deltaTime;
-		}
-		if(Input.GetKey(KeyCode.S)){
-			playerRigid.velocity = -transform.forward * wb_speed * Time.deltaTime;
-		}
-	}
-	void Update(){
-		if(Input.GetKeyDown(KeyCode.W)){
-			playerAnim.SetTrigger("walk");
-			playerAnim.ResetTrigger("idle");
-			walking = true;
-			//steps1.SetActive(true);
-		}
-		if(Input.GetKeyUp(KeyCode.W)){
-			playerAnim.ResetTrigger("walk");
-			playerAnim.SetTrigger("idle");
-			walking = false;
-			//steps1.SetActive(false);
-		}
-		if(Input.GetKeyDown(KeyCode.S)){
-			playerAnim.SetTrigger("turnBack");
-            if (playerAnim.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f)
-            {
-                // Animation has finished
-                // playerAnim.SetTrigger("walk");
-                playerAnim.SetTrigger("idle");
-            }
-			playerAnim.ResetTrigger("idle");
-			//steps1.SetActive(true);
-		}
-		if(Input.GetKeyUp(KeyCode.S)){
-			playerAnim.ResetTrigger("turnBack");
-            // playerAnim.ResetTrigger("walk");
-			playerAnim.SetTrigger("idle");
-			//steps1.SetActive(false);
-		}
-		if(Input.GetKey(KeyCode.A)){
-			playerTrans.Rotate(0, -ro_speed * Time.deltaTime, 0);
-		}
-		if(Input.GetKey(KeyCode.D)){
-			playerTrans.Rotate(0, ro_speed * Time.deltaTime, 0);
-		}
-		
-        // if(walking == true){				
-		// 	if(Input.GetKeyDown(KeyCode.LeftShift)){
-		// 		//steps1.SetActive(false);
-		// 		//steps2.SetActive(true);
-		// 		w_speed = w_speed + rn_speed;
-		// 		playerAnim.SetTrigger("jump");
-		// 		playerAnim.ResetTrigger("walk");
-		// 	}
-		// 	if(Input.GetKeyUp(KeyCode.LeftShift)){
-		// 		//steps1.SetActive(true);
-		// 		//steps2.SetActive(false);
-		// 		w_speed = olw_speed;
-		// 		playerAnim.ResetTrigger("jump");
-		// 		playerAnim.SetTrigger("walk");
-		// 	}
-		// }
-	}
+    public float moveSpeed = 5f; // movement speed
+    public Animator animator; // reference to the animator component
+    public Rigidbody rigidbody; // reference to the Rigidbody component
+
+    private void FixedUpdate()
+    {
+        // get input from the user
+        float horizontalInput = Input.GetAxisRaw("Horizontal");
+        float verticalInput = Input.GetAxisRaw("Vertical");
+
+        // calculate the movement vector
+        Vector3 movement = new Vector3(horizontalInput, 0f, verticalInput).normalized * moveSpeed * Time.deltaTime;
+
+        // update the player's position
+        transform.position += movement;
+
+        // set the walking animation speed based on the player's movement speed
+        //animator.SetFloat("Speed", movement.magnitude);
+        if (movement == Vector3.zero)
+        {
+            animator.SetTrigger("idle");
+            animator.ResetTrigger("walk");
+        }
+        else
+        {
+            animator.SetTrigger("walk");
+            animator.ResetTrigger("idle");
+        }
+
+        // rotate the player to face the direction of movement
+        if (movement != Vector3.zero)
+        {
+            transform.rotation = Quaternion.LookRotation(movement);
+        }
+    }
 }
