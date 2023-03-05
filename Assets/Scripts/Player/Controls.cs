@@ -6,7 +6,7 @@ public class Controls : MonoBehaviour
 {
     public float moveSpeed = 5f; // movement speed
     public Animator animator; // reference to the animator component
-    public Rigidbody rigidbody; // reference to the Rigidbody component
+    public new Rigidbody rigidbody; // reference to the Rigidbody component
 
     private void FixedUpdate()
     {
