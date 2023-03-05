@@ -3,7 +3,8 @@ using UnityEngine.InputSystem;
 
 public class Controller : MonoBehaviour
 {
-    public float speed = 5f;
+    public float walkSpeed = 1f;
+    public float jumpSpeed = 5f;
     private Rigidbody playerRigidbody;
     private PlayerControls playerControls;
 
@@ -40,13 +41,13 @@ public class Controller : MonoBehaviour
     {
         Vector2 movementDirection = playerControls.Land.Move.ReadValue<Vector2>();
         Debug.Log("Moving... -> Direction: " + movementDirection);
-        playerRigidbody.AddForce(new Vector3(movementDirection.x, 0, movementDirection.y) * speed, ForceMode.Force);
+        playerRigidbody.AddForce(new Vector3(movementDirection.x, 0, movementDirection.y) * walkSpeed, ForceMode.Force);
     }
 
     // Player movements
     private void Jump(InputAction.CallbackContext context)
     {
         Debug.Log("Jumping...");
-        playerRigidbody.AddForce(Vector3.up * speed, ForceMode.Impulse);
+        playerRigidbody.AddForce(Vector3.up * jumpSpeed, ForceMode.Impulse);
     }
 }
