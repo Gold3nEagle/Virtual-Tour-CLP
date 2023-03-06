@@ -15,5 +15,7 @@ public class Sound
     [HideInInspector]
     public AudioSource source;
     public bool loop;
-    public bool playFromObj;    //if this true it means the sound will not be played fronm the audio manager, it will be played from
-}                               //a specific game object
+    public bool playFromObj;    //if this true it means the sound will not be played fronm the audio manager, it will be played from a specific game object
+    public enum SoundType {SFX, Music};
+    public SoundType type;
+}
