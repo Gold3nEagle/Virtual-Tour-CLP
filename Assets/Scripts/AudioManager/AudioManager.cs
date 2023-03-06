@@ -42,17 +42,9 @@ public class AudioManager : MonoBehaviour
             {
                 s.volume = s.volume * SFXVolume;
             }
-            if (!s.playFromObj) //if sound not meant to play outside the audioManager object
-            {
-                s.source = gameObject.AddComponent<AudioSource>();
-                s.source.clip = s.clip;
-                
-                s.source.volume = s.volume;
-                s.source.pitch = s.pitch;
-                s.source.loop = s.loop;
-            }
             volumes[IND] = s.volume;
             IND++;
+            
         }
         //TODO: Check with saving manager if the game is muted when started, if so call MuteAll()
     }
@@ -66,21 +58,92 @@ public class AudioManager : MonoBehaviour
     /// <summary>
     /// Play sound by its name.
     /// </summary>
-    /// <param name="name"></param>
-    public void Play(string name)  //this function will play any sound by its name, usage: AudioManager.instance.Play("soundName");
+    /// <param name="name">The sound name to play</param>
+    /// <returns>Returns the gameobject that holds the played sound</returns>
+    public GameObject Play(string name)  //this function will play any sound by its name, usage: AudioManager.instance.Play("soundName");
     {
         if (Muted)
         {
-            return;
+            return null;
         }
         Sound s = Array.Find(sounds, sound => sound.name == name);
         if (s == null)
         {
             Debug.LogWarning("Sound " + name + " not found!");
-            return;
+            return null;
+        }      
+        GameObject sound = new GameObject(name);
+        sound.transform.parent = transform;
+        sound.transform.localPosition = Vector3.zero;
+        s.source = sound.AddComponent<AudioSource>();
+        s.source.clip = s.clip;
+        s.source.volume = s.volume;
+        s.source.pitch = s.pitch;
+        s.source.loop = s.loop;
+        sound.AddComponent<SoundHolder>();
+        return sound;
+    }
+    /// <summary>
+    /// Play sound by its name in a specific position.
+    /// </summary>
+    /// <param name="name">The sound name to play</param>
+    /// <param name="position">The position which the sound will play at</param>
+    /// <returns>Returns the gameobject that holds the played sound</returns>
+    public GameObject Play(string name, Vector3 position)  //this function will play any sound by its name in a specific position, usage: AudioManager.instance.Play("soundName", Vector3.one);
+    {
+        if (Muted)
+        {
+            return null;
         }
-        s.source.Play();
-
+        Sound s = Array.Find(sounds, sound => sound.name == name);
+        if (s == null)
+        {
+            Debug.LogWarning("Sound " + name + " not found!");
+            return null;
+        }
+        GameObject sound = new GameObject(name);
+        sound.transform.parent = transform;
+        sound.transform.position = position;
+        s.source = sound.AddComponent<AudioSource>();
+        s.source.clip = s.clip;
+        s.source.volume = s.volume;
+        s.source.pitch = s.pitch;
+        s.source.loop = s.loop;
+        s.source.spatialBlend = 1;
+        sound.AddComponent<SoundHolder>();
+        return sound;
+    }
+    /// <summary>
+    /// Play sound by its name and follows a gameobject.
+    /// </summary>
+    /// <param name="name">The sound name to play</param>
+    /// <param name="Obj">The gameObject which the sound will follow</param>
+    /// <returns>Returns the gameobject that holds the played sound</returns>
+    public GameObject Play(string name, GameObject Obj)  //this function will play any sound by its name in a specific position, usage: AudioManager.instance.Play("soundName", Vector3.one);
+    {
+        if (Muted)
+        {
+            return null;
+        }
+        Sound s = Array.Find(sounds, sound => sound.name == name);
+        if (s == null)
+        {
+            Debug.LogWarning("Sound " + name + " not found!");
+            return null;
+        }
+        GameObject sound = new GameObject(name);
+        sound.transform.parent = transform;
+        sound.transform.position = Obj.transform.position;
+        s.source = sound.AddComponent<AudioSource>();
+        s.source.clip = s.clip;
+        s.source.volume = s.volume;
+        s.source.pitch = s.pitch;
+        s.source.loop = s.loop;
+        s.source.spatialBlend = 1;
+        sound.AddComponent<SoundHolder>();
+        FollowingSound followScript = sound.AddComponent<FollowingSound>();
+        followScript.SetFollowObject(Obj);
+        return sound;
     }
     /// <summary>
     /// Stop the sound by its name.
@@ -98,8 +161,18 @@ public class AudioManager : MonoBehaviour
             Debug.LogWarning("Sound " + name + " not found!");
             return;
         }
-        s.source.Stop();
+        for (int i = 0; i < transform.childCount; i++)
+        {
+            GameObject snd = transform.GetChild(i).gameObject;
+            if(snd.name == name)
+            {
+                Destroy(snd);
+            }
+
+        }
+        //s.source.Stop();
     }
+
     /// <summary>
     /// Add volume to the current sound (you can use - to for decrement).
     /// </summary>
@@ -126,20 +199,32 @@ public class AudioManager : MonoBehaviour
         {
             max = SFXVolume;
         }
+
         if (s.volume + amount >= max)
         {
             s.volume = max;
-            s.source.volume = max;
         }
         else if (s.volume + amount <= 0f)
         {
             s.volume = 0f;
-            s.source.volume = 0f;
         }
         else
         {
             s.volume += amount;
-            s.source.volume += amount;
+        }
+        UpdateSoundsLevel(s);
+    }
+
+    private void UpdateSoundsLevel(Sound s)
+    {
+        for (int i = 0; i < transform.childCount; i++)
+        {
+            GameObject sndObj = transform.GetChild(i).gameObject;
+            if (sndObj.name == s.name)
+            {
+                sndObj.GetComponent<AudioSource>().volume = s.volume;
+            }
+
         }
     }
     /// <summary>
@@ -182,6 +267,10 @@ public class AudioManager : MonoBehaviour
             Debug.LogWarning("Sound " + name + " not found!");
             return false;
         }
+        if(s.source == null)
+        {
+            return false;
+        }
         return s.source.isPlaying;
     }
     /// <summary>
@@ -201,7 +290,7 @@ public class AudioManager : MonoBehaviour
             Debug.LogWarning("Sound " + name + " not found!");
             return 0;
         }
-        return s.source.volume;
+        return s.volume;
     }
     /// <summary>
     /// Mute the game.
@@ -218,6 +307,10 @@ public class AudioManager : MonoBehaviour
                 s.source.volume = 0f;
             }
         }
+        for (int i = 0; i < transform.childCount; i++)
+        {
+            transform.GetChild(i).gameObject.GetComponent<AudioSource>().volume = 0;
+        }
     }
 
     /// <summary>
@@ -230,47 +323,13 @@ public class AudioManager : MonoBehaviour
         int IND = 0;
         foreach (Sound s in sounds)
         {
-            if (s.source != null)
-            {
-                s.volume = volumes[IND];
-                s.source.volume = volumes[IND];
-            }
+            s.volume = volumes[IND];
+            UpdateSoundsLevel(s);
             IND++;
         }
 
     }
 
-
-    /// <summary>
-    /// Adds a sound source to the given game object with the provided sound name.
-    /// </summary>
-    /// <param name="addAudioTo"></param>
-    /// <param name="name"></param>
-    public void SetAudioSourceOnGameObject(GameObject addAudioTo, string name)    //Assign audio to specefic gameobject instead of playing them from
-    {                                                          //AudioManager object (for 3d sounds)
-        Sound s = Array.Find(sounds, sound => sound.name == name);
-        if (s == null)
-        {
-            Debug.LogWarning("Sound " + name + " not found!");
-            return;
-        }
-        if (!s.playFromObj)
-        {
-            Debug.LogWarning("Sound " + name + " is not meant to play outside the audio manager!");
-            return;
-        }
-        if (s.source == null)
-        {
-            s.source = addAudioTo.AddComponent<AudioSource>();
-            s.source.clip = s.clip;
-            s.source.volume = s.volume;
-            s.source.pitch = s.pitch;
-            s.source.loop = s.loop;
-            s.source.spatialBlend = 1.0f;
-            s.source.spread = 360;
-        }
-
-    }
     /// <summary>
     /// Changes the master volume and updates the music and SFX volumes accordingly.
     /// </summary>
@@ -288,6 +347,7 @@ public class AudioManager : MonoBehaviour
         MusicVolumeChanged(newMusicVolume);
         SFXVolumeChanged(newSFXVolume);
     }
+
     /// <summary>
     /// Changes the music volume and updates the volume of all sound effects of type music.
     /// </summary>
@@ -307,8 +367,8 @@ public class AudioManager : MonoBehaviour
             {
                 if (s.type == Sound.SoundType.Music)
                 {
-                    s.volume = musicVolume;//newVolume;
-                    s.source.volume = musicVolume;//newVolume;
+                    s.volume = musicVolume;
+                    UpdateSoundsLevel(s);
                 }
             }
         }
@@ -319,11 +379,12 @@ public class AudioManager : MonoBehaviour
                 if (s.type == Sound.SoundType.Music)
                 {
                     s.volume = s.volume / previousMusicVolume * musicVolume;
-                    s.source.volume = s.volume;
+                    UpdateSoundsLevel(s);
                 }
             }
         }
     }
+
     /// <summary>
     /// Changes the SFX volume and updates the volume of all sound effects of type SFX.
     /// </summary>
@@ -344,7 +405,7 @@ public class AudioManager : MonoBehaviour
                 if (s.type == Sound.SoundType.SFX)
                 {
                     s.volume = newVolume;
-                    s.source.volume = newVolume;
+                    UpdateSoundsLevel(s);
                 }
             }
         }
@@ -355,7 +416,7 @@ public class AudioManager : MonoBehaviour
                 if (s.type == Sound.SoundType.SFX)
                 {
                     s.volume = s.volume / previousSFXVolume * SFXVolume;
-                    s.source.volume = s.volume;
+                    UpdateSoundsLevel(s);
                 }
             }
         }

@@ -7,9 +7,25 @@ public class TestSound : MonoBehaviour
 {
     void Update()
     {
-        if(Input.GetKey(KeyCode.A))
+        if(Input.GetKeyDown(KeyCode.A))
         {
-            AudioManager.instance.Play("TestingSound");
+            AudioManager.instance.Play("Test");
+        }
+        else if(Input.GetKeyDown(KeyCode.S))
+        {
+            AudioManager.instance.Play("Attack");
+        }
+        else if (Input.GetKeyDown(KeyCode.D))
+        {
+            AudioManager.instance.Stop("Attack");
+        }
+        else if (Input.GetKeyDown(KeyCode.F))
+        {
+            AudioManager.instance.Play("Test", new Vector3(2, 2, 2));
+        }
+        else if(Input.GetKeyDown(KeyCode.G))
+        {
+            AudioManager.instance.Play("Attack", gameObject);
         }
     }
 }
