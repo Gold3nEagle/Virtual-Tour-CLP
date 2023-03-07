@@ -1,15 +1,16 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class AudioManager : MonoBehaviour
 {
-    public float masterTestV = 1;
     [Range(0f, 1f)]
     public float masterVolume = 1;
     [Range(0f, 1f)]
     public float musicVolume = 1;
     [Range(0f, 1f)]
     public float SFXVolume = 1;
+    public List<GameObject> soundsObjectsList;
     public Sound[] sounds;
     private float[] volumes;
     public static AudioManager instance;
@@ -46,103 +47,46 @@ public class AudioManager : MonoBehaviour
             IND++;
             
         }
+        soundsObjectsList = new List<GameObject>();
         //TODO: Check with saving manager if the game is muted when started, if so call MuteAll()
     }
-    void Update()
+    public GameObject Play(string name, Vector3 position = default, GameObject followObject = null)
     {
-        //if(Input.GetKey(KeyCode.P))
-        //{
-            MasterVolumeChanged(masterTestV);
-        //}
-    }
-    /// <summary>
-    /// Play sound by its name.
-    /// </summary>
-    /// <param name="name">The sound name to play</param>
-    /// <returns>Returns the gameobject that holds the played sound</returns>
-    public GameObject Play(string name)  //this function will play any sound by its name, usage: AudioManager.instance.Play("soundName");
-    {
-        if (Muted)
-        {
-            return null;
-        }
+        if (Muted) return null;
+
         Sound s = Array.Find(sounds, sound => sound.name == name);
         if (s == null)
         {
-            Debug.LogWarning("Sound " + name + " not found!");
-            return null;
-        }      
-        GameObject sound = new GameObject(name);
-        sound.transform.parent = transform;
-        sound.transform.localPosition = Vector3.zero;
-        s.source = sound.AddComponent<AudioSource>();
-        s.source.clip = s.clip;
-        s.source.volume = s.volume;
-        s.source.pitch = s.pitch;
-        s.source.loop = s.loop;
-        sound.AddComponent<SoundHolder>();
-        return sound;
-    }
-    /// <summary>
-    /// Play sound by its name in a specific position.
-    /// </summary>
-    /// <param name="name">The sound name to play</param>
-    /// <param name="position">The position which the sound will play at</param>
-    /// <returns>Returns the gameobject that holds the played sound</returns>
-    public GameObject Play(string name, Vector3 position)  //this function will play any sound by its name in a specific position, usage: AudioManager.instance.Play("soundName", Vector3.one);
-    {
-        if (Muted)
-        {
+            Debug.LogWarning($"Sound {name} not found!");
             return null;
         }
-        Sound s = Array.Find(sounds, sound => sound.name == name);
-        if (s == null)
+
+        if (s.singleInstance && s.source != null)
         {
-            Debug.LogWarning("Sound " + name + " not found!");
-            return null;
+            Debug.Log($"Sound {name} is already playing!");
+            return s.source.gameObject;
         }
+
         GameObject sound = new GameObject(name);
-        sound.transform.parent = transform;
+        if(position == default) sound.transform.parent = followObject?.transform ?? transform;
         sound.transform.position = position;
         s.source = sound.AddComponent<AudioSource>();
         s.source.clip = s.clip;
         s.source.volume = s.volume;
         s.source.pitch = s.pitch;
         s.source.loop = s.loop;
-        s.source.spatialBlend = 1;
-        sound.AddComponent<SoundHolder>();
-        return sound;
-    }
-    /// <summary>
-    /// Play sound by its name and follows a gameobject.
-    /// </summary>
-    /// <param name="name">The sound name to play</param>
-    /// <param name="Obj">The gameObject which the sound will follow</param>
-    /// <returns>Returns the gameobject that holds the played sound</returns>
-    public GameObject Play(string name, GameObject Obj)  //this function will play any sound by its name in a specific position, usage: AudioManager.instance.Play("soundName", Vector3.one);
-    {
-        if (Muted)
+        if(followObject != null || position != default)
         {
-            return null;
+            s.source.spatialBlend = 1;
         }
-        Sound s = Array.Find(sounds, sound => sound.name == name);
-        if (s == null)
+        else
         {
-            Debug.LogWarning("Sound " + name + " not found!");
-            return null;
+            s.source.spatialBlend = 0;
         }
-        GameObject sound = new GameObject(name);
-        sound.transform.parent = transform;
-        sound.transform.position = Obj.transform.position;
-        s.source = sound.AddComponent<AudioSource>();
-        s.source.clip = s.clip;
-        s.source.volume = s.volume;
-        s.source.pitch = s.pitch;
-        s.source.loop = s.loop;
-        s.source.spatialBlend = 1;
+        //s.source.spatialBlend = followObject != null ? 1 : 0;
+
         sound.AddComponent<SoundHolder>();
-        FollowingSound followScript = sound.AddComponent<FollowingSound>();
-        followScript.SetFollowObject(Obj);
+        soundsObjectsList.Add(sound);
         return sound;
     }
     /// <summary>
@@ -161,18 +105,11 @@ public class AudioManager : MonoBehaviour
             Debug.LogWarning("Sound " + name + " not found!");
             return;
         }
-        for (int i = 0; i < transform.childCount; i++)
+        foreach (GameObject sndObject in soundsObjectsList)
         {
-            GameObject snd = transform.GetChild(i).gameObject;
-            if(snd.name == name)
-            {
-                Destroy(snd);
-            }
-
+            if (sndObject.name == name) Destroy(sndObject);
         }
-        //s.source.Stop();
     }
-
     /// <summary>
     /// Add volume to the current sound (you can use - to for decrement).
     /// </summary>
@@ -422,6 +359,10 @@ public class AudioManager : MonoBehaviour
         }
     }
 
+    public void SoundDestroyed(GameObject sndObj)
+    {
+        soundsObjectsList.Remove(sndObj);
+    }
     /// <summary>
     /// Returns whether the sound in muted or not.
     /// </summary>

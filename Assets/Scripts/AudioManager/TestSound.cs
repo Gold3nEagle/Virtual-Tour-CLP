@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 //using UnityEngine.InputSystem;
-
 public class TestSound : MonoBehaviour
 {
+    public GameObject soundObj;
     void Update()
     {
         if(Input.GetKeyDown(KeyCode.A))
@@ -25,7 +25,19 @@ public class TestSound : MonoBehaviour
         }
         else if(Input.GetKeyDown(KeyCode.G))
         {
-            AudioManager.instance.Play("Attack", gameObject);
+            AudioManager.instance.Play("Attack", followObject: gameObject);
+        }
+        else if(Input.GetKeyDown(KeyCode.H))
+        {
+            soundObj = AudioManager.instance.Play("Failed");
+        }
+        else if (Input.GetKeyDown(KeyCode.J))
+        {
+            soundObj = AudioManager.instance.Play("Win", followObject: gameObject);
+        }
+        else if (Input.GetKeyDown(KeyCode.K))
+        {
+            Destroy(gameObject);
         }
     }
 }

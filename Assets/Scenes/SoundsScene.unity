@@ -152,10 +152,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22a62b7d202ba4d6d873345f39a85613, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  masterTestV: 1
   masterVolume: 1
   musicVolume: 1
   SFXVolume: 1
+  soundsObjectsList: []
   sounds:
   - name: Test
     clip: {fileID: 8300000, guid: 142e901d09e574d16b890ff5146beb72, type: 3}
@@ -163,6 +163,7 @@ MonoBehaviour:
     pitch: 1
     source: {fileID: 0}
     loop: 0
+    singleInstance: 0
     type: 0
   - name: Attack
     clip: {fileID: 8300000, guid: 142e901d09e574d16b890ff5146beb72, type: 3}
@@ -170,7 +171,24 @@ MonoBehaviour:
     pitch: 1
     source: {fileID: 0}
     loop: 0
+    singleInstance: 0
     type: 1
+  - name: Failed
+    clip: {fileID: 8300000, guid: a620bd1bff3444631b8db440193ed3b9, type: 3}
+    volume: 1
+    pitch: 1
+    source: {fileID: 0}
+    loop: 0
+    singleInstance: 1
+    type: 0
+  - name: Win
+    clip: {fileID: 8300000, guid: 3ff58ab71c76a42ca95cc5b118563ead, type: 3}
+    volume: 1
+    pitch: 0.5
+    source: {fileID: 0}
+    loop: 0
+    singleInstance: 1
+    type: 0
 --- !u!4 &529361301
 Transform:
   m_ObjectHideFlags: 0
@@ -215,6 +233,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f7b054cc644ad4e9293418b96ce3eb42, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  soundObj: {fileID: 0}
 --- !u!4 &926104446
 Transform:
   m_ObjectHideFlags: 0
