@@ -4,8 +4,15 @@ using UnityEngine.InputSystem;
 public class Controller : MonoBehaviour
 {
     public Animator playerAnim;
+    private float targetSpeed;
     public float walkSpeed = 10f;
-    public float jumpSpeed = 5f;
+    public float jogSpeed = 15f;
+    public float sprintSpeed = 20f;
+    public float jumpForce = 5f;
+    private bool inAir = false;
+    private bool isWalking = false;
+    private bool isSprinting = false;
+    private float movementAnimSpeed = 0.0f;
     private Rigidbody playerRigidbody;
     private PlayerControls playerControls;
 
@@ -20,7 +27,8 @@ public class Controller : MonoBehaviour
         playerControls.Land.Enable();
 
         // Subscribe events
-        playerControls.Land.Jump.performed += Jump;
+        playerControls.Land.Jump.started += Jump;
+        playerControls.Land.Walk.performed += WalkToggle;
     }
 
     private void OnDisable()
@@ -28,54 +36,92 @@ public class Controller : MonoBehaviour
         playerControls.Land.Disable();
 
         // Unsubscribe events
-        playerControls.Land.Jump.performed -= Jump;
+        playerControls.Land.Jump.started -= Jump;
+        playerControls.Land.Walk.performed -= WalkToggle;
     }
 
     // Start is called before the first frame update
     void Start()
     {
-
+        targetSpeed = jogSpeed;
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
         Vector2 movementDirection = playerControls.Land.Move.ReadValue<Vector2>();
-        Debug.Log("Moving... -> Direction: " + movementDirection);
-        playerRigidbody.AddForce(new Vector3(movementDirection.x, 0, movementDirection.y) * walkSpeed, ForceMode.Force);
+        // Debug.Log("Movement Input: " + movementDirection);
 
-        if (movementDirection == Vector2.zero)
+        bool isIdle = movementDirection == Vector2.zero;
+
+        // To check if jump animation is playing to disable double jump
+        AnimatorStateInfo animStateInfo = playerAnim.GetCurrentAnimatorStateInfo(0);
+        if (animStateInfo.IsName("Jump"))
         {
-            playerAnim.SetTrigger("idle");
-            playerAnim.ResetTrigger("walk");
+            inAir = true;
         }
         else
         {
-            playerAnim.SetTrigger("walk");
-            playerAnim.ResetTrigger("idle");
+            inAir = false;
+        }
 
-            float _targetRotation = Mathf.Atan2(movementDirection.x, movementDirection.y) * Mathf.Rad2Deg;
-            float _rotationVelocity = 20f;
-            float rotation = Mathf.SmoothDampAngle(transform.eulerAngles.y, _targetRotation, ref _rotationVelocity, 0.07f);
+        // Move character
+        if (!inAir)
+        {
+            playerRigidbody.AddForce(new Vector3(movementDirection.x, 0, movementDirection.y) * targetSpeed, ForceMode.Force);
+        }
 
-            // rotate to face input direction relative to camera position
+        if (!isIdle)
+        {
+            if (isWalking)
+            {
+                targetSpeed = walkSpeed;
+                movementAnimSpeed = 0.33f;
+                Debug.Log("Walking... | Speed: " + targetSpeed);
+            }
+            else
+            {
+                targetSpeed = jogSpeed;
+                movementAnimSpeed = 0.66f;
+                Debug.Log("Jogging... | Speed: " + targetSpeed);
+            }
+        }
+        else
+        {
+            // When player is idle
+            movementAnimSpeed = 0.0f;
+            Debug.Log("Idling...");
+        }
+
+        // Play animation
+        playerAnim.SetFloat("moveSpeed", movementAnimSpeed, 0.1f, Time.deltaTime);
+
+        // Smooth rotation
+        if (!isIdle)
+        {
+            float targetRotation = Mathf.Atan2(movementDirection.x, movementDirection.y) * Mathf.Rad2Deg;
+            float rotationVelocity = 10f;
+            float rotation = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetRotation, ref rotationVelocity, 0.07f);
+
             transform.rotation = Quaternion.Euler(0.0f, rotation, 0.0f);
-        }
-
-        if (movementDirection == Vector2.left)
-        {
-            Debug.Log("Turning left...");
-        }
-        else if (movementDirection == Vector2.right)
-        {
-            Debug.Log("Turning right...");
         }
     }
 
     // Player movements
     private void Jump(InputAction.CallbackContext context)
     {
-        Debug.Log("Jumping...");
-        playerRigidbody.AddForce(Vector3.up * jumpSpeed, ForceMode.Impulse);
+        if (!inAir)
+        {
+            Debug.Log("Jumping...");
+            playerAnim.SetTrigger("jump");
+        }
+        // playerRigidbody.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+    }
+
+    private void WalkToggle(InputAction.CallbackContext context)
+    {
+        isWalking = !isWalking;
+        string tempStr = isWalking ? "walking" : "normal";
+        Debug.Log("switched to " + tempStr + " mode...");
     }
 }

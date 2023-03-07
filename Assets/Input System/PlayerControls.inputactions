@@ -1,5 +1,5 @@
 {
-    "name": "Player Controls",
+    "name": "PlayerControls",
     "maps": [
         {
             "name": "Land",
@@ -27,6 +27,24 @@
                     "name": "Interact",
                     "type": "Button",
                     "id": "8df3b4a3-cff0-4cc4-8c6f-42154ab84235",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Sprint",
+                    "type": "Button",
+                    "id": "87a61f10-9875-47c4-8e78-ea520eb16749",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Walk",
+                    "type": "Button",
+                    "id": "1bc9fbe2-bce8-4e1b-b891-14e41c0b4123",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -174,6 +192,28 @@
                     "processors": "",
                     "groups": "Desktop",
                     "action": "Interact",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "df9f90e5-76cd-464a-9656-700652153c7e",
+                    "path": "<Keyboard>/leftShift",
+                    "interactions": "Hold",
+                    "processors": "",
+                    "groups": "Desktop",
+                    "action": "Sprint",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "b8931c44-3ca4-4b88-bc49-b6e4bd22ac19",
+                    "path": "<Keyboard>/leftCtrl",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Desktop",
+                    "action": "Walk",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

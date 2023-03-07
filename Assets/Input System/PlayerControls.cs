@@ -53,6 +53,24 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Sprint"",
+                    ""type"": ""Button"",
+                    ""id"": ""87a61f10-9875-47c4-8e78-ea520eb16749"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Walk"",
+                    ""type"": ""Button"",
+                    ""id"": ""1bc9fbe2-bce8-4e1b-b891-14e41c0b4123"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -198,6 +216,28 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""action"": ""Interact"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""df9f90e5-76cd-464a-9656-700652153c7e"",
+                    ""path"": ""<Keyboard>/leftShift"",
+                    ""interactions"": ""Hold"",
+                    ""processors"": """",
+                    ""groups"": ""Desktop"",
+                    ""action"": ""Sprint"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b8931c44-3ca4-4b88-bc49-b6e4bd22ac19"",
+                    ""path"": ""<Keyboard>/leftCtrl"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Desktop"",
+                    ""action"": ""Walk"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -226,6 +266,8 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         m_Land_Move = m_Land.FindAction("Move", throwIfNotFound: true);
         m_Land_Jump = m_Land.FindAction("Jump", throwIfNotFound: true);
         m_Land_Interact = m_Land.FindAction("Interact", throwIfNotFound: true);
+        m_Land_Sprint = m_Land.FindAction("Sprint", throwIfNotFound: true);
+        m_Land_Walk = m_Land.FindAction("Walk", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -288,6 +330,8 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
     private readonly InputAction m_Land_Move;
     private readonly InputAction m_Land_Jump;
     private readonly InputAction m_Land_Interact;
+    private readonly InputAction m_Land_Sprint;
+    private readonly InputAction m_Land_Walk;
     public struct LandActions
     {
         private @PlayerControls m_Wrapper;
@@ -295,6 +339,8 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         public InputAction @Move => m_Wrapper.m_Land_Move;
         public InputAction @Jump => m_Wrapper.m_Land_Jump;
         public InputAction @Interact => m_Wrapper.m_Land_Interact;
+        public InputAction @Sprint => m_Wrapper.m_Land_Sprint;
+        public InputAction @Walk => m_Wrapper.m_Land_Walk;
         public InputActionMap Get() { return m_Wrapper.m_Land; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -313,6 +359,12 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @Interact.started -= m_Wrapper.m_LandActionsCallbackInterface.OnInteract;
                 @Interact.performed -= m_Wrapper.m_LandActionsCallbackInterface.OnInteract;
                 @Interact.canceled -= m_Wrapper.m_LandActionsCallbackInterface.OnInteract;
+                @Sprint.started -= m_Wrapper.m_LandActionsCallbackInterface.OnSprint;
+                @Sprint.performed -= m_Wrapper.m_LandActionsCallbackInterface.OnSprint;
+                @Sprint.canceled -= m_Wrapper.m_LandActionsCallbackInterface.OnSprint;
+                @Walk.started -= m_Wrapper.m_LandActionsCallbackInterface.OnWalk;
+                @Walk.performed -= m_Wrapper.m_LandActionsCallbackInterface.OnWalk;
+                @Walk.canceled -= m_Wrapper.m_LandActionsCallbackInterface.OnWalk;
             }
             m_Wrapper.m_LandActionsCallbackInterface = instance;
             if (instance != null)
@@ -326,6 +378,12 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @Interact.started += instance.OnInteract;
                 @Interact.performed += instance.OnInteract;
                 @Interact.canceled += instance.OnInteract;
+                @Sprint.started += instance.OnSprint;
+                @Sprint.performed += instance.OnSprint;
+                @Sprint.canceled += instance.OnSprint;
+                @Walk.started += instance.OnWalk;
+                @Walk.performed += instance.OnWalk;
+                @Walk.canceled += instance.OnWalk;
             }
         }
     }
@@ -344,5 +402,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         void OnMove(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
         void OnInteract(InputAction.CallbackContext context);
+        void OnSprint(InputAction.CallbackContext context);
+        void OnWalk(InputAction.CallbackContext context);
     }
 }
