@@ -60,13 +60,22 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""id"": ""87a61f10-9875-47c4-8e78-ea520eb16749"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
-                    ""interactions"": """",
+                    ""interactions"": ""Hold"",
                     ""initialStateCheck"": false
                 },
                 {
                     ""name"": ""Walk"",
                     ""type"": ""Button"",
                     ""id"": ""1bc9fbe2-bce8-4e1b-b891-14e41c0b4123"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Open Inventory"",
+                    ""type"": ""Button"",
+                    ""id"": ""be74e52c-0beb-4733-8d13-93fffd5d2497"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -238,6 +247,17 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""action"": ""Walk"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""1f53f746-5b6d-4a4d-8a8b-d2b70063e75e"",
+                    ""path"": ""<Keyboard>/i"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Desktop"",
+                    ""action"": ""Open Inventory"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -268,6 +288,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         m_Land_Interact = m_Land.FindAction("Interact", throwIfNotFound: true);
         m_Land_Sprint = m_Land.FindAction("Sprint", throwIfNotFound: true);
         m_Land_Walk = m_Land.FindAction("Walk", throwIfNotFound: true);
+        m_Land_OpenInventory = m_Land.FindAction("Open Inventory", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -332,6 +353,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
     private readonly InputAction m_Land_Interact;
     private readonly InputAction m_Land_Sprint;
     private readonly InputAction m_Land_Walk;
+    private readonly InputAction m_Land_OpenInventory;
     public struct LandActions
     {
         private @PlayerControls m_Wrapper;
@@ -341,6 +363,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         public InputAction @Interact => m_Wrapper.m_Land_Interact;
         public InputAction @Sprint => m_Wrapper.m_Land_Sprint;
         public InputAction @Walk => m_Wrapper.m_Land_Walk;
+        public InputAction @OpenInventory => m_Wrapper.m_Land_OpenInventory;
         public InputActionMap Get() { return m_Wrapper.m_Land; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -365,6 +388,9 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @Walk.started -= m_Wrapper.m_LandActionsCallbackInterface.OnWalk;
                 @Walk.performed -= m_Wrapper.m_LandActionsCallbackInterface.OnWalk;
                 @Walk.canceled -= m_Wrapper.m_LandActionsCallbackInterface.OnWalk;
+                @OpenInventory.started -= m_Wrapper.m_LandActionsCallbackInterface.OnOpenInventory;
+                @OpenInventory.performed -= m_Wrapper.m_LandActionsCallbackInterface.OnOpenInventory;
+                @OpenInventory.canceled -= m_Wrapper.m_LandActionsCallbackInterface.OnOpenInventory;
             }
             m_Wrapper.m_LandActionsCallbackInterface = instance;
             if (instance != null)
@@ -384,6 +410,9 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @Walk.started += instance.OnWalk;
                 @Walk.performed += instance.OnWalk;
                 @Walk.canceled += instance.OnWalk;
+                @OpenInventory.started += instance.OnOpenInventory;
+                @OpenInventory.performed += instance.OnOpenInventory;
+                @OpenInventory.canceled += instance.OnOpenInventory;
             }
         }
     }
@@ -404,5 +433,6 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         void OnInteract(InputAction.CallbackContext context);
         void OnSprint(InputAction.CallbackContext context);
         void OnWalk(InputAction.CallbackContext context);
+        void OnOpenInventory(InputAction.CallbackContext context);
     }
 }

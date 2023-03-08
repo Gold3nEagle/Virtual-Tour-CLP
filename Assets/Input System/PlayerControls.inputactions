@@ -38,13 +38,22 @@
                     "id": "87a61f10-9875-47c4-8e78-ea520eb16749",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": "",
+                    "interactions": "Hold",
                     "initialStateCheck": false
                 },
                 {
                     "name": "Walk",
                     "type": "Button",
                     "id": "1bc9fbe2-bce8-4e1b-b891-14e41c0b4123",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Open Inventory",
+                    "type": "Button",
+                    "id": "be74e52c-0beb-4733-8d13-93fffd5d2497",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -214,6 +223,17 @@
                     "processors": "",
                     "groups": "Desktop",
                     "action": "Walk",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "1f53f746-5b6d-4a4d-8a8b-d2b70063e75e",
+                    "path": "<Keyboard>/i",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Desktop",
+                    "action": "Open Inventory",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
