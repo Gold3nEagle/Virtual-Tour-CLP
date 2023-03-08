@@ -28,9 +28,13 @@ public class Controller : MonoBehaviour
 
         // Subscribe events
         playerControls.Land.Jump.started += Jump;
+        playerControls.Land.Interact.performed += Interact;
         playerControls.Land.Walk.performed += WalkToggle;
         playerControls.Land.OpenInventory.performed += OpenInventory;
-        playerControls.Land.Interact.performed += Interact;
+        playerControls.Land.EnterVehicle.performed += EnterVehicle;
+        playerControls.Land.Pause.performed += OpenPause;
+        playerControls.Land.OpenMap.performed += OpenMap;
+        playerControls.Land.ResetCamera.performed += ResetCamera;
     }
 
     private void OnDisable()
@@ -39,9 +43,13 @@ public class Controller : MonoBehaviour
 
         // Unsubscribe events
         playerControls.Land.Jump.started -= Jump;
+        playerControls.Land.Interact.performed -= Interact;
         playerControls.Land.Walk.performed -= WalkToggle;
         playerControls.Land.OpenInventory.performed -= OpenInventory;
-        playerControls.Land.Interact.performed -= Interact;
+        playerControls.Land.EnterVehicle.performed -= EnterVehicle;
+        playerControls.Land.Pause.performed -= OpenPause;
+        playerControls.Land.OpenMap.performed -= OpenMap;
+        playerControls.Land.ResetCamera.performed -= ResetCamera;
     }
 
     // Start is called before the first frame update
@@ -114,6 +122,26 @@ public class Controller : MonoBehaviour
     private void Interact(InputAction.CallbackContext context)
     {
         Debug.Log("interacting...");
+    }
+
+    private void EnterVehicle(InputAction.CallbackContext context)
+    {
+        Debug.Log("Entering vehicle...");
+    }
+
+    private void OpenPause(InputAction.CallbackContext context)
+    {
+        Debug.Log("displaying pause menu...");
+    }
+
+    private void OpenMap(InputAction.CallbackContext context)
+    {
+        Debug.Log("displaying map...");
+    }
+
+    private void ResetCamera(InputAction.CallbackContext context)
+    {
+        Debug.Log("resetting camera...");
     }
 
     // === === === === ===
