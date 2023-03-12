@@ -31,4 +31,6 @@ public class ThirdPersonPlayer : MonoBehaviour
         // Move the character
         rigidbody.MovePosition(rigidbody.position + moveDirection * moveSpeed * Time.fixedDeltaTime);
     }
+
+  
 }
