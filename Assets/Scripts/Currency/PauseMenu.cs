@@ -5,8 +5,13 @@ public class PauseMenu : MonoBehaviour
 {
     public GameObject pauseMenuPanel;
     public bool isPaused;
+    public GameObject saveText;
 
-    
+    private void Start()
+    {
+        saveText.SetActive(false);
+    }
+
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
@@ -47,8 +52,17 @@ public class PauseMenu : MonoBehaviour
         //AdvancedSavingSystem saveGame = new AdvancedSavingSystem();
         //saveGame.Save();
         AdvancedSavingSystem.instance.Save();
+        saveText.SetActive(true);
+        Invoke("SetFalse", 0.1f) ;
+
     }
     
+
+    void SetFalse()
+    {
+        saveText.SetActive(false);
+    }
+
     public void QuitGame()
     {
         Application.Quit();
