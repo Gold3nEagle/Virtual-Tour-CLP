@@ -9,7 +9,7 @@ public class GraphicsSelected : MonoBehaviour
         if (quality)
         {
         QualitySettings.SetQualityLevel(1);
-            Debug.Log("Low is activated");
+            
         }
         
     }
@@ -18,7 +18,7 @@ public class GraphicsSelected : MonoBehaviour
         if (quality)
         {
             QualitySettings.SetQualityLevel(2);
-            Debug.Log("Medium is activated");
+            
         }
 
     }
@@ -27,7 +27,7 @@ public class GraphicsSelected : MonoBehaviour
         if (quality)
         {
             QualitySettings.SetQualityLevel(3);
-            Debug.Log("High is activated");
+            
         }
 
     }
