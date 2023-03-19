@@ -5,6 +5,9 @@ TagManager:
   serializedVersion: 2
   tags:
   - Money
+  - Stock Item
+  - Stock Item Desc
+  - Stock Item Price
   layers:
   - Default
   - TransparentFX
