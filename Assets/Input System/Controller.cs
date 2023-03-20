@@ -61,6 +61,7 @@ public class Controller : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Time.timeScale = 1.0f;
         targetSpeed = jogSpeed; // Default speed
     }
 
@@ -146,6 +147,15 @@ public class Controller : MonoBehaviour
     private void OpenPause(InputAction.CallbackContext context)
     {
         Debug.Log("displaying pause menu...");
+
+        shopMenu.CloseMenu();
+        invMenu.CloseMenu();
+        pauseMenu.OpenMenu();
+    }
+
+    public void ResumeGame()
+    {
+        Debug.Log("resuming game...");
 
         shopMenu.CloseMenu();
         invMenu.CloseMenu();

@@ -51,8 +51,6 @@ public class MenuUI
             return;
         }
 
-        // FindMenu();
-
         Time.timeScale = 0.0f;
         menuGO.SetActive(true);
         isMenuOpen = true;
