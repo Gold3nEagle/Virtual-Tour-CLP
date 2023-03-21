@@ -15,5 +15,5 @@ MonoBehaviour:
   itemName: Luqaimat
   description: A sweet dumpling made from flour, yeast, and saffron, typically served
     with date syrup.
-  icon: {fileID: 21300000, guid: 0f061b4bd0275bc4eb60f2af31e7375a, type: 3}
+  icon: {fileID: 21300000, guid: 1b0b0b487c5e54632ad4781277386ee9, type: 3}
   price: 2

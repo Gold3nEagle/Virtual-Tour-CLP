@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae66b475d91424c2883069307080473e, type: 3}
+  m_Name: Bahraini Kebab
+  m_EditorClassIdentifier: 
+  itemName: Bahraini Kebab
+  description: "Bahraini kebab is very popular during ramadan and usually served
+    during iftar. Crisp on the outside with a soft interior, the bahraini kebab makes
+    a great little spicy vegetarian appetizer, delicious when served with a cool
+    refreshing (will post recipe) yoghurt and coriander dipping sauce. The batter
+    for the bahraini kebab is made using chickpea flour, known locally as kebab flour\u2026
+    besan and gram flour are also other names for chickpea flour."
+  icon: {fileID: 21300000, guid: 050680f798aa947e8978ddc2ff84077d, type: 3}
+  price: 2

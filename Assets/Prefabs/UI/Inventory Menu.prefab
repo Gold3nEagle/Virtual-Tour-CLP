@@ -982,7 +982,7 @@ MonoBehaviour:
   m_StartCorner: 0
   m_StartAxis: 0
   m_CellSize: {x: 150, y: 150}
-  m_Spacing: {x: 20, y: 20}
+  m_Spacing: {x: 40, y: 40}
   m_Constraint: 0
   m_ConstraintCount: 5
 --- !u!1 &4377232540233924976
@@ -1200,15 +1200,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.9528302, g: 0.9238405, b: 0.4449537, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: f9b0c4b9078214b32a3a91836f4ff486, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -1834,6 +1834,19 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 9ca913c04ae51485d824486c2de37899, type: 2}
   - {fileID: 11400000, guid: ff4cc50662bbf4c4780703e6269cff23, type: 2}
   - {fileID: 11400000, guid: 410285967875d464fa627124141f279c, type: 2}
+  - {fileID: 11400000, guid: 8611c6a76af474b0aae924851041fa57, type: 2}
+  - {fileID: 11400000, guid: eccfc2fe45da04381be4e692393c0db6, type: 2}
+  - {fileID: 11400000, guid: 386f6a43d671148f7a4b3bd565186521, type: 2}
+  - {fileID: 11400000, guid: b0e1cb9cae11247bf9fcffe47516e227, type: 2}
+  - {fileID: 11400000, guid: 25a8ca9bc038147e996c301f1e678ef5, type: 2}
+  - {fileID: 11400000, guid: b2d13ca82c9c24451a7d894051aa6bee, type: 2}
+  - {fileID: 11400000, guid: 69ea70a61b68b4ce1bead194a04de914, type: 2}
+  - {fileID: 11400000, guid: 85f968e19836f40848844d60141da703, type: 2}
+  - {fileID: 11400000, guid: 710ba1d546ce44d10900bd2a7c72dfb4, type: 2}
+  - {fileID: 11400000, guid: 34962af543bea4612b7e6a55c86c4a26, type: 2}
+  - {fileID: 11400000, guid: 2eadc55e107b54ac08f03037981f13c1, type: 2}
+  - {fileID: 11400000, guid: 6f1c24153d12e45d69223d4e19e6c2a5, type: 2}
+  - {fileID: 11400000, guid: 65775eddde6a343b389eb3458bd6586d, type: 2}
 --- !u!1001 &5485817925252907174
 PrefabInstance:
   m_ObjectHideFlags: 0

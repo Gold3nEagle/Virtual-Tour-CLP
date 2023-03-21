@@ -15,5 +15,5 @@ MonoBehaviour:
   itemName: Harees
   description: A porridge-like dish made from wheat, meat, and spices, often served
     during Ramadan.
-  icon: {fileID: 21300000, guid: 372e7b39fc8f34549ac25d8757965a2c, type: 3}
+  icon: {fileID: 21300000, guid: 2d24f52390ba64064924b7c3c594e9a3, type: 3}
   price: 3

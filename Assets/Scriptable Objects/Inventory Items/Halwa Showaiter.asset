@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae66b475d91424c2883069307080473e, type: 3}
+  m_Name: Halwa Showaiter
+  m_EditorClassIdentifier: 
+  itemName: Halwa Showaiter
+  description: Among these sweets is the Bahraini Halwa, a jelly-like delicacy made
+    up of a mixture of rose water, saffron, cardamon, pistachios and walnuts. Given
+    its popularity among the GCC regions, it is set to be locally produced on a wider
+    scale.
+  icon: {fileID: 21300000, guid: ff5140804bbae4f7f8de45298dbc8f81, type: 3}
+  price: 6
