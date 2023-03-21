@@ -530,7 +530,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0.2216981, b: 0.27584052, a: 1}
+  m_Color: {r: 0.08022301, g: 0.10869684, b: 0.187, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -640,8 +640,8 @@ MonoBehaviour:
     a mi. Nullam ut quam neque. In turpis odio, dignissim finibus felis in, pharetra
     condimentum justo.
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: d64d108263f95e94aa15f354f910c3fb, type: 2}
-  m_sharedMaterial: {fileID: 7377773971540521460, guid: d64d108263f95e94aa15f354f910c3fb, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: b44bb57fec208455c842615cead2aa18, type: 2}
+  m_sharedMaterial: {fileID: -8689860492075616775, guid: b44bb57fec208455c842615cead2aa18, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1061,8 +1061,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4282137660
-  m_fontColor: {r: 0.23584908, g: 0.23584908, b: 0.23584908, a: 1}
+    rgba: 4293717228
+  m_fontColor: {r: 0.9245283, g: 0.9245283, b: 0.9245283, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -1381,8 +1381,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 12397.0
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: d64d108263f95e94aa15f354f910c3fb, type: 2}
-  m_sharedMaterial: {fileID: 7377773971540521460, guid: d64d108263f95e94aa15f354f910c3fb, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: a5151ece61103479daf3d479c8cc73eb, type: 2}
+  m_sharedMaterial: {fileID: -596336189873975616, guid: a5151ece61103479daf3d479c8cc73eb, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1710,7 +1710,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.0990566, g: 1, b: 0.914722, a: 1}
+  m_Color: {r: 0, g: 0.06543095, b: 0.13207549, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -1719,14 +1719,14 @@ MonoBehaviour:
       m_Calls: []
   m_Sprite: {fileID: 0}
   m_Type: 0
-  m_PreserveAspect: 0
+  m_PreserveAspect: 1
   m_FillCenter: 1
   m_FillMethod: 4
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
+  m_PixelsPerUnitMultiplier: 2.88
 --- !u!114 &4377232541043950377
 MonoBehaviour:
   m_ObjectHideFlags: 0
