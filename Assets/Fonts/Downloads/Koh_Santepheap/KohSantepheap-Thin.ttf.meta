@@ -1,0 +1,24 @@
+fileFormatVersion: 2
+guid: aaead8f2d2665444880f2dbb67f743c5
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontNames:
+  - Koh Santepheap
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: b7ead6416f6094321bea8e3273c36d99, type: 3}
+  - {fileID: 12800000, guid: 606c40d2a79c745d190d13c0f6deb604, type: 3}
+  - {fileID: 12800000, guid: 98dd8d5fd18934135b7b9d5f7f700007, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

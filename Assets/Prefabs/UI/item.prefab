@@ -90,7 +90,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.9716981, g: 0.59126914, b: 0.59126914, a: 1}
+  m_Color: {r: 0.9716981, g: 0.59126914, b: 0.59126914, a: 0.5882353}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -249,8 +249,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: New Text
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: d64d108263f95e94aa15f354f910c3fb, type: 2}
-  m_sharedMaterial: {fileID: 7377773971540521460, guid: d64d108263f95e94aa15f354f910c3fb, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 4911a01db704842389eb06c053c74bec, type: 2}
+  m_sharedMaterial: {fileID: -339866587082479420, guid: 4911a01db704842389eb06c053c74bec, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -274,7 +274,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 26.25
+  m_fontSize: 25.6
   m_fontSizeBase: 1.8
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -282,7 +282,7 @@ MonoBehaviour:
   m_fontSizeMax: 32
   m_fontStyle: 0
   m_HorizontalAlignment: 2
-  m_VerticalAlignment: 512
+  m_VerticalAlignment: 1024
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
