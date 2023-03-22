@@ -15,6 +15,7 @@ public class CarController : MonoBehaviour
     private float maxZRotation = 15f;        // max rotation for x and z axis to prevent the car from flipping
     private float maxXRotation = 60f;
     private float raycastDistance = 1.2f;   // Distance of the raycast from the car's center
+    private bool isBraking;
 
     private void Start()
     {
@@ -24,13 +25,14 @@ public class CarController : MonoBehaviour
     private void FixedUpdate()
     {
         CheckGround();
-        Accelerate();
         Brake();
+        Accelerate();
         Steer();
         LockRotation();
         LimitSpeed();
         RotateWheels();
         getSpeed = rb.velocity.magnitude;
+        if (isBraking) isBraking = false;
     }
 
     // Check if the vehicle is on the ground
@@ -50,14 +52,23 @@ public class CarController : MonoBehaviour
     // Accelerate the vehicle
     private void Accelerate()
     {
+        if (isBraking) return;
+        float currentAcc = acceleration;
         if (Input.GetKey(KeyCode.W) && isOnGround)
         {
-            float currentAcc = acceleration;
             if(rb.velocity.magnitude < 5)
             {
                 currentAcc *= 2;
             }
             rb.AddForce(transform.forward * currentAcc, ForceMode.Acceleration);
+        }
+        else if (Input.GetKey(KeyCode.S) && isOnGround)
+        {
+            if (rb.velocity.magnitude < 5)
+            {
+                currentAcc *= 2;
+            }
+            rb.AddForce(-transform.forward * currentAcc, ForceMode.Acceleration);
         }
     }
 
@@ -66,7 +77,8 @@ public class CarController : MonoBehaviour
     {
         if(Input.GetKey(KeyCode.Space) && rb.velocity.magnitude > 0 && isOnGround)
         {
-            if(isMovingBackwards())
+            isBraking = true;
+            if (isMovingBackwards())
             {
                 rb.AddForce(transform.forward * brakePower, ForceMode.Acceleration);
             }
@@ -75,29 +87,12 @@ public class CarController : MonoBehaviour
                 rb.AddForce(-transform.forward * brakePower, ForceMode.Acceleration);
             }
         }
-        else if (Input.GetKey(KeyCode.S) && isOnGround)
-        {
-            if (isMovingBackwards())
-            {
-                float currentAcc = acceleration;
-                if (rb.velocity.magnitude < 5)
-                {
-                    currentAcc *= 2;
-                }
-                rb.AddForce(-transform.forward * currentAcc, ForceMode.Acceleration);
-            }
-            else
-            {
-                rb.AddForce(-transform.forward * brakePower, ForceMode.Acceleration);
-            }           
-        }
     }
     private void Steer()
     {
         float h = Input.GetAxis("Horizontal");
         float currentCarSpeed = rb.velocity.magnitude;
-
-        if (isOnGround && currentCarSpeed > 0.1f && Vector3.Dot(rb.velocity.normalized, transform.forward) > 0)
+        if (isOnGround && currentCarSpeed > 0.1f && (Vector3.Dot(rb.velocity.normalized, transform.forward) > 0 || isMovingBackwards()))
         {
             // Calculate the steering angle based on the current speed
             float speedFactor;
@@ -114,6 +109,10 @@ public class CarController : MonoBehaviour
             // Apply the steering angle to the vehicle's transform
             transform.Rotate(Vector3.up * steeringAngle * Time.fixedDeltaTime);
 
+            if(isMovingBackwards())
+            {
+                steeringAngle = -steeringAngle;
+            }
             // Steer the front wheels
             for (int i = 0; i < wheels.Length - 2; i++)
             {
@@ -166,6 +165,7 @@ public class CarController : MonoBehaviour
     private void RotateWheels()
     {
         float rotationAngle = rb.velocity.magnitude / (2 * Mathf.PI * wheels[0].localScale.y) * 360f;
+        if (isMovingBackwards()) rotationAngle = -rotationAngle;
         foreach (Transform wheel in wheels)
         {
             wheel.Rotate(Vector3.right, rotationAngle * Time.fixedDeltaTime);
@@ -174,9 +174,7 @@ public class CarController : MonoBehaviour
 
     private bool isMovingBackwards()
     {
-        Vector3 localVelocity = transform.InverseTransformDirection(rb.velocity);
-        float forwardSpeed = Vector3.Dot(localVelocity, transform.forward);
-        return forwardSpeed < 0;
+        return Vector3.Dot(rb.velocity.normalized, -transform.forward) > 0;
     }
         
 
