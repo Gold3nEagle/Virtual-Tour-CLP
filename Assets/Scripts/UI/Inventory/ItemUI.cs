@@ -14,15 +14,18 @@ public class ItemUI : MonoBehaviour
     [SerializeField] private Button buyButton;
     [SerializeField] private GameObject itemsGrid;
     [SerializeField] private GameObject itemPrefab;
-    [SerializeField] private List<ItemScriptableObj> items;
+    [SerializeField] private List<ItemScriptableObj> itemsScriptableObjects;
 
     private TextMeshProUGUI buyButtonTF;
     private TextMeshProUGUI itemDescriptionTF;
     private TextMeshProUGUI itemPriceTF;
     private List<GameObject> itemsGOs;
+    private Items items;
 
     private void Awake()
     {
+        items = new Items();
+
         // Gets the text mesh pro child game object for the button.
         buyButtonTF = buyButton.transform.GetChild(0).gameObject.GetComponent<TextMeshProUGUI>();
 
@@ -45,20 +48,61 @@ public class ItemUI : MonoBehaviour
         // Disable button
         // buyButton.enabled = false;
 
-        initItems();
+        PopulateItems();
+
+        if (isInventoryMenu)
+        {
+            DisplayInventory();
+        }
+        else
+        {
+            DisplayShop();
+        }
 
         itemPrefab.SetActive(false);
     }
 
-    // Adds the items scriptable objects to the game object list
-    private void initItems()
+    private void PopulateItems()
     {
-        for (int i = 0; i < items.Count; i++)
+        for (int i = 0; i < itemsScriptableObjects.Count; i++)
         {
-            Sprite itemIcon = items[i].icon;
-            string itemLabel = items[i].itemName;
-            string itemDesc = items[i].description;
-            string itemPrice = items[i].price + ".0";
+            Item item = new Item(itemsScriptableObjects[i]);
+            items.AddItem(item);
+        }
+    }
+
+    private void DisplayInventory()
+    {
+        foreach (Item item in items.List)
+        {
+            if (item.IsObtained)
+            {
+                Sprite itemIcon = item.Icon;
+                string itemLabel = item.Name;
+                string itemDesc = item.Desc;
+                string itemPrice = item.Price + ".0";
+
+                GameObject itemGO = Instantiate(itemPrefab);
+
+                itemGO.name = itemLabel;
+                itemGO.transform.GetChild(0).GetComponent<Image>().sprite = itemIcon;
+                itemGO.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = itemLabel;
+                itemGO.transform.SetParent(itemsGrid.transform);
+
+                // To display the selected item
+                itemGO.transform.localScale = new Vector3(1f, 1f, 1f);
+            }
+        }
+    }
+
+    private void DisplayShop()
+    {
+        foreach (Item item in items.List)
+        {
+            Sprite itemIcon = item.Icon;
+            string itemLabel = item.Name;
+            string itemDesc = item.Desc;
+            string itemPrice = item.Price + ".0";
 
             GameObject itemGO = Instantiate(itemPrefab);
 
@@ -69,8 +113,6 @@ public class ItemUI : MonoBehaviour
 
             // To display the selected item
             itemGO.transform.localScale = new Vector3(1f, 1f, 1f);
-
-            itemsGOs.Add(itemGO);
         }
     }
 }
