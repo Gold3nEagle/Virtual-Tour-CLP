@@ -7,6 +7,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4377232539142420768, guid: ded636e7e46bb444d92357b59230f27c, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+    - target: {fileID: 4377232539142420768, guid: ded636e7e46bb444d92357b59230f27c, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
     - target: {fileID: 4377232539249760974, guid: ded636e7e46bb444d92357b59230f27c, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -435,6 +443,46 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6487187235674319066, guid: ded636e7e46bb444d92357b59230f27c, type: 3}
+      propertyPath: itemsScriptableObjects.Array.size
+      value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 6487187235674319066, guid: ded636e7e46bb444d92357b59230f27c, type: 3}
+      propertyPath: itemsScriptableObjects.Array.data[8]
+      value: 
+      objectReference: {fileID: 11400000, guid: 34962af543bea4612b7e6a55c86c4a26, type: 2}
+    - target: {fileID: 6487187235674319066, guid: ded636e7e46bb444d92357b59230f27c, type: 3}
+      propertyPath: itemsScriptableObjects.Array.data[9]
+      value: 
+      objectReference: {fileID: 11400000, guid: 410285967875d464fa627124141f279c, type: 2}
+    - target: {fileID: 6487187235674319066, guid: ded636e7e46bb444d92357b59230f27c, type: 3}
+      propertyPath: itemsScriptableObjects.Array.data[10]
+      value: 
+      objectReference: {fileID: 11400000, guid: ff4cc50662bbf4c4780703e6269cff23, type: 2}
+    - target: {fileID: 6487187235674319066, guid: ded636e7e46bb444d92357b59230f27c, type: 3}
+      propertyPath: itemsScriptableObjects.Array.data[11]
+      value: 
+      objectReference: {fileID: 11400000, guid: 9ca913c04ae51485d824486c2de37899, type: 2}
+    - target: {fileID: 6487187235674319066, guid: ded636e7e46bb444d92357b59230f27c, type: 3}
+      propertyPath: itemsScriptableObjects.Array.data[12]
+      value: 
+      objectReference: {fileID: 11400000, guid: 66bc48b38d1044a09bae3b81e968ed4d, type: 2}
+    - target: {fileID: 6487187235674319066, guid: ded636e7e46bb444d92357b59230f27c, type: 3}
+      propertyPath: itemsScriptableObjects.Array.data[13]
+      value: 
+      objectReference: {fileID: 11400000, guid: b2d13ca82c9c24451a7d894051aa6bee, type: 2}
+    - target: {fileID: 6487187235674319066, guid: ded636e7e46bb444d92357b59230f27c, type: 3}
+      propertyPath: itemsScriptableObjects.Array.data[14]
+      value: 
+      objectReference: {fileID: 11400000, guid: 2eadc55e107b54ac08f03037981f13c1, type: 2}
+    - target: {fileID: 6487187235674319066, guid: ded636e7e46bb444d92357b59230f27c, type: 3}
+      propertyPath: itemsScriptableObjects.Array.data[15]
+      value: 
+      objectReference: {fileID: 11400000, guid: 386f6a43d671148f7a4b3bd565186521, type: 2}
+    - target: {fileID: 6487187235674319066, guid: ded636e7e46bb444d92357b59230f27c, type: 3}
+      propertyPath: itemsScriptableObjects.Array.data[16]
+      value: 
+      objectReference: {fileID: 11400000, guid: 69ea70a61b68b4ce1bead194a04de914, type: 2}
     - target: {fileID: 7490722630861620802, guid: ded636e7e46bb444d92357b59230f27c, type: 3}
       propertyPath: m_Name
       value: Shop Menu Variant

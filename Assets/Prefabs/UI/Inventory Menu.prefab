@@ -581,7 +581,7 @@ GameObject:
   - component: {fileID: 4377232539932918172}
   m_Layer: 5
   m_Name: description text
-  m_TagString: Stock Item Desc
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1326,7 +1326,7 @@ GameObject:
   - component: {fileID: 4377232540492768331}
   m_Layer: 5
   m_Name: price
-  m_TagString: Stock Item Price
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1826,7 +1826,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isInventoryMenu: 1
-  menuTitleTF: {fileID: 4377232540233924978}
+  menuTitleTextField: {fileID: 4377232540233924978}
   buyButton: {fileID: 4377232539513800034}
   itemsGrid: {fileID: 4377232540219898559}
   itemPrefab: {fileID: 4377232539249760973}
@@ -1855,6 +1855,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4377232540219898544}
     m_Modifications:
+    - target: {fileID: 3828683450798128610, guid: 148061c4c2f844a34bc14cdb55e5990d, type: 3}
+      propertyPath: itemDescTextField
+      value: 
+      objectReference: {fileID: 4377232539932918173}
+    - target: {fileID: 3828683450798128610, guid: 148061c4c2f844a34bc14cdb55e5990d, type: 3}
+      propertyPath: itemPriceTextField
+      value: 
+      objectReference: {fileID: 4377232540492768331}
     - target: {fileID: 6824789593493955926, guid: 148061c4c2f844a34bc14cdb55e5990d, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
