@@ -10,7 +10,6 @@ public class ItemsDisplayer : MonoBehaviour
 
     [SerializeField] private bool isInventoryMenu;
     [SerializeField] private TextMeshProUGUI menuTitleTextField;
-    [SerializeField] private Button buyButton;
     [SerializeField] private GameObject itemsGrid;
     [SerializeField] private GameObject itemPrefab;
     [SerializeField] private List<ItemScriptableObj> itemsScriptableObjects;
@@ -19,15 +18,8 @@ public class ItemsDisplayer : MonoBehaviour
     {
         items = new Items();
 
-        // Gets the TMPro child game object for the button.
-        TextMeshProUGUI buyButtonTextField = buyButton.transform.GetChild(0).gameObject.GetComponent<TextMeshProUGUI>();
-
         // Set the menu title
         menuTitleTextField.text = isInventoryMenu ? "Inventory" : "Shop";
-
-        // Set the button text depending on the player's item status
-        // TODO: change the "open shop" text to either "available" or "owned"
-        buyButtonTextField.text = isInventoryMenu ? "Open Shop" : "Buy Now";
 
         PopulateItems();
         DisplayItems();
@@ -35,6 +27,9 @@ public class ItemsDisplayer : MonoBehaviour
         itemPrefab.SetActive(false);
     }
 
+    /// <summary>
+    /// Populates the items list with items
+    /// </summary>
     private void PopulateItems()
     {
         for (int i = 0; i < itemsScriptableObjects.Count; i++)
@@ -44,9 +39,12 @@ public class ItemsDisplayer : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Creates new item gameObjects and place them inside the item grid display gameObject.
+    /// </summary>
     private void DisplayItems()
     {
-        foreach (Item item in items.List)
+        foreach (Item item in items.ToList)
         {
             if (isInventoryMenu)
             {
@@ -63,10 +61,9 @@ public class ItemsDisplayer : MonoBehaviour
             itemGO.name = itemLabel;
             itemGO.transform.GetChild(0).GetComponent<Image>().sprite = itemIcon;
             itemGO.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = itemLabel;
-            itemGO.transform.SetParent(itemsGrid.transform);
-
-            // To display the selected item
             itemGO.transform.localScale = new Vector3(1f, 1f, 1f);
+
+            itemGO.transform.SetParent(itemsGrid.transform);
         }
     }
 }

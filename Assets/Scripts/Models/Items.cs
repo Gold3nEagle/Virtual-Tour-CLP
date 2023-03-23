@@ -2,10 +2,13 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Class to store a list of items of type `Item`
+/// </summary>
 public class Items
 {
     private List<Item> items;
-    public List<Item> List { get => items; }
+    public List<Item> ToList { get => items; }
 
     public Items()
     {

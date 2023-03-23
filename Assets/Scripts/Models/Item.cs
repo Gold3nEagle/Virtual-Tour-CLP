@@ -3,6 +3,25 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
+/// <summary>
+/// Class to store info related to a SINGLE item.
+/// <br />
+/// Such as:
+/// <list type="number">
+///     <item>
+///         <term>Name</term>
+///         <description>Item's name</description>
+///     </item>
+///     <item>
+///         <term>Description</term>
+///         <description>Item's description</description>
+///     </item>
+///     <item>
+///         <term>Price</term>
+///         <description>Item's price</description>
+///     </item>
+/// </list>
+/// </summary>
 public class Item
 {
     // Might be useful later in future.
@@ -40,9 +59,13 @@ public class Item
     private bool isObtained;
     public bool IsObtained { get => isObtained; }
 
-    public Item(string gameObjectName)
+    /// <summary>
+    /// Creates a new item by passing the game object's name.
+    /// </summary>
+    /// <param name="itemName">The item's name, usually the same as the file name</param>
+    public Item(string itemName)
     {
-        string path = itemScriptableObjPath + gameObjectName + ".asset";
+        string path = itemScriptableObjPath + itemName + ".asset";
         ItemScriptableObj tempItemSO = AssetDatabase.LoadAssetAtPath<ItemScriptableObj>(path);
 
         this.name = tempItemSO.itemName;
@@ -52,6 +75,10 @@ public class Item
         this.isObtained = false;
     }
 
+    /// <summary>
+    /// Creates a new item by passing the item scriptable object.
+    /// </summary>
+    /// <param name="itemScriptableObj">The item scriptable object</param>
     public Item(ItemScriptableObj itemScriptableObj)
     {
         this.name = itemScriptableObj.itemName;
@@ -59,5 +86,13 @@ public class Item
         this.desc = itemScriptableObj.description;
         this.price = itemScriptableObj.price;
         this.isObtained = false;
+    }
+
+    /// <summary>
+    /// Toggles the `IsObtained` property between true or false.
+    /// </summary>
+    public void ToggleIsObtained()
+    {
+        this.isObtained = !this.isObtained;
     }
 }

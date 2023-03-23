@@ -2,6 +2,24 @@ using UnityEngine;
 
 public class MenuUI
 {
+    /// <summary>
+    /// <list type="number">
+    ///         <item>
+    ///             <term>"inv"</term>
+    ///             <description>Inventory menu</description>
+    ///         </item>
+    ///         <item>
+    ///             <term>"shop"</term>
+    ///             <description>Shop menu</description>
+    ///         </item>
+    ///         <item>
+    ///             <term>"pause"</term>
+    ///             <description>Pause menu</description>
+    ///         </item>
+    ///     </list>
+    /// </summary>
+    /// <param name="menuTitle">Can be either: 'inv', 'shop', or 'pause'</param>
+    /// <param name="canvasTitle">The main canvas gameObject name</param>
     public MenuUI(string menuTitle, string canvasTitle = "MenuCanvas")
     {
         this.menuTitle = menuTitle;
@@ -42,6 +60,9 @@ public class MenuUI
     public string MenuTitle { get; set; }
     public bool IsMenuOpen { get; }
 
+    /// <summary>
+    /// Activates the menu
+    /// </summary>
     public void OpenMenu()
     {
         if (isMenuOpen)
@@ -56,6 +77,9 @@ public class MenuUI
         isMenuOpen = true;
     }
 
+    /// <summary>
+    /// Deactivates the menu
+    /// </summary>
     public void CloseMenu()
     {
         if (!isMenuOpen)
@@ -68,16 +92,4 @@ public class MenuUI
         menuGO.SetActive(false);
         isMenuOpen = false;
     }
-
-    // public static void CloseAllMenus(string canvasTitle = "MenuCanvas")
-    // {
-    //     Time.timeScale = 1.0f;
-    //     GameObject canvasGO = GameObject.Find(canvasTitle);
-    //     for (int i = 0; i < canvasGO.transform.childCount; i++)
-    //     {
-    //         Transform childTransform = canvasGO.transform.GetChild(i);
-    //         GameObject menuObject = childTransform.gameObject;
-    //         menuObject.SetActive(false);
-    //     }
-    // }
 }

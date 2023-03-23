@@ -6,6 +6,9 @@ using TMPro;
 
 public class ItemUI : MonoBehaviour
 {
+    /// <summary>
+    /// Used for getting/ setting the currently selected item visible on the shop and inventory menu.
+    /// </summary>
     public static Item selectedItem;
 
     [SerializeField] private TextMeshProUGUI itemDescTextField;
@@ -37,16 +40,17 @@ public class ItemUI : MonoBehaviour
         gameObject.GetComponent<Image>().enabled = true;
 
         RefreshItemInfo();
-        RefreshDescriptionForSelectedItem();
     }
 
+    /// <summary>
+    /// Refreshes the currently selected item information such as: Price and Description.
+    /// The selected item will be stored to a `public static variable` as `Item` type
+    /// that can be accessible from anywhere.
+    /// </summary>
     private void RefreshItemInfo()
     {
-        selectedItem = new Item(gameObjectName: gameObject.name);
-    }
+        selectedItem = new Item(itemName: gameObject.name);
 
-    private void RefreshDescriptionForSelectedItem()
-    {
         itemDescTextField.text = selectedItem.Desc;
         itemPriceTextField.text = selectedItem.Price + ".0";
     }
