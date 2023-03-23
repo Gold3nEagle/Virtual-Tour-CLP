@@ -6,8 +6,6 @@ using TMPro;
 
 public class ItemsDisplayer : MonoBehaviour
 {
-    public static GameObject selectedItem;
-
     private Items items;
 
     [SerializeField] private bool isInventoryMenu;
@@ -71,5 +69,4 @@ public class ItemsDisplayer : MonoBehaviour
             itemGO.transform.localScale = new Vector3(1f, 1f, 1f);
         }
     }
-
 }

@@ -1,15 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEditor;
 using UnityEngine.UI;
 using TMPro;
 
 public class ItemUI : MonoBehaviour
 {
+    public static Item selectedItem;
+
     [SerializeField] private TextMeshProUGUI itemDescTextField;
     [SerializeField] private TextMeshProUGUI itemPriceTextField;
-    private const string itemScriptableObjPath = "Assets/Scriptable Objects/Inventory Items/";
 
     private void Awake()
     {
@@ -34,18 +34,20 @@ public class ItemUI : MonoBehaviour
             go.GetComponent<Image>().enabled = false;
         }
 
-        ItemsDisplayer.selectedItem = gameObject;
         gameObject.GetComponent<Image>().enabled = true;
 
+        RefreshItemInfo();
         RefreshDescriptionForSelectedItem();
+    }
+
+    private void RefreshItemInfo()
+    {
+        selectedItem = new Item(gameObjectName: gameObject.name);
     }
 
     private void RefreshDescriptionForSelectedItem()
     {
-        string path = itemScriptableObjPath + ItemsDisplayer.selectedItem.name + ".asset";
-        ItemScriptableObj tempItemSO = AssetDatabase.LoadAssetAtPath<ItemScriptableObj>(path);
-
-        itemDescTextField.text = tempItemSO.description;
-        itemPriceTextField.text = tempItemSO.price + ".0";
+        itemDescTextField.text = selectedItem.Desc;
+        itemPriceTextField.text = selectedItem.Price + ".0";
     }
 }

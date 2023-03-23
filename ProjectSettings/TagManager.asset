@@ -6,8 +6,6 @@ TagManager:
   tags:
   - Money
   - Stock Item
-  - Stock Item Desc
-  - Stock Item Price
   layers:
   - Default
   - TransparentFX
