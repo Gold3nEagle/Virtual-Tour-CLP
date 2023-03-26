@@ -24,28 +24,6 @@ using UnityEngine;
 /// </summary>
 public class Item
 {
-    // Might be useful later in future.
-    public enum ItemName
-    {
-        Apple,
-        Avocado,
-        BahrainiKebab,
-        Banana,
-        Basbousa,
-        Bread,
-        ChaiKarak,
-        Dates,
-        DigitalCamera,
-        EvianWater,
-        F1Ticket,
-        HalwaShowaiter,
-        Harees,
-        Luqaitmat,
-        OrangeJuice,
-        Samboosa,
-        VimtoDrink
-    }
-
     private const string itemScriptableObjPath = "Assets/Scriptable Objects/Inventory Items/";
 
     private string name;
