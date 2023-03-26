@@ -12,6 +12,9 @@ public class Controller : MonoBehaviour
     private bool inAir = false;
     private bool isWalking = false;
     private float movementAnimSpeed = 0.0f;
+    private MenuUI invMenu;
+    private MenuUI shopMenu;
+    private MenuUI pauseMenu;
     private Rigidbody playerRigidbody;
     private PlayerControls playerControls;
     // public float jumpForce = 5f;
@@ -20,6 +23,9 @@ public class Controller : MonoBehaviour
     {
         playerRigidbody = GetComponent<Rigidbody>();
         playerControls = new PlayerControls();
+        invMenu = new MenuUI("inv");
+        shopMenu = new MenuUI("shop");
+        pauseMenu = new MenuUI("pause");
     }
 
     private void OnEnable()
@@ -55,6 +61,7 @@ public class Controller : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Time.timeScale = 1.0f;
         targetSpeed = jogSpeed; // Default speed
     }
 
@@ -117,6 +124,10 @@ public class Controller : MonoBehaviour
     private void OpenInventory(InputAction.CallbackContext context)
     {
         Debug.Log("displaying inventory menu...");
+
+        pauseMenu.CloseMenu();
+        shopMenu.CloseMenu();
+        invMenu.OpenMenu();
     }
 
     private void Interact(InputAction.CallbackContext context)
@@ -127,11 +138,28 @@ public class Controller : MonoBehaviour
     private void EnterVehicle(InputAction.CallbackContext context)
     {
         Debug.Log("Entering vehicle...");
+
+        pauseMenu.CloseMenu();
+        invMenu.CloseMenu();
+        shopMenu.OpenMenu();
     }
 
     private void OpenPause(InputAction.CallbackContext context)
     {
         Debug.Log("displaying pause menu...");
+
+        shopMenu.CloseMenu();
+        invMenu.CloseMenu();
+        pauseMenu.OpenMenu();
+    }
+
+    public void ResumeGame()
+    {
+        Debug.Log("resuming game...");
+
+        shopMenu.CloseMenu();
+        invMenu.CloseMenu();
+        pauseMenu.OpenMenu();
     }
 
     private void OpenMap(InputAction.CallbackContext context)

@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae66b475d91424c2883069307080473e, type: 3}
+  m_Name: Dates
+  m_EditorClassIdentifier: 
+  itemName: Dates
+  description: Dates are a fruit that come from the date palm tree, which is native
+    to the Middle East, although they are also now grown in the Mediterranean, Asia,
+    the USA and Mexico. Dates grow in large clusters which hang from the top of these
+    palm trees.
+  icon: {fileID: 21300000, guid: 63c4531e824dd4b52934bd423e215c1f, type: 3}
+  price: 5
