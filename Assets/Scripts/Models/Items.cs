@@ -8,7 +8,10 @@ using UnityEngine;
 public class Items
 {
     private List<Item> items;
+    private Item selectedItem;
+
     public List<Item> ToList { get => items; }
+    public Item SelectedItem { get => selectedItem; }
 
     public Items()
     {
@@ -23,5 +26,17 @@ public class Items
     public void RemoveItem(Item item)
     {
         items.Remove(item);
+    }
+
+    public void BuyItem(Item itemToBuy)
+    {
+        int itemToBuyIndex = items.FindIndex(item => item == itemToBuy);
+        items.RemoveAt(itemToBuyIndex);
+        items.Insert(itemToBuyIndex, itemToBuy);
+    }
+
+    public void SetSelectedItem(string itemName)
+    {
+        selectedItem = items.Find(item => item.Name == itemName);
     }
 }

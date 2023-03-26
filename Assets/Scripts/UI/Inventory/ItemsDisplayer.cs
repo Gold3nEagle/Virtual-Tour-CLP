@@ -6,7 +6,7 @@ using TMPro;
 
 public class ItemsDisplayer : MonoBehaviour
 {
-    private Items items;
+    public static Items items;
 
     [SerializeField] private bool isInventoryMenu;
     [SerializeField] private TextMeshProUGUI menuTitleTextField;
@@ -27,6 +27,11 @@ public class ItemsDisplayer : MonoBehaviour
         itemPrefab.SetActive(false);
     }
 
+    private void OnEnable()
+    {
+        DisplayItems();
+    }
+
     /// <summary>
     /// Populates the items list with items
     /// </summary>
@@ -44,6 +49,12 @@ public class ItemsDisplayer : MonoBehaviour
     /// </summary>
     private void DisplayItems()
     {
+        // Clear children gameObjects
+        for (int i = itemsGrid.transform.childCount - 1; i >= 0 ; i--)
+        {
+            Destroy(itemsGrid.transform.GetChild(i).gameObject);
+        }
+
         foreach (Item item in items.ToList)
         {
             if (isInventoryMenu)
@@ -61,9 +72,9 @@ public class ItemsDisplayer : MonoBehaviour
             itemGO.name = itemLabel;
             itemGO.transform.GetChild(0).GetComponent<Image>().sprite = itemIcon;
             itemGO.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = itemLabel;
-            itemGO.transform.localScale = new Vector3(1f, 1f, 1f);
 
             itemGO.transform.SetParent(itemsGrid.transform);
+            itemGO.transform.localScale = new Vector3(1f, 1f, 1f);
         }
     }
 }

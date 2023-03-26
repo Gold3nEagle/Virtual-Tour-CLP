@@ -49,7 +49,8 @@ public class ItemUI : MonoBehaviour
     /// </summary>
     private void RefreshItemInfo()
     {
-        selectedItem = new Item(itemName: gameObject.name);
+        //selectedItem = new Item(itemName: gameObject.name);
+        ItemsDisplayer.items.SetSelectedItem(gameObject.name);
 
         itemDescTextField.text = selectedItem.Desc;
         itemPriceTextField.text = selectedItem.Price + ".0";
