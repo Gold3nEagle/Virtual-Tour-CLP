@@ -48,7 +48,7 @@ public class ItemsDisplayer : MonoBehaviour
         {
             if (isInventoryMenu)
             {
-                if (!item.IsObtained) break;
+                if (!item.IsObtained) continue;
             }
 
             Sprite itemIcon = item.Icon;
