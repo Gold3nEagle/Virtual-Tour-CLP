@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class CarController : MonoBehaviour
 {
@@ -11,15 +12,26 @@ public class CarController : MonoBehaviour
     public Transform[] wheels;
 
     private Rigidbody rb;                  // Reference to the rigidbody of the vehicle
-    private bool isOnGround;
+    [SerializeField]private bool isOnGround;
     private float maxZRotation = 15f;        // max rotation for x and z axis to prevent the car from flipping
     private float maxXRotation = 60f;
     private float raycastDistance = 1.2f;   // Distance of the raycast from the car's center
     private bool isBraking;
+    private PlayerControls playerControls;
 
-    private void Start()
+    private void Awake()
     {
         rb = GetComponent<Rigidbody>();    // Get the rigidbody component of the vehicle
+        playerControls = new PlayerControls();
+    }
+    private void OnEnable()
+    {
+        playerControls.Vehicle.Enable();
+    }
+
+    private void OnDisable()
+    {
+        playerControls.Vehicle.Disable();
     }
 
     private void FixedUpdate()
@@ -39,7 +51,7 @@ public class CarController : MonoBehaviour
     private void CheckGround()
     {
         RaycastHit hit;
-        if (Physics.Raycast(transform.position, -transform.up, out hit, raycastDistance))
+        if (Physics.Raycast(transform.position, (-transform.up * 0.05f), out hit, raycastDistance))
         {
             isOnGround = true;
         }
@@ -52,17 +64,19 @@ public class CarController : MonoBehaviour
     // Accelerate the vehicle
     private void Accelerate()
     {
-        if (isBraking) return;
+        if (isBraking || !isOnGround) return;
         float currentAcc = acceleration;
-        if (Input.GetKey(KeyCode.W) && isOnGround)
+        Vector2 moveDirection = playerControls.Vehicle.Drive.ReadValue<Vector2>();
+
+        if (moveDirection.y >= 1)
         {
-            if(rb.velocity.magnitude < 5)
+            if (rb.velocity.magnitude < 5)
             {
                 currentAcc *= 2;
             }
             rb.AddForce(transform.forward * currentAcc, ForceMode.Acceleration);
         }
-        else if (Input.GetKey(KeyCode.S) && isOnGround)
+        else if (moveDirection.y <= -1)
         {
             if (rb.velocity.magnitude < 5)
             {
@@ -75,7 +89,7 @@ public class CarController : MonoBehaviour
     // Brake the vehicle
     private void Brake()
     {
-        if(Input.GetKey(KeyCode.Space) && rb.velocity.magnitude > 0 && isOnGround)
+        if(playerControls.Vehicle.Brake.inProgress && rb.velocity.magnitude > 0 && isOnGround)
         {
             isBraking = true;
             if (isMovingBackwards())
@@ -90,8 +104,8 @@ public class CarController : MonoBehaviour
     }
     private void Steer()
     {
-        float h = Input.GetAxis("Horizontal");
         float currentCarSpeed = rb.velocity.magnitude;
+        Vector2 moveDirection = playerControls.Vehicle.Steer.ReadValue<Vector2>();
         if (isOnGround && currentCarSpeed > 0.1f && (Vector3.Dot(rb.velocity.normalized, transform.forward) > 0 || isMovingBackwards()))
         {
             // Calculate the steering angle based on the current speed
@@ -104,13 +118,14 @@ public class CarController : MonoBehaviour
             {
                 speedFactor = currentCarSpeed / maxSpeed;
             }
-            float steeringAngle = h * 30f * speedFactor;
+            float steeringAngle = moveDirection.x * 30f * speedFactor;
 
             // Apply the steering angle to the vehicle's transform
             transform.Rotate(Vector3.up * steeringAngle * Time.fixedDeltaTime);
 
             if(isMovingBackwards())
             {
+                steeringAngle *= 0.6f;
                 steeringAngle = -steeringAngle;
             }
             // Steer the front wheels
@@ -176,9 +191,5 @@ public class CarController : MonoBehaviour
     {
         return Vector3.Dot(rb.velocity.normalized, -transform.forward) > 0;
     }
-        
-
-
-
-
+     
 }
