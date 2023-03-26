@@ -26,6 +26,12 @@ public class Controller : MonoBehaviour
         invMenu = new MenuUI("inv");
         shopMenu = new MenuUI("shop");
         pauseMenu = new MenuUI("pause");
+
+        // This is required because if the inv menu was never opened
+        // and an item was obtained, then it would not get saved in the inv.
+        // So basically, this will initialise the inv menu and then close it.
+        invMenu.OpenMenu();
+        invMenu.CloseMenu();
     }
 
     private void OnEnable()
@@ -105,7 +111,7 @@ public class Controller : MonoBehaviour
     {
         if (!inAir)
         {
-            Debug.Log("Jumping...");
+            //Debug.Log("Jumping...");
             playerAnim.SetTrigger("jump");
         }
 
@@ -118,12 +124,12 @@ public class Controller : MonoBehaviour
     {
         isWalking = !isWalking;
         string tempStr = isWalking ? "walking" : "normal";
-        Debug.Log("switched to " + tempStr + " mode...");
+        //Debug.Log("switched to " + tempStr + " mode...");
     }
 
     private void OpenInventory(InputAction.CallbackContext context)
     {
-        Debug.Log("displaying inventory menu...");
+        //Debug.Log("displaying inventory menu...");
 
         pauseMenu.CloseMenu();
         shopMenu.CloseMenu();
@@ -132,12 +138,12 @@ public class Controller : MonoBehaviour
 
     private void Interact(InputAction.CallbackContext context)
     {
-        Debug.Log("interacting...");
+        //Debug.Log("interacting...");
     }
 
     private void EnterVehicle(InputAction.CallbackContext context)
     {
-        Debug.Log("Entering vehicle...");
+        //Debug.Log("Entering vehicle...");
 
         pauseMenu.CloseMenu();
         invMenu.CloseMenu();
@@ -146,7 +152,7 @@ public class Controller : MonoBehaviour
 
     private void OpenPause(InputAction.CallbackContext context)
     {
-        Debug.Log("displaying pause menu...");
+        //Debug.Log("displaying pause menu...");
 
         shopMenu.CloseMenu();
         invMenu.CloseMenu();
@@ -155,7 +161,7 @@ public class Controller : MonoBehaviour
 
     public void ResumeGame()
     {
-        Debug.Log("resuming game...");
+        //Debug.Log("resuming game...");
 
         shopMenu.CloseMenu();
         invMenu.CloseMenu();
@@ -164,12 +170,12 @@ public class Controller : MonoBehaviour
 
     private void OpenMap(InputAction.CallbackContext context)
     {
-        Debug.Log("displaying map...");
+        //Debug.Log("displaying map...");
     }
 
     private void ResetCamera(InputAction.CallbackContext context)
     {
-        Debug.Log("resetting camera...");
+        //Debug.Log("resetting camera...");
     }
 
     // === === === === ===
@@ -225,26 +231,26 @@ public class Controller : MonoBehaviour
             {
                 targetSpeed = sprintSpeed;
                 movementAnimSpeed = 1.0f;
-                Debug.Log("Sprinting... | Speed: " + targetSpeed);
+                //Debug.Log("Sprinting... | Speed: " + targetSpeed);
             }
             else if (isWalking)
             {
                 targetSpeed = walkSpeed;
                 movementAnimSpeed = 0.33f;
-                Debug.Log("Walking... | Speed: " + targetSpeed);
+                //Debug.Log("Walking... | Speed: " + targetSpeed);
             }
             else
             {
                 targetSpeed = jogSpeed;
                 movementAnimSpeed = 0.66f;
-                Debug.Log("Jogging... | Speed: " + targetSpeed);
+                //Debug.Log("Jogging... | Speed: " + targetSpeed);
             }
         }
         else
         {
             // When player is idle
             movementAnimSpeed = 0.0f;
-            Debug.Log("Idling...");
+            //Debug.Log("Idling...");
         }
     }
 }

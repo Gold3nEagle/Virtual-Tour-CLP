@@ -8,9 +8,8 @@ public class ShopManager : MonoBehaviour
    [SerializeField] private Button buyButton;
 
    public void BuyItem()
-    {
-        
-        Debug.Log(ItemUI.selectedItem.IsObtained);
+   {
+        ItemsDisplayer.items.ObtainSelectedItem();
         buyButton.interactable = false;
-    }
+   }
 }

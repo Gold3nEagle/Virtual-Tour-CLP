@@ -6,13 +6,9 @@ using TMPro;
 
 public class ItemUI : MonoBehaviour
 {
-    /// <summary>
-    /// Used for getting/ setting the currently selected item visible on the shop and inventory menu.
-    /// </summary>
-    public static Item selectedItem;
-
     [SerializeField] private TextMeshProUGUI itemDescTextField;
     [SerializeField] private TextMeshProUGUI itemPriceTextField;
+    [SerializeField] private Button buyButton;
 
     private void Awake()
     {
@@ -49,10 +45,17 @@ public class ItemUI : MonoBehaviour
     /// </summary>
     private void RefreshItemInfo()
     {
-        //selectedItem = new Item(itemName: gameObject.name);
         ItemsDisplayer.items.SetSelectedItem(gameObject.name);
 
-        itemDescTextField.text = selectedItem.Desc;
-        itemPriceTextField.text = selectedItem.Price + ".0";
+        itemDescTextField.text = ItemsDisplayer.items.SelectedItem.Desc;
+        itemPriceTextField.text = ItemsDisplayer.items.SelectedItem.Price + ".0";
+
+        if (ItemsDisplayer.items.SelectedItem.IsObtained)
+        {
+            buyButton.interactable = false;
+        } else
+        {
+            buyButton.interactable = true;
+        }
     }
 }

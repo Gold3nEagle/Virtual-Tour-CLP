@@ -67,7 +67,7 @@ public class MenuUI
     {
         if (isMenuOpen)
         {
-            Debug.Log($"The menu [{menuTitle}] is already opened, will close now...");
+            //Debug.Log($"The menu [{menuTitle}] is already opened, will close now...");
             CloseMenu();
             return;
         }
@@ -84,7 +84,7 @@ public class MenuUI
     {
         if (!isMenuOpen)
         {
-            Debug.Log($"The menu [{menuTitle}] is not yet opened...");
+            //Debug.Log($"The menu [{menuTitle}] is not yet opened...");
             return;
         }
 

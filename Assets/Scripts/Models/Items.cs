@@ -28,13 +28,32 @@ public class Items
         items.Remove(item);
     }
 
-    public void BuyItem(Item itemToBuy)
+    /// <summary>
+    /// Before using this function make sure to set an item as selected using the function
+    /// <c>`SetSelectedItem()`</c>.
+    /// </summary>
+    public void ObtainSelectedItem()
     {
-        int itemToBuyIndex = items.FindIndex(item => item == itemToBuy);
+        if (selectedItem == null)
+        {
+            Debug.LogError("No item was selected...! Use `SetSelectedItem(<item_name>)` before calling this function.");
+            return;
+        }
+
+        int itemToBuyIndex = items.FindIndex(item => item == selectedItem);
         items.RemoveAt(itemToBuyIndex);
-        items.Insert(itemToBuyIndex, itemToBuy);
+        items.Insert(itemToBuyIndex, selectedItem);
+        selectedItem.ToggleIsObtained();
+
+        //TODO: deduct money here
+
+        Debug.Log($"Purchased {selectedItem.Name} for {selectedItem.Price}.0 | Current balance: BHD x.0");
     }
 
+    /// <summary>
+    /// Sets the item in the list that has the same name of the passed name as the currently selected item.
+    /// </summary>
+    /// <param name="itemName">The exact name of the item</param>
     public void SetSelectedItem(string itemName)
     {
         selectedItem = items.Find(item => item.Name == itemName);

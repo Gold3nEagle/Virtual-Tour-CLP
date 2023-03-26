@@ -22,9 +22,6 @@ public class ItemsDisplayer : MonoBehaviour
         menuTitleTextField.text = isInventoryMenu ? "Inventory" : "Shop";
 
         PopulateItems();
-        DisplayItems();
-
-        itemPrefab.SetActive(false);
     }
 
     private void OnEnable()
@@ -32,11 +29,22 @@ public class ItemsDisplayer : MonoBehaviour
         DisplayItems();
     }
 
+    private void OnDisable()
+    {
+        // Destroy grid items game objects
+        for (int i = itemsGrid.transform.childCount - 1; i >= 1; i--)
+        {
+            Destroy(itemsGrid.transform.GetChild(i).gameObject);
+        }
+    }
+
     /// <summary>
     /// Populates the items list with items
     /// </summary>
     private void PopulateItems()
     {
+        items.ToList.Clear();
+
         for (int i = 0; i < itemsScriptableObjects.Count; i++)
         {
             Item item = new Item(itemsScriptableObjects[i]);
@@ -49,23 +57,19 @@ public class ItemsDisplayer : MonoBehaviour
     /// </summary>
     private void DisplayItems()
     {
-        // Clear children gameObjects
-        for (int i = itemsGrid.transform.childCount - 1; i >= 0 ; i--)
-        {
-            Destroy(itemsGrid.transform.GetChild(i).gameObject);
-        }
+        itemPrefab.SetActive(true); // To be able to instantiate game objects.
 
         foreach (Item item in items.ToList)
         {
-            if (isInventoryMenu)
-            {
-                if (!item.IsObtained) continue;
-            }
+            //Debug.Log($"item found: {item.Name}\n" +
+            //    $"desc: {item.Desc}\n" +
+            //    $"price: {item.Price}\n" +
+            //    $"isObtained: {item.IsObtained}\n");
+
+            if (isInventoryMenu && !item.IsObtained) continue;
 
             Sprite itemIcon = item.Icon;
             string itemLabel = item.Name;
-            string itemDesc = item.Desc;
-            string itemPrice = item.Price + ".0";
 
             GameObject itemGO = Instantiate(itemPrefab);
 
@@ -76,5 +80,7 @@ public class ItemsDisplayer : MonoBehaviour
             itemGO.transform.SetParent(itemsGrid.transform);
             itemGO.transform.localScale = new Vector3(1f, 1f, 1f);
         }
+
+        itemPrefab.SetActive(false); // To hide the prefab game object.
     }
 }
