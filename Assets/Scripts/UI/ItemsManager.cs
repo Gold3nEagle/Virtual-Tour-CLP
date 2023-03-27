@@ -43,16 +43,9 @@ public class ItemsManager : MonoBehaviour, ISaveable
         var saveData = (SaveData)state;
         items = saveData.itemList;
 
-        Debug.Log("Length is: " + items.List.Count);
-
         foreach (Item item in items.List)
         {
             item.PopulateItemInfo();
-
-            if (item.IsObtained)
-            {
-                Debug.Log($"{item.IsObtained} (BHD {item.Price}.0) - obtained: {item.IsObtained}");
-            }
         }
     }
 

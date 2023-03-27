@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c550a7b540831741ab0fde50acd90ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentMoney: 5
+  currentMoney: 0
   onMoneyChanged:
     m_PersistentCalls:
       m_Calls: []
