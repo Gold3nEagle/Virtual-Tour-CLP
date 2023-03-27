@@ -30,8 +30,8 @@ public class Controller : MonoBehaviour
         // This is required because if the inv menu was never opened
         // and an item was obtained, then it would not get saved in the inv.
         // So basically, this will initialise the inv menu and then close it.
-        invMenu.OpenMenu();
-        invMenu.CloseMenu();
+        //invMenu.OpenMenu();
+        //invMenu.CloseMenu();
     }
 
     private void OnEnable()

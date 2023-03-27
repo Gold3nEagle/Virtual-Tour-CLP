@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
@@ -22,19 +23,21 @@ using UnityEngine;
 ///     </item>
 /// </list>
 /// </summary>
+[Serializable]
 public class Item
 {
     private const string itemScriptableObjPath = "Assets/Scriptable Objects/Inventory Items/";
 
-    private string name;
+    [SerializeField] private string name;
     public string Name { get => name; }
+    [NonSerialized]
     private Sprite icon;
     public Sprite Icon { get => icon; }
     private string desc;
     public string Desc { get => desc; }
     private int price;
     public int Price { get => price; }
-    private bool isObtained;
+    [SerializeField] private bool isObtained;
     public bool IsObtained { get => isObtained; }
 
     /// <summary>
@@ -72,5 +75,15 @@ public class Item
     public void ToggleIsObtained()
     {
         this.isObtained = !this.isObtained;
+    }
+
+    public void PopulateItemInfo()
+    {
+        string path = itemScriptableObjPath + name + ".asset";
+        ItemScriptableObj tempItemSO = AssetDatabase.LoadAssetAtPath<ItemScriptableObj>(path);
+
+        this.desc = tempItemSO.description;
+        this.icon = tempItemSO.icon;
+        this.price = tempItemSO.price;
     }
 }

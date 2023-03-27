@@ -5,8 +5,10 @@ using UnityEngine;
 /// <summary>
 /// Class to store a list of items of type `Item`
 /// </summary>
-public class Items
+[Serializable]
+public class Items 
 {
+    [SerializeField]
     private List<Item> items;
     private Item selectedItem;
 
@@ -63,4 +65,6 @@ public class Items
     {
         selectedItem = items.Find(item => item.Name == itemName);
     }
+
+
 }
