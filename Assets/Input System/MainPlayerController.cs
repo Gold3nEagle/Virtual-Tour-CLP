@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class Controller : MonoBehaviour
+public class MainPlayerController : MonoBehaviour
 {
     public Animator playerAnim;
     private float targetSpeed;
@@ -33,7 +33,7 @@ public class Controller : MonoBehaviour
         playerControls.Land.Enable();
 
         // Subscribe events
-        playerControls.Land.Jump.started += Jump;
+        //playerControls.Land.Jump.started += Jump;
         playerControls.Land.Interact.performed += Interact;
         playerControls.Land.Walk.performed += WalkToggle;
         playerControls.Land.OpenInventory.performed += OpenInventory;
@@ -48,7 +48,7 @@ public class Controller : MonoBehaviour
         playerControls.Land.Disable();
 
         // Unsubscribe events
-        playerControls.Land.Jump.started -= Jump;
+        //playerControls.Land.Jump.started -= Jump;
         playerControls.Land.Interact.performed -= Interact;
         playerControls.Land.Walk.performed -= WalkToggle;
         playerControls.Land.OpenInventory.performed -= OpenInventory;
@@ -101,18 +101,18 @@ public class Controller : MonoBehaviour
     // Player Controls Events
     // === === === === ===
 
-    private void Jump(InputAction.CallbackContext context)
-    {
-        if (!inAir)
-        {
-            Debug.Log("Jumping...");
-            playerAnim.SetTrigger("jump");
-        }
+    //private void Jump(InputAction.CallbackContext context)
+    //{
+    //    if (!inAir)
+    //    {
+    //        Debug.Log("Jumping...");
+    //        playerAnim.SetTrigger("jump");
+    //    }
 
-        // Will not use actual jumping because our game doesn't require the character to jump,
-        // at least for now.
-        // //playerRigidbody.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
-    }
+    //    // Will not use actual jumping because our game doesn't require the character to jump,
+    //    // at least for now.
+    //    // //playerRigidbody.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+    //}
 
     private void WalkToggle(InputAction.CallbackContext context)
     {
@@ -225,26 +225,26 @@ public class Controller : MonoBehaviour
             {
                 targetSpeed = sprintSpeed;
                 movementAnimSpeed = 1.0f;
-                Debug.Log("Sprinting... | Speed: " + targetSpeed);
+                //Debug.Log("Sprinting... | Speed: " + targetSpeed);
             }
             else if (isWalking)
             {
                 targetSpeed = walkSpeed;
                 movementAnimSpeed = 0.33f;
-                Debug.Log("Walking... | Speed: " + targetSpeed);
+                //Debug.Log("Walking... | Speed: " + targetSpeed);
             }
             else
             {
                 targetSpeed = jogSpeed;
                 movementAnimSpeed = 0.66f;
-                Debug.Log("Jogging... | Speed: " + targetSpeed);
+                //Debug.Log("Jogging... | Speed: " + targetSpeed);
             }
         }
         else
         {
             // When player is idle
             movementAnimSpeed = 0.0f;
-            Debug.Log("Idling...");
+            //Debug.Log("Idling...");
         }
     }
 }
