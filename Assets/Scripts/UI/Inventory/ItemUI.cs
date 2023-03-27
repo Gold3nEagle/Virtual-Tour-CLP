@@ -53,7 +53,8 @@ public class ItemUI : MonoBehaviour
         if (ItemsDisplayer.items.SelectedItem.IsObtained)
         {
             buyButton.interactable = false;
-        } else
+        }
+        else
         {
             buyButton.interactable = true;
         }
