@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class MainPlayerController : MonoBehaviour
+public class Controller : MonoBehaviour
 {
     public Animator playerAnim;
     private float targetSpeed;
@@ -225,26 +225,26 @@ public class MainPlayerController : MonoBehaviour
             {
                 targetSpeed = sprintSpeed;
                 movementAnimSpeed = 1.0f;
-                //Debug.Log("Sprinting... | Speed: " + targetSpeed);
+                Debug.Log("Sprinting... | Speed: " + targetSpeed);
             }
             else if (isWalking)
             {
                 targetSpeed = walkSpeed;
                 movementAnimSpeed = 0.33f;
-                //Debug.Log("Walking... | Speed: " + targetSpeed);
+                Debug.Log("Walking... | Speed: " + targetSpeed);
             }
             else
             {
                 targetSpeed = jogSpeed;
                 movementAnimSpeed = 0.66f;
-                //Debug.Log("Jogging... | Speed: " + targetSpeed);
+                Debug.Log("Jogging... | Speed: " + targetSpeed);
             }
         }
         else
         {
             // When player is idle
             movementAnimSpeed = 0.0f;
-            //Debug.Log("Idling...");
+            Debug.Log("Idling...");
         }
     }
 }
