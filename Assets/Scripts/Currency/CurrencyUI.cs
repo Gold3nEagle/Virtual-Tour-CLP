@@ -5,7 +5,7 @@ public class CurrencyUI : MonoBehaviour
 {
     public TextMeshProUGUI currencyText;
     private bool updated;
-    void Start()
+    void Awake()
     {
         CurrencySystem.instance.onMoneyChanged.AddListener(UpdateUI);
     }

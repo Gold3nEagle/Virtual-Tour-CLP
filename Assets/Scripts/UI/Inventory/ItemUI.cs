@@ -50,7 +50,7 @@ public class ItemUI : MonoBehaviour
         itemDescTextField.text = ItemsDisplayer.items.SelectedItem.Desc;
         itemPriceTextField.text = ItemsDisplayer.items.SelectedItem.Price + ".0";
 
-        if (ItemsDisplayer.items.SelectedItem.IsObtained)
+        if (ItemsDisplayer.items.SelectedItem.IsObtained || CurrencySystem.instance.currentMoney < ItemsDisplayer.items.SelectedItem.Price)
         {
             buyButton.interactable = false;
         }

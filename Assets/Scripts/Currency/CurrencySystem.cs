@@ -38,7 +38,7 @@ public class CurrencySystem : MonoBehaviour, ISaveable
         InvokeMoneyEvent();
     }
 
-    public void SubtractMoney(int amount)
+    public void DeductMoney(int amount)
     {
         currentMoney -= amount;
         InvokeMoneyEvent();

@@ -39,15 +39,20 @@ public class Items
             Debug.LogError("No item was selected...! Use `SetSelectedItem(<item_name>)` before calling this function.");
             return;
         }
+        
+        
+        
+        if(CurrencySystem.instance.currentMoney >= selectedItem.Price)
+        {
+            int itemToBuyIndex = items.FindIndex(item => item == selectedItem);
+            items.RemoveAt(itemToBuyIndex);
+            items.Insert(itemToBuyIndex, selectedItem);
+            selectedItem.ToggleIsObtained();
+            CurrencySystem.instance.DeductMoney(selectedItem.Price);
+        }
+        
 
-        int itemToBuyIndex = items.FindIndex(item => item == selectedItem);
-        items.RemoveAt(itemToBuyIndex);
-        items.Insert(itemToBuyIndex, selectedItem);
-        selectedItem.ToggleIsObtained();
-
-        //TODO: deduct money here
-
-        Debug.Log($"Purchased {selectedItem.Name} for {selectedItem.Price}.0 | Current balance: BHD x.0");
+        Debug.Log($"Purchased {selectedItem.Name} for {selectedItem.Price}.0 | Current balance: BHD {CurrencySystem.instance.currentMoney}.0");
     }
 
     /// <summary>
