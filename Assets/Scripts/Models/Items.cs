@@ -6,13 +6,12 @@ using UnityEngine;
 /// Class to store a list of items of type `Item`
 /// </summary>
 [Serializable]
-public class Items 
+public class Items
 {
-    [SerializeField]
-    private List<Item> items;
+    [SerializeField] private List<Item> items;
     private Item selectedItem;
 
-    public List<Item> ToList { get => items; }
+    public List<Item> List { get => items; }
     public Item SelectedItem { get => selectedItem; }
 
     public Items()
@@ -41,10 +40,8 @@ public class Items
             Debug.LogError("No item was selected...! Use `SetSelectedItem(<item_name>)` before calling this function.");
             return;
         }
-        
-        
-        
-        if(CurrencySystem.instance.currentMoney >= selectedItem.Price)
+
+        if (CurrencySystem.instance.currentMoney >= selectedItem.Price)
         {
             int itemToBuyIndex = items.FindIndex(item => item == selectedItem);
             items.RemoveAt(itemToBuyIndex);
@@ -52,7 +49,6 @@ public class Items
             selectedItem.ToggleIsObtained();
             CurrencySystem.instance.DeductMoney(selectedItem.Price);
         }
-        
 
         Debug.Log($"Purchased {selectedItem.Name} for {selectedItem.Price}.0 | Current balance: BHD {CurrencySystem.instance.currentMoney}.0");
     }
@@ -65,6 +61,4 @@ public class Items
     {
         selectedItem = items.Find(item => item.Name == itemName);
     }
-
-
 }

@@ -16,15 +16,9 @@ public class ItemUI : MonoBehaviour
         itemPriceTextField.text = "0.0";
     }
 
-    public void OnHover()
-    {
-        gameObject.transform.localScale = new Vector3(1.2f, 1.2f, 1.2f);
-    }
+    public void OnHover() { gameObject.transform.localScale = new Vector3(1.2f, 1.2f, 1.2f); }
 
-    public void OnHoverExit()
-    {
-        gameObject.transform.localScale = new Vector3(1f, 1f, 1f);
-    }
+    public void OnHoverExit() { gameObject.transform.localScale = new Vector3(1f, 1f, 1f); }
 
     public void OnSelected()
     {
@@ -45,12 +39,14 @@ public class ItemUI : MonoBehaviour
     /// </summary>
     private void RefreshItemInfo()
     {
-        ItemsDisplayer.items.SetSelectedItem(gameObject.name);
+        ItemsManager.items.SetSelectedItem(gameObject.name);
 
-        itemDescTextField.text = ItemsDisplayer.items.SelectedItem.Desc;
-        itemPriceTextField.text = ItemsDisplayer.items.SelectedItem.Price + ".0";
+        // Debug.Log($"{ItemsManager.items.SelectedItem.IsObtained} (BHD {ItemsManager.items.SelectedItem.Price}.0) - obtained: {ItemsManager.items.SelectedItem.IsObtained} | Current balance: BHD {CurrencySystem.instance.currentMoney}.0");
 
-        if (ItemsDisplayer.items.SelectedItem.IsObtained || CurrencySystem.instance.currentMoney < ItemsDisplayer.items.SelectedItem.Price)
+        itemDescTextField.text = ItemsManager.items.SelectedItem.Desc;
+        itemPriceTextField.text = ItemsManager.items.SelectedItem.Price + ".0";
+
+        if (ItemsManager.items.SelectedItem.IsObtained || CurrencySystem.instance.currentMoney < ItemsManager.items.SelectedItem.Price)
         {
             buyButton.interactable = false;
         }

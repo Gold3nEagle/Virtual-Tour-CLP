@@ -29,16 +29,18 @@ public class Item
     private const string itemScriptableObjPath = "Assets/Scriptable Objects/Inventory Items/";
 
     [SerializeField] private string name;
-    public string Name { get => name; }
-    [NonSerialized]
-    private Sprite icon;
-    public Sprite Icon { get => icon; }
-    private string desc;
-    public string Desc { get => desc; }
-    private int price;
-    public int Price { get => price; }
     [SerializeField] private bool isObtained;
+    [NonSerialized] private Sprite icon;
+    private string desc;
+    private int price;
+    private bool isQuestItem;
+
+    public string Name { get => name; }
+    public Sprite Icon { get => icon; }
+    public string Desc { get => desc; }
+    public int Price { get => price; }
     public bool IsObtained { get => isObtained; }
+    public bool IsQuestItem { get => isQuestItem; }
 
     /// <summary>
     /// Creates a new item by passing the game object's name.
@@ -53,6 +55,7 @@ public class Item
         this.desc = tempItemSO.description;
         this.icon = tempItemSO.icon;
         this.price = tempItemSO.price;
+        this.isQuestItem = tempItemSO.isQuestItem;
         this.isObtained = false;
     }
 
@@ -66,6 +69,7 @@ public class Item
         this.icon = itemScriptableObj.icon;
         this.desc = itemScriptableObj.description;
         this.price = itemScriptableObj.price;
+        this.isQuestItem = itemScriptableObj.isQuestItem;
         this.isObtained = false;
     }
 
@@ -85,5 +89,6 @@ public class Item
         this.desc = tempItemSO.description;
         this.icon = tempItemSO.icon;
         this.price = tempItemSO.price;
+        this.isQuestItem = tempItemSO.isQuestItem;
     }
 }

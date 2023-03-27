@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Evian Water
   m_EditorClassIdentifier: 
   itemName: Evian Water
+  isQuestItem: 1
   description: Evian has naturally occurring electrolytes contributing to the taste
     nature intended. Characterized by a natural blend of electrolytes and minerals.
   icon: {fileID: 21300000, guid: 273fc47aa23804950ac20a3c31628d16, type: 3}

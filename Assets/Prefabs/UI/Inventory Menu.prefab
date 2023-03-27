@@ -1754,7 +1754,6 @@ GameObject:
   - component: {fileID: 6172059392100571443}
   - component: {fileID: 7143218268194422520}
   - component: {fileID: 6487187235674319066}
-  - component: {fileID: 2321629349535951192}
   m_Layer: 5
   m_Name: Inventory Menu
   m_TagString: Untagged
@@ -1844,19 +1843,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 9ca913c04ae51485d824486c2de37899, type: 2}
   - {fileID: 11400000, guid: 66bc48b38d1044a09bae3b81e968ed4d, type: 2}
   - {fileID: 11400000, guid: b2d13ca82c9c24451a7d894051aa6bee, type: 2}
---- !u!114 &2321629349535951192
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7490722630861620802}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 661fd69544628ec4f8b1a4f6477cd7d3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  id: 
 --- !u!1001 &5485817925252907174
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -5,11 +5,11 @@ using UnityEngine.UI;
 
 public class ShopManager : MonoBehaviour
 {
-   [SerializeField] private Button buyButton;
+    [SerializeField] private Button buyButton;
 
-   public void BuyItem()
-   {
-        ItemsDisplayer.items.ObtainSelectedItem();
+    public void BuyItem()
+    {
+        ItemsManager.items.ObtainSelectedItem();
         buyButton.interactable = false;
-   }
+    }
 }

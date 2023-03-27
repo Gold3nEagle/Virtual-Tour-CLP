@@ -1,34 +1,20 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-using System;
 
-public class ItemsDisplayer : MonoBehaviour, ISaveable
+public class ItemsDisplayer : MonoBehaviour
 {
-    public static Items items;
-
     [SerializeField] private bool isInventoryMenu;
     [SerializeField] private TextMeshProUGUI menuTitleTextField;
     [SerializeField] private GameObject itemsGrid;
     [SerializeField] private GameObject itemPrefab;
-    [SerializeField] private List<ItemScriptableObj> itemsScriptableObjects;
 
-    private void Awake()
-    {
-        items = new Items();
+    private void Awake() { menuTitleTextField.text = isInventoryMenu ? "Inventory" : "Shop"; }
 
-        // Set the menu title
-        menuTitleTextField.text = isInventoryMenu ? "Inventory" : "Shop";
-
-        PopulateItems();
-    }
-
-    private void OnEnable()
-    {
-        DisplayItems();
-    }
+    private void OnEnable() { DisplayItems(); }
 
     private void OnDisable()
     {
@@ -40,27 +26,13 @@ public class ItemsDisplayer : MonoBehaviour, ISaveable
     }
 
     /// <summary>
-    /// Populates the items list with items
-    /// </summary>
-    private void PopulateItems()
-    {
-        items.ToList.Clear();
-
-        for (int i = 0; i < itemsScriptableObjects.Count; i++)
-        {
-            Item item = new Item(itemsScriptableObjects[i]);
-            items.AddItem(item);
-        }
-    }
-
-    /// <summary>
     /// Creates new item gameObjects and place them inside the item grid display gameObject.
     /// </summary>
     private void DisplayItems()
     {
         itemPrefab.SetActive(true); // To be able to instantiate game objects.
 
-        foreach (Item item in items.ToList)
+        foreach (Item item in ItemsManager.items.List)
         {
             //Debug.Log($"item found: {item.Name}\n" +
             //    $"desc: {item.Desc}\n" +
@@ -68,6 +40,8 @@ public class ItemsDisplayer : MonoBehaviour, ISaveable
             //    $"isObtained: {item.IsObtained}\n");
 
             if (isInventoryMenu && !item.IsObtained) continue;
+
+            if (!isInventoryMenu && item.IsQuestItem) continue;
 
             Sprite itemIcon = item.Icon;
             string itemLabel = item.Name;
@@ -84,47 +58,4 @@ public class ItemsDisplayer : MonoBehaviour, ISaveable
 
         itemPrefab.SetActive(false); // To hide the prefab game object.
     }
-    [ContextMenu("Debug Json")]
-    public void PrintSaved()
-    {
-        string json = JsonUtility.ToJson(items);
-        Debug.Log(json);
-    }
-    public object CaptureState()
-    {
-        Debug.Log("Lenght is: " + ItemsDisplayer.items.ToList.Count);
-        foreach (Item item in ItemsDisplayer.items.ToList)
-        {
-            if (item.IsObtained)
-            {
-                Debug.Log(item.Name);
-            }
-        }
-        return new SaveData
-        {
-            itemList = items
-        };
-    }
-
-    public void RestoreState(object state)
-    {
-        var saveData = (SaveData)state;
-        items = saveData.itemList;
-        Debug.Log("Lenght is: " + items.ToList.Count);
-        foreach (Item item in items.ToList)
-        {
-            item.PopulateItemInfo();
-
-            if (item.IsObtained)
-            {
-                Debug.Log(item.Name);
-            }
-        }
-    }
-    [Serializable]
-    public struct SaveData
-    {
-        public Items itemList;
-    }
-
 }
