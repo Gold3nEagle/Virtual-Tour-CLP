@@ -2,6 +2,21 @@ using UnityEngine;
 
 public class MenuUI
 {
+    private static bool isAnyMenuOpen = false;
+    private static MenuUI currentOpenMenu;
+
+    private string menuTitle;
+    private string canvasTitle;
+    private Transform childTransform;
+    private GameObject canvasGO;
+    private GameObject menuGO;
+    private bool isMenuOpen = false;
+
+    public string MenuTitle { get; set; }
+    public bool IsMenuOpen { get; }
+    public bool IsAnyMenuOpen { get; }
+    public MenuUI CurrentOpenMenu { get; }
+
     /// <summary>
     /// <list type="number">
     ///         <item>
@@ -50,46 +65,54 @@ public class MenuUI
         menuGO = childTransform.gameObject;
     }
 
-    private string menuTitle;
-    private string canvasTitle;
-    private Transform childTransform;
-    private GameObject canvasGO;
-    private GameObject menuGO;
-    private bool isMenuOpen = false;
-
-    public string MenuTitle { get; set; }
-    public bool IsMenuOpen { get; }
-
     /// <summary>
     /// Activates the menu
     /// </summary>
-    public void OpenMenu()
+    public void ToggleMenuDisplay()
     {
-        if (isMenuOpen)
-        {
-            Debug.Log($"The menu [{menuTitle}] is already opened, will close now...");
-            CloseMenu();
-            return;
-        }
+        // if (isMenuOpen)
+        // {
+        //     Debug.Log($"The menu [{menuTitle}] is already opened~~, will close now...~~");
+        //     // CloseMenu();
+        //     return;
+        // }
 
-        Time.timeScale = 0.0f;
-        menuGO.SetActive(true);
-        isMenuOpen = true;
+        if (isAnyMenuOpen)
+        {
+            CloseAllMenus();
+        }
+        else
+        {
+            Time.timeScale = 0.0f;
+            menuGO.SetActive(true);
+            isMenuOpen = true;
+            isAnyMenuOpen = true;
+        }
     }
 
-    /// <summary>
-    /// Deactivates the menu
-    /// </summary>
-    public void CloseMenu()
-    {
-        if (!isMenuOpen)
-        {
-            Debug.Log($"The menu [{menuTitle}] is not yet opened...");
-            return;
-        }
+    // /// <summary>
+    // /// Deactivates the menu
+    // /// </summary>
+    // public void CloseMenu()
+    // {
+    //     // if (!isMenuOpen)
+    //     // {
+    //     //     Debug.Log($"The menu [{menuTitle}] is not yet opened...");
+    //     //     return;
+    //     // }
+    //
+    //     Time.timeScale = 1.0f;
+    //     menuGO.SetActive(false);
+    //     isMenuOpen = false;
+    //     isAnyMenuOpen = false;
+    // }
 
+    private void CloseAllMenus()
+    {
         Time.timeScale = 1.0f;
-        menuGO.SetActive(false);
+
+
         isMenuOpen = false;
+        isAnyMenuOpen = false;
     }
 }

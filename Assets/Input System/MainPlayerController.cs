@@ -11,6 +11,7 @@ public class MainPlayerController : MonoBehaviour
     private bool isIdle = true;
     private bool inAir = false;
     private bool isWalking = false;
+    private bool isAnyMenuOpened = false;
     private float movementAnimSpeed = 0.0f;
     private MenuUI invMenu;
     private MenuUI shopMenu;
@@ -21,6 +22,7 @@ public class MainPlayerController : MonoBehaviour
 
     private void Awake()
     {
+        // SetCursorVisibility(false);
         playerRigidbody = GetComponent<Rigidbody>();
         playerControls = new PlayerControls();
         invMenu = new MenuUI("inv");
@@ -108,7 +110,7 @@ public class MainPlayerController : MonoBehaviour
     //        Debug.Log("Jumping...");
     //        playerAnim.SetTrigger("jump");
     //    }
-
+    //
     //    // Will not use actual jumping because our game doesn't require the character to jump,
     //    // at least for now.
     //    // //playerRigidbody.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
@@ -123,11 +125,20 @@ public class MainPlayerController : MonoBehaviour
 
     private void OpenInventory(InputAction.CallbackContext context)
     {
-        Debug.Log("displaying inventory menu...");
+        // pauseMenu.CloseMenu();
+        // shopMenu.CloseMenu();
+        // invMenu.OpenMenu();
 
-        pauseMenu.CloseMenu();
-        shopMenu.CloseMenu();
-        invMenu.OpenMenu();
+        if (isAnyMenuOpened)
+        {
+            Debug.Log("closing inventory menu...");
+            CloseAllMenus();
+        }
+        else
+        {
+            Debug.Log("displaying inventory menu...");
+            DisplayMenu(invMenu);
+        }
     }
 
     private void Interact(InputAction.CallbackContext context)
@@ -137,29 +148,44 @@ public class MainPlayerController : MonoBehaviour
 
     private void EnterVehicle(InputAction.CallbackContext context)
     {
-        Debug.Log("Entering vehicle...");
+        // pauseMenu.CloseMenu();
+        // invMenu.CloseMenu();
+        // shopMenu.OpenMenu();
 
-        pauseMenu.CloseMenu();
-        invMenu.CloseMenu();
-        shopMenu.OpenMenu();
+        if (isAnyMenuOpened)
+        {
+            Debug.Log("Exiting vehicle...");
+            CloseAllMenus();
+        }
+        else
+        {
+            Debug.Log("Entering vehicle...");
+            DisplayMenu(shopMenu);
+        }
     }
 
     private void OpenPause(InputAction.CallbackContext context)
     {
-        Debug.Log("displaying pause menu...");
+        // shopMenu.CloseMenu();
+        // invMenu.CloseMenu();
+        // pauseMenu.OpenMenu();
 
-        shopMenu.CloseMenu();
-        invMenu.CloseMenu();
-        pauseMenu.OpenMenu();
+        if (isAnyMenuOpened)
+        {
+            Debug.Log("closing pause menu...");
+            CloseAllMenus();
+        }
+        else
+        {
+            Debug.Log("displaying pause menu...");
+            DisplayMenu(pauseMenu);
+        }
     }
 
     public void ResumeGame()
     {
         Debug.Log("resuming game...");
-
-        shopMenu.CloseMenu();
-        invMenu.CloseMenu();
-        pauseMenu.OpenMenu();
+        CloseAllMenus();
     }
 
     private void OpenMap(InputAction.CallbackContext context)
@@ -247,4 +273,37 @@ public class MainPlayerController : MonoBehaviour
             //Debug.Log("Idling...");
         }
     }
+
+    // private void SetCursorVisibility(bool visible)
+    // {
+    //     if (visible)
+    //     {
+    //         // Unhide and unlock the cursor
+    //         Cursor.visible = true;
+    //         Cursor.lockState = CursorLockMode.None;
+    //     }
+    //     else
+    //     {
+    //         // Hide and lock the cursor
+    //         Cursor.visible = false;
+    //         Cursor.lockState = CursorLockMode.Locked;
+    //     }
+    // }
+
+    // private void DisplayMenu(MenuUI menu)
+    // {
+    //     CloseAllMenus();
+    //     menu.OpenMenu();
+    //     isAnyMenuOpened = true;
+    //     SetCursorVisibility(true);
+    // }
+
+    // private void CloseAllMenus()
+    // {
+    //     pauseMenu.CloseMenu();
+    //     shopMenu.CloseMenu();
+    //     invMenu.CloseMenu();
+    //     isAnyMenuOpened = false;
+    //     SetCursorVisibility(false);
+    // }
 }
