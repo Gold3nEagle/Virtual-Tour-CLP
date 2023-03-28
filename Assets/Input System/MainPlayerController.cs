@@ -3,11 +3,11 @@ using UnityEngine.InputSystem;
 
 public class MainPlayerController : MonoBehaviour
 {
-    public Animator playerAnim;
+    [SerializeField] private Animator playerAnim;
+    [SerializeField] private float walkSpeed = 15f;
+    [SerializeField] private float jogSpeed = 30f;
+    [SerializeField] private float sprintSpeed = 50f;
     private float targetSpeed;
-    public float walkSpeed = 15f;
-    public float jogSpeed = 30f;
-    public float sprintSpeed = 50f;
     private bool isIdle = true;
     private bool inAir = false;
     private bool isWalking = false;
@@ -19,7 +19,8 @@ public class MainPlayerController : MonoBehaviour
 
     private void Awake()
     {
-        // SetCursorVisibility(false);
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
         playerRigidbody = GetComponent<Rigidbody>();
         playerControls = new PlayerControls();
         menuUI = new MenuUI();
