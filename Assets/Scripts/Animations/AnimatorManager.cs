@@ -15,7 +15,7 @@ public class AnimatorManager : MonoBehaviour
         vertical = Animator.StringToHash("Vertical");
     }
 
-    public void UpdateAnimatorValues(float horizontalMovement, float verticalMovement)
+    public void UpdateAnimatorValues(float horizontalMovement, float verticalMovement, bool isSprinting)
     {
         // Animation Snapping 
         float snappedHorizontal = 0.0f;
@@ -26,19 +26,19 @@ public class AnimatorManager : MonoBehaviour
             #region Snapped Horizontal
             if (horizontalMovement > 0.0f && horizontalMovement < 0.35f)
             {
-                snappedHorizontal = 0.33f; // Walk animation
+                snappedHorizontal = 0.5f; // Walk animation
             }
             else if (horizontalMovement > 0.35f)
             {
-                snappedHorizontal = 0.66f; // Jog animation
+                snappedHorizontal = 1.0f; // Jog animation
             }
             else if (horizontalMovement < 0.0f && horizontalMovement > -0.35f)
             {
-                snappedHorizontal = -0.33f; // Walk animation
+                snappedHorizontal = -0.5f; // Walk animation
             }
             else if (horizontalMovement < -0.35f)
             {
-                snappedHorizontal = -0.66f; // Jog animation
+                snappedHorizontal = -1.0f; // Jog animation
             }
             else
             {
@@ -49,25 +49,31 @@ public class AnimatorManager : MonoBehaviour
             #region Snapped Vertical
             if (verticalMovement > 0.0f && verticalMovement < 0.35f)
             {
-                snappedVertical = 0.33f; // Walk animation
+                snappedVertical = 0.5f; // Walk animation
             }
             else if (verticalMovement > 0.35f)
             {
-                snappedVertical = 0.66f; // Jog animation
+                snappedVertical = 1.0f; // Jog animation
             }
             else if (verticalMovement < 0.0f && verticalMovement > -0.35f)
             {
-                snappedVertical = -0.33f; // Walk animation
+                snappedVertical = -0.5f; // Walk animation
             }
             else if (verticalMovement < -0.35f)
             {
-                snappedVertical = -0.66f; // Jog animation
+                snappedVertical = -1.0f; // Jog animation
             }
             else
             {
                 snappedVertical = 0.0f;
             }
             #endregion
+
+            if (isSprinting)
+            {
+                snappedHorizontal = horizontalMovement;
+                snappedVertical = 2;
+            }
         }
 
         animator.SetFloat(horizontal, !animationSnapping ? horizontalMovement : snappedHorizontal, 0.1f, Time.deltaTime);

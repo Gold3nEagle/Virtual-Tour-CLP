@@ -3,19 +3,21 @@ using UnityEngine.InputSystem;
 
 public class MainPlayerController : MonoBehaviour
 {
-    [SerializeField] private Animator playerAnim;
-    [SerializeField] private float sprintSpeed = 12.0f;
-    private float targetSpeed;
-    private bool isIdle = true;
-    private bool inAir = false;
-    private bool isWalking = false;
-    private float movementAnimSpeed = 0.0f;
+    // [SerializeField] private Animator playerAnim;
+    // private float targetSpeed;
+    // private bool isIdle = true;
+    // private bool inAir = false;
+    // private float movementAnimSpeed = 0.0f;
     private MenuUI menuUI;
     // private PlayerControls playerControls;
     // public float jumpForce = 5f;
+    // private bool isWalking = false;
+    public bool isSprinting;
 
+    [Header("Movement Speeds")]
     [SerializeField] private float walkSpeed = 2.0f;
-    [SerializeField] private float jogSpeed = 7.0f;
+    [SerializeField] private float jogSpeed = 6.0f;
+    [SerializeField] private float sprintSpeed = 8.0f;
     [SerializeField] private float rotationSpeed = 15.0f;
     private InputManager inputManager;
     private Transform cameraTransform;
@@ -118,12 +120,12 @@ public class MainPlayerController : MonoBehaviour
     //    // //playerRigidbody.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
     //}
 
-    private void WalkToggle(InputAction.CallbackContext context)
-    {
-        isWalking = !isWalking;
-        string tempStr = isWalking ? "walking" : "normal";
-        Debug.Log("switched to " + tempStr + " mode...");
-    }
+    // private void WalkToggle(InputAction.CallbackContext context)
+    // {
+    //     isWalking = !isWalking;
+    //     string tempStr = isWalking ? "walking" : "normal";
+    //     Debug.Log("switched to " + tempStr + " mode...");
+    // }
 
     private void OpenInventory(InputAction.CallbackContext context)
     {
@@ -204,70 +206,54 @@ public class MainPlayerController : MonoBehaviour
     // Helper functions
     // === === === === ===
 
+    /// <summary>
+    /// Will return "Jog" speed when the input value is greater than/ equal to 35%.
+    /// <para />
+    /// Will return "Walk" speed when the input value is less than 35%.
+    /// </summary>
+    /// <returns>The speed depending on input value</returns>
     private float GetPlayerSpeed()
     {
         float speed = 0.0f;
 
-        #region Horizontal region
-        if (inputManager.horizontalInput > 0.0f && inputManager.horizontalInput < 0.35f)
+        if (isSprinting)
         {
-            speed = walkSpeed; // Walk
+            speed = sprintSpeed;
         }
-        else if (inputManager.horizontalInput > 0.35f)
+        else
         {
-            speed = jogSpeed; // Jog
+            if (inputManager.moveAmount >= 0.35f)
+            {
+                speed = jogSpeed;
+            }
+            else
+            {
+                speed = walkSpeed;
+            }
         }
-        else if (inputManager.horizontalInput < 0.0f && inputManager.horizontalInput > -0.35f)
-        {
-            speed = walkSpeed; // Walk
-        }
-        else if (inputManager.horizontalInput < -0.35f)
-        {
-            speed = jogSpeed; // Jog
-        }
-        #endregion
-
-        #region Vertical Input
-        if (inputManager.verticalInput > 0.0f && inputManager.verticalInput < 0.35f)
-        {
-            speed = walkSpeed; // Walk
-        }
-        else if (inputManager.verticalInput > 0.35f)
-        {
-            speed = jogSpeed; // Jog
-        }
-        else if (inputManager.verticalInput < 0.0f && inputManager.verticalInput > -0.35f)
-        {
-            speed = walkSpeed; // Walk
-        }
-        else if (inputManager.verticalInput < -0.35f)
-        {
-            speed = jogSpeed; // Jog
-        }
-        #endregion
 
         // Debug.Log($"Setting speed to: {speed}...");
         return speed;
     }
 
-    /// <summary>
-    /// To check if jump animation is currently playing.
-    /// <para />
-    /// If the jump animation is in progress, then it means that the player is IN AIR.
-    /// Otherwise, if the jump animation is finished, then it means that the player is NOT IN AIR.
-    /// </summary>
-    private void CheckIfInAir()
-    {
-        AnimatorStateInfo animStateInfo = playerAnim.GetCurrentAnimatorStateInfo(0);
-        if (animStateInfo.IsName("Jump"))
-        {
-            inAir = true;
-        }
-        else
-        {
-            inAir = false;
-        }
-    }
+    // /// <summary>
+    // /// To check if jump animation is currently playing.
+    // /// <para />
+    // /// If the jump animation is in progress, then it means that the player is IN AIR.
+    // /// Otherwise, if the jump animation is finished, then it means that the player is NOT IN AIR.
+    // /// </summary>
+    // private void CheckIfInAir()
+    // {
+    //     AnimatorStateInfo animStateInfo = playerAnim.GetCurrentAnimatorStateInfo(0);
+    //     if (animStateInfo.IsName("Jump"))
+    //     {
+    //         inAir = true;
+    //     }
+    //     else
+    //     {
+    //         inAir = false;
+    //     }
+    // }
 
     /// <summary>
     /// Sets the "movement" animation speed to either of the following

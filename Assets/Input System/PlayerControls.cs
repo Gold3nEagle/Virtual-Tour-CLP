@@ -351,8 +351,8 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""df9f90e5-76cd-464a-9656-700652153c7e"",
-                    ""path"": ""<Keyboard>/leftShift"",
-                    ""interactions"": ""Hold"",
+                    ""path"": ""<Keyboard>/shift"",
+                    ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Desktop"",
                     ""action"": ""Sprint"",

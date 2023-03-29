@@ -266,7 +266,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cameraPivot: {fileID: 1958494949}
-  cameraFollowSpeed: 0.2
+  cameraFollowSpeed: 0.15
   cameraLookSpeed: 1
   cameraPivotSpeed: 1
   minimumPivotAngle: -20

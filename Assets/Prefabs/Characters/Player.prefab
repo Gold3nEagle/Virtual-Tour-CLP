@@ -8002,10 +8002,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movementInput: {x: 0, y: 0}
   cameraInput: {x: 0, y: 0}
+  moveAmount: 0
   verticalInput: 0
   horizontalInput: 0
   cameraInputX: 0
   cameraInputY: 0
+  sprintBtnInput: 0
 --- !u!114 &181088753312531121
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8018,10 +8020,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7bd66c8d922f0432fb045fe1849f1f57, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerAnim: {fileID: 7034840528043738518}
-  sprintSpeed: 12
+  isSprinting: 0
   walkSpeed: 2
   jogSpeed: 6
+  sprintSpeed: 8
   rotationSpeed: 15
 --- !u!1 &7345998312171973597
 GameObject:
