@@ -4,15 +4,10 @@ using System;
 
 public class CurrencySystem : MonoBehaviour, ISaveable
 {
-
     public static CurrencySystem instance;//currency instance
 
-
     public int currentMoney = 0; //current money value accessed inside the class
-
     public UnityEvent onMoneyChanged;// unity event to invoke when the money is changed
-
-    public int CurrentMoney { get => currentMoney; }// to access currenct money value outside of the currency class
 
     void Awake()
     {
@@ -38,7 +33,7 @@ public class CurrencySystem : MonoBehaviour, ISaveable
         InvokeMoneyEvent();
     }
 
-    public void SubtractMoney(int amount)
+    public void DeductMoney(int amount)
     {
         currentMoney -= amount;
         InvokeMoneyEvent();
@@ -54,26 +49,21 @@ public class CurrencySystem : MonoBehaviour, ISaveable
         onMoneyChanged.Invoke();
     }
 
-    public object CaptureState()
-    {
-        return new SaveData
-        {
-            money = currentMoney
-        };
-    }
+    // === === === === ===
+    // Saving/ Loading related stuff
+    // === === === === ===
+
+    public object CaptureState() => new SaveData { money = currentMoney };
 
     public void RestoreState(object state)
     {
         var saveData = (SaveData)state;
         currentMoney = saveData.money;
     }
+
     [Serializable]
     public struct SaveData
     {
         public int money;
     }
-    
 }
-
-
-

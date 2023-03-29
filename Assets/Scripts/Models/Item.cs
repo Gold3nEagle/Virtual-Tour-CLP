@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
@@ -22,20 +23,24 @@ using UnityEngine;
 ///     </item>
 /// </list>
 /// </summary>
+[Serializable]
 public class Item
 {
     private const string itemScriptableObjPath = "Assets/Scriptable Objects/Inventory Items/";
 
-    private string name;
-    public string Name { get => name; }
-    private Sprite icon;
-    public Sprite Icon { get => icon; }
+    [SerializeField] private string name;
+    [SerializeField] private bool isObtained;
+    [NonSerialized] private Sprite icon;
     private string desc;
-    public string Desc { get => desc; }
     private int price;
+    private bool isQuestItem;
+
+    public string Name { get => name; }
+    public Sprite Icon { get => icon; }
+    public string Desc { get => desc; }
     public int Price { get => price; }
-    private bool isObtained;
     public bool IsObtained { get => isObtained; }
+    public bool IsQuestItem { get => isQuestItem; }
 
     /// <summary>
     /// Creates a new item by passing the game object's name.
@@ -50,6 +55,7 @@ public class Item
         this.desc = tempItemSO.description;
         this.icon = tempItemSO.icon;
         this.price = tempItemSO.price;
+        this.isQuestItem = tempItemSO.isQuestItem;
         this.isObtained = false;
     }
 
@@ -63,6 +69,7 @@ public class Item
         this.icon = itemScriptableObj.icon;
         this.desc = itemScriptableObj.description;
         this.price = itemScriptableObj.price;
+        this.isQuestItem = itemScriptableObj.isQuestItem;
         this.isObtained = false;
     }
 
@@ -72,5 +79,16 @@ public class Item
     public void ToggleIsObtained()
     {
         this.isObtained = !this.isObtained;
+    }
+
+    public void PopulateItemInfo()
+    {
+        string path = itemScriptableObjPath + name + ".asset";
+        ItemScriptableObj tempItemSO = AssetDatabase.LoadAssetAtPath<ItemScriptableObj>(path);
+
+        this.desc = tempItemSO.description;
+        this.icon = tempItemSO.icon;
+        this.price = tempItemSO.price;
+        this.isQuestItem = tempItemSO.isQuestItem;
     }
 }

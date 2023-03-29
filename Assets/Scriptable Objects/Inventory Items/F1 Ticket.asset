@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: F1 Ticket
   m_EditorClassIdentifier: 
   itemName: F1 Ticket
+  isQuestItem: 1
   description: Grants access to the Bahrain International Circuit.
   icon: {fileID: 21300000, guid: c1fc95945a4de42b8a53e6fa7ba41c7f, type: 3}
   price: 8
