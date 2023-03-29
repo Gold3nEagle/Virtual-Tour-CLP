@@ -40,13 +40,13 @@ public class MenuUI
         if (menusList[menuIndex].IsMenuOpen)
         {
             CloseMenu(menuIndex);
-            Debug.Log($"{menusList[menuIndex].Title} has been closed...");
+            // Debug.Log($"{menusList[menuIndex].Title} has been closed...");
         }
         else
         {
             CloseAllMenus();
             OpenMenu(menuIndex);
-            Debug.Log($"{menusList[menuIndex].Title} has been opened...");
+            // Debug.Log($"{menusList[menuIndex].Title} has been opened...");
         }
     }
 

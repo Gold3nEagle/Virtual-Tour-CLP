@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class MainPlayerController : MonoBehaviour
 {
@@ -24,28 +23,6 @@ public class MainPlayerController : MonoBehaviour
         cameraTransform = Camera.main.transform;
         playerRigidbody = GetComponent<Rigidbody>();
         inputManager = GetComponent<InputManager>();
-    }
-
-    // private void OnEnable()
-    // {
-    //     playerControls.Player.EnterVehicle.performed += EnterVehicle;
-    //     playerControls.Player.OpenMap.performed += OpenMap;
-    //     playerControls.Player.ResetCamera.performed += ResetCamera;
-    // }
-
-    private void EnterVehicle(InputAction.CallbackContext context)
-    {
-        // menuUI.ToggleMenuVisibility(1);
-    }
-
-    private void OpenMap(InputAction.CallbackContext context)
-    {
-        Debug.Log("displaying map...");
-    }
-
-    private void ResetCamera(InputAction.CallbackContext context)
-    {
-        Debug.Log("resetting camera...");
     }
 
     // === === === === ===
