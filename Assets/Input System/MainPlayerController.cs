@@ -179,7 +179,6 @@ public class MainPlayerController : MonoBehaviour
 
         movementDirection *= GetPlayerSpeed();
 
-
         Vector3 movementVelocity = movementDirection;
         playerRigidbody.velocity = movementVelocity;
     }
@@ -209,6 +208,26 @@ public class MainPlayerController : MonoBehaviour
     {
         float speed = 0.0f;
 
+        #region Horizontal region
+        if (inputManager.horizontalInput > 0.0f && inputManager.horizontalInput < 0.35f)
+        {
+            speed = walkSpeed; // Walk
+        }
+        else if (inputManager.horizontalInput > 0.35f)
+        {
+            speed = jogSpeed; // Jog
+        }
+        else if (inputManager.horizontalInput < 0.0f && inputManager.horizontalInput > -0.35f)
+        {
+            speed = walkSpeed; // Walk
+        }
+        else if (inputManager.horizontalInput < -0.35f)
+        {
+            speed = jogSpeed; // Jog
+        }
+        #endregion
+
+        #region Vertical Input
         if (inputManager.verticalInput > 0.0f && inputManager.verticalInput < 0.35f)
         {
             speed = walkSpeed; // Walk
@@ -225,8 +244,9 @@ public class MainPlayerController : MonoBehaviour
         {
             speed = jogSpeed; // Jog
         }
+        #endregion
 
-        Debug.Log($"Setting speed to: {speed}...");
+        // Debug.Log($"Setting speed to: {speed}...");
         return speed;
     }
 

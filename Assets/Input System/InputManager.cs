@@ -12,8 +12,11 @@ public class InputManager : MonoBehaviour
     private float moveAmount;
 
     public Vector2 movementInput;
+    public Vector2 cameraInput;
     public float verticalInput;
     public float horizontalInput;
+    public float cameraInputX;
+    public float cameraInputY;
 
     private void Awake()
     {
@@ -28,6 +31,7 @@ public class InputManager : MonoBehaviour
 
             // Subscribe events
             playerControls.Player.Move.performed += inputValue => movementInput = inputValue.ReadValue<Vector2>();
+            playerControls.Player.Look.performed += inputValue => cameraInput = inputValue.ReadValue<Vector2>();
         }
 
         playerControls.Enable();
@@ -46,6 +50,10 @@ public class InputManager : MonoBehaviour
     {
         verticalInput = movementInput.y;
         horizontalInput = movementInput.x;
+
+        cameraInputY = cameraInput.y;
+        cameraInputX = cameraInput.x;
+
         moveAmount = Mathf.Clamp01(Mathf.Abs(horizontalInput) + Mathf.Abs(verticalInput));
         animatorManager.UpdateAnimatorValues(0, moveAmount);
     }
