@@ -253,7 +253,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 4377232539513800035}
   m_OnClick:
     m_PersistentCalls:
@@ -634,11 +634,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent rutrum
-    lobortis sodales. Suspendisse ut est quis dui porttitor posuere. Aenean iaculis,
-    ipsum nec tincidunt aliquet, ipsum massa tristique massa, eu pharetra leo diam
-    a mi. Nullam ut quam neque. In turpis odio, dignissim finibus felis in, pharetra
-    condimentum justo.
+  m_text: Select an item to view the description
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: b44bb57fec208455c842615cead2aa18, type: 2}
   m_sharedMaterial: {fileID: -8689860492075616775, guid: b44bb57fec208455c842615cead2aa18, type: 2}
@@ -1379,7 +1375,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 12397.0
+  m_text: 0.0
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: a5151ece61103479daf3d479c8cc73eb, type: 2}
   m_sharedMaterial: {fileID: -596336189873975616, guid: a5151ece61103479daf3d479c8cc73eb, type: 2}
@@ -1827,7 +1823,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isInventoryMenu: 1
   menuTitleTextField: {fileID: 4377232540233924978}
-  buyButton: {fileID: 4377232539513800034}
   itemsGrid: {fileID: 4377232540219898559}
   itemPrefab: {fileID: 4377232539249760973}
   itemsScriptableObjects:
@@ -1855,6 +1850,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4377232540219898544}
     m_Modifications:
+    - target: {fileID: 3828683450798128610, guid: 148061c4c2f844a34bc14cdb55e5990d, type: 3}
+      propertyPath: buyButton
+      value: 
+      objectReference: {fileID: 4377232539513800034}
     - target: {fileID: 3828683450798128610, guid: 148061c4c2f844a34bc14cdb55e5990d, type: 3}
       propertyPath: itemDescTextField
       value: 

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,36 +7,21 @@ using TMPro;
 
 public class ItemsDisplayer : MonoBehaviour
 {
-    private Items items;
-
     [SerializeField] private bool isInventoryMenu;
     [SerializeField] private TextMeshProUGUI menuTitleTextField;
     [SerializeField] private GameObject itemsGrid;
     [SerializeField] private GameObject itemPrefab;
-    [SerializeField] private List<ItemScriptableObj> itemsScriptableObjects;
 
-    private void Awake()
+    private void Awake() { menuTitleTextField.text = isInventoryMenu ? "Inventory" : "Shop"; }
+
+    private void OnEnable() { DisplayItems(); }
+
+    private void OnDisable()
     {
-        items = new Items();
-
-        // Set the menu title
-        menuTitleTextField.text = isInventoryMenu ? "Inventory" : "Shop";
-
-        PopulateItems();
-        DisplayItems();
-
-        itemPrefab.SetActive(false);
-    }
-
-    /// <summary>
-    /// Populates the items list with items
-    /// </summary>
-    private void PopulateItems()
-    {
-        for (int i = 0; i < itemsScriptableObjects.Count; i++)
+        // Destroy grid items game objects
+        for (int i = itemsGrid.transform.childCount - 1; i >= 1; i--)
         {
-            Item item = new Item(itemsScriptableObjects[i]);
-            items.AddItem(item);
+            Destroy(itemsGrid.transform.GetChild(i).gameObject);
         }
     }
 
@@ -44,26 +30,32 @@ public class ItemsDisplayer : MonoBehaviour
     /// </summary>
     private void DisplayItems()
     {
-        foreach (Item item in items.ToList)
+        itemPrefab.SetActive(true); // To be able to instantiate game objects.
+
+        foreach (Item item in ItemsManager.items.List)
         {
-            if (isInventoryMenu)
-            {
-                if (!item.IsObtained) continue;
-            }
+            //Debug.Log($"item found: {item.Name}\n" +
+            //    $"desc: {item.Desc}\n" +
+            //    $"price: {item.Price}\n" +
+            //    $"isObtained: {item.IsObtained}\n");
+
+            if (isInventoryMenu && !item.IsObtained) continue;
+
+            if (!isInventoryMenu && item.IsQuestItem) continue;
 
             Sprite itemIcon = item.Icon;
             string itemLabel = item.Name;
-            string itemDesc = item.Desc;
-            string itemPrice = item.Price + ".0";
 
             GameObject itemGO = Instantiate(itemPrefab);
 
             itemGO.name = itemLabel;
             itemGO.transform.GetChild(0).GetComponent<Image>().sprite = itemIcon;
             itemGO.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = itemLabel;
-            itemGO.transform.localScale = new Vector3(1f, 1f, 1f);
 
             itemGO.transform.SetParent(itemsGrid.transform);
+            itemGO.transform.localScale = new Vector3(1f, 1f, 1f);
         }
+
+        itemPrefab.SetActive(false); // To hide the prefab game object.
     }
 }

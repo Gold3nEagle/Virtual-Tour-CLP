@@ -6,13 +6,9 @@ using TMPro;
 
 public class ItemUI : MonoBehaviour
 {
-    /// <summary>
-    /// Used for getting/ setting the currently selected item visible on the shop and inventory menu.
-    /// </summary>
-    public static Item selectedItem;
-
     [SerializeField] private TextMeshProUGUI itemDescTextField;
     [SerializeField] private TextMeshProUGUI itemPriceTextField;
+    [SerializeField] private Button buyButton;
 
     private void Awake()
     {
@@ -20,15 +16,9 @@ public class ItemUI : MonoBehaviour
         itemPriceTextField.text = "0.0";
     }
 
-    public void OnHover()
-    {
-        gameObject.transform.localScale = new Vector3(1.2f, 1.2f, 1.2f);
-    }
+    public void OnHover() { gameObject.transform.localScale = new Vector3(1.2f, 1.2f, 1.2f); }
 
-    public void OnHoverExit()
-    {
-        gameObject.transform.localScale = new Vector3(1f, 1f, 1f);
-    }
+    public void OnHoverExit() { gameObject.transform.localScale = new Vector3(1f, 1f, 1f); }
 
     public void OnSelected()
     {
@@ -49,9 +39,20 @@ public class ItemUI : MonoBehaviour
     /// </summary>
     private void RefreshItemInfo()
     {
-        selectedItem = new Item(itemName: gameObject.name);
+        ItemsManager.items.SetSelectedItem(gameObject.name);
 
-        itemDescTextField.text = selectedItem.Desc;
-        itemPriceTextField.text = selectedItem.Price + ".0";
+        // Debug.Log($"{ItemsManager.items.SelectedItem.IsObtained} (BHD {ItemsManager.items.SelectedItem.Price}.0) - obtained: {ItemsManager.items.SelectedItem.IsObtained} | Current balance: BHD {CurrencySystem.instance.currentMoney}.0");
+
+        itemDescTextField.text = ItemsManager.items.SelectedItem.Desc;
+        itemPriceTextField.text = ItemsManager.items.SelectedItem.Price + ".0";
+
+        if (ItemsManager.items.SelectedItem.IsObtained || CurrencySystem.instance.currentMoney < ItemsManager.items.SelectedItem.Price)
+        {
+            buyButton.interactable = false;
+        }
+        else
+        {
+            buyButton.interactable = true;
+        }
     }
 }

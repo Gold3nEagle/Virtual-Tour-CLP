@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Digital Camera
   m_EditorClassIdentifier: 
   itemName: Digital Camera
+  isQuestItem: 1
   description: 'A digital camera is a camera that produces digital images that can
     be stored on a computer, displayed on a screen, and printed. The speed with which
     digital cameras can take, process and transmit an image is phenomenal. '

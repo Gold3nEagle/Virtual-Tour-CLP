@@ -4,23 +4,23 @@ using TMPro;
 public class CurrencyUI : MonoBehaviour
 {
     public TextMeshProUGUI currencyText;
-    private bool updated;
-    void Start()
+   
+    void Awake()
     {
         CurrencySystem.instance.onMoneyChanged.AddListener(UpdateUI);
+        if (CurrencySystem.instance.currentMoney <= 0)
+        {
+            currencyText.text = $"Money: 0.0";
+        }
+        else
+        {
+            currencyText.text = $"Money: {CurrencySystem.instance.currentMoney}.0";
+        }
     }
-    void Update()
-    {
-        //if(!updated)
-        //{
-        //    CurrencySystem.instance.AddMoney(100);
-        //    updated = true;
-        //}
-
-    }
+    
     //update money text in the player UI
     void UpdateUI()
     {
-        currencyText.text = CurrencySystem.instance.CurrentMoney + " BHD";
+        currencyText.text = $"Money: {CurrencySystem.instance.currentMoney}.0";
     }
 }
