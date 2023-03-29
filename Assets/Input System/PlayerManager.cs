@@ -27,6 +27,6 @@ public class PlayerManager : MonoBehaviour
 
     private void LateUpdate()
     {
-        cameraManager.HandleAllCameraMovement();
+        if (Time.timeScale != 0.0f) cameraManager.HandleAllCameraMovement();
     }
 }

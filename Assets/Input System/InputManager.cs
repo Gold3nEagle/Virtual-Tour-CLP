@@ -10,6 +10,7 @@ public class InputManager : MonoBehaviour
     private PlayerControls playerControls;
     private MainPlayerController mainPlayerController;
     private AnimatorManager animatorManager;
+    private MenuUI menuUI;
 
     public Vector2 movementInput;
     public Vector2 cameraInput;
@@ -22,11 +23,13 @@ public class InputManager : MonoBehaviour
     public float cameraInputY;
 
     public bool sprintBtnInput;
+    public bool walkBtnInput;
 
     private void Awake()
     {
         animatorManager = GetComponent<AnimatorManager>();
         mainPlayerController = GetComponent<MainPlayerController>();
+        menuUI = new MenuUI();
     }
 
     private void OnEnable()
@@ -36,11 +39,20 @@ public class InputManager : MonoBehaviour
             playerControls = new PlayerControls();
 
             // Subscribe events
+
+            // Movement - Player
             playerControls.Player.Move.performed += inputValue => movementInput = inputValue.ReadValue<Vector2>();
             playerControls.Player.Look.performed += inputValue => cameraInput = inputValue.ReadValue<Vector2>();
 
-            playerControls.Player.Sprint.performed += inputValue => sprintBtnInput = true;
-            playerControls.Player.Sprint.canceled += inputValue => sprintBtnInput = false;
+            playerControls.Player.Sprint.performed += _ => sprintBtnInput = true;
+            playerControls.Player.Sprint.canceled += _ => sprintBtnInput = false;
+
+            playerControls.Player.Walk.performed += _ => walkBtnInput = !walkBtnInput;
+
+            // Interactions
+            playerControls.Player.OpenInventory.performed += _ => menuUI.ToggleMenuVisibility(0);
+            playerControls.Player.Interact.performed += _ => menuUI.ToggleMenuVisibility(1);
+            playerControls.Player.Pause.performed += _ => menuUI.ToggleMenuVisibility(2);
         }
 
         playerControls.Enable();
@@ -48,11 +60,15 @@ public class InputManager : MonoBehaviour
 
     private void OnDisable() { playerControls.Disable(); }
 
+    // === === === === ===
+    // Movement - Player
+    // === === === === ===
+
     public void HandleAllInputs()
     {
         HandleMovementInput();
         HandleSprintingInput();
-        // HandleWalkInput();
+        HandleWalkingInput();
     }
 
     private void HandleMovementInput()
@@ -64,7 +80,7 @@ public class InputManager : MonoBehaviour
         cameraInputX = cameraInput.x;
 
         moveAmount = Mathf.Clamp01(Mathf.Abs(horizontalInput) + Mathf.Abs(verticalInput));
-        animatorManager.UpdateAnimatorValues(0, moveAmount, mainPlayerController.isSprinting);
+        animatorManager.UpdateAnimatorValues(0, moveAmount, mainPlayerController.isSprinting, mainPlayerController.isWalking);
     }
 
     private void HandleSprintingInput()
@@ -78,4 +94,22 @@ public class InputManager : MonoBehaviour
             mainPlayerController.isSprinting = false;
         }
     }
+
+    private void HandleWalkingInput()
+    {
+        if (walkBtnInput)
+        {
+            mainPlayerController.isWalking = true;
+        }
+        else
+        {
+            mainPlayerController.isWalking = false;
+        }
+    }
+
+    // === === === === ===
+    // Interactions
+    // === === === === ===
+
+    // None yet...
 }
