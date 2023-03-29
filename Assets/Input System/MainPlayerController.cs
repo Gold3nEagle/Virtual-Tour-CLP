@@ -4,96 +4,102 @@ using UnityEngine.InputSystem;
 public class MainPlayerController : MonoBehaviour
 {
     [SerializeField] private Animator playerAnim;
-    [SerializeField] private float walkSpeed = 15f;
-    [SerializeField] private float jogSpeed = 30f;
-    [SerializeField] private float sprintSpeed = 50f;
+    [SerializeField] private float sprintSpeed = 12.0f;
     private float targetSpeed;
     private bool isIdle = true;
     private bool inAir = false;
     private bool isWalking = false;
     private float movementAnimSpeed = 0.0f;
     private MenuUI menuUI;
-    private Rigidbody playerRigidbody;
-    private PlayerControls playerControls;
+    // private PlayerControls playerControls;
     // public float jumpForce = 5f;
+
+    [SerializeField] private float walkSpeed = 2.0f;
+    [SerializeField] private float jogSpeed = 7.0f;
+    [SerializeField] private float rotationSpeed = 15.0f;
+    private InputManager inputManager;
+    private Transform cameraTransform;
+    private Vector3 movementDirection;
+    private Rigidbody playerRigidbody;
 
     private void Awake()
     {
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
+        cameraTransform = Camera.main.transform;
         playerRigidbody = GetComponent<Rigidbody>();
-        playerControls = new PlayerControls();
+        inputManager = GetComponent<InputManager>();
         menuUI = new MenuUI();
     }
 
-    private void OnEnable()
-    {
-        playerControls.Land.Enable();
+    // private void OnEnable()
+    // {
+    //     playerControls.Player.Enable();
+    //
+    //     // Subscribe events
+    //     //playerControls.Player.Jump.started += Jump;
+    //     playerControls.Player.Interact.performed += Interact;
+    //     playerControls.Player.Walk.performed += WalkToggle;
+    //     playerControls.Player.OpenInventory.performed += OpenInventory;
+    //     playerControls.Player.EnterVehicle.performed += EnterVehicle;
+    //     playerControls.Player.Pause.performed += OpenPause;
+    //     playerControls.Player.OpenMap.performed += OpenMap;
+    //     playerControls.Player.ResetCamera.performed += ResetCamera;
+    // }
 
-        // Subscribe events
-        //playerControls.Land.Jump.started += Jump;
-        playerControls.Land.Interact.performed += Interact;
-        playerControls.Land.Walk.performed += WalkToggle;
-        playerControls.Land.OpenInventory.performed += OpenInventory;
-        playerControls.Land.EnterVehicle.performed += EnterVehicle;
-        playerControls.Land.Pause.performed += OpenPause;
-        playerControls.Land.OpenMap.performed += OpenMap;
-        playerControls.Land.ResetCamera.performed += ResetCamera;
-    }
-
-    private void OnDisable()
-    {
-        playerControls.Land.Disable();
-
-        // Unsubscribe events
-        //playerControls.Land.Jump.started -= Jump;
-        playerControls.Land.Interact.performed -= Interact;
-        playerControls.Land.Walk.performed -= WalkToggle;
-        playerControls.Land.OpenInventory.performed -= OpenInventory;
-        playerControls.Land.EnterVehicle.performed -= EnterVehicle;
-        playerControls.Land.Pause.performed -= OpenPause;
-        playerControls.Land.OpenMap.performed -= OpenMap;
-        playerControls.Land.ResetCamera.performed -= ResetCamera;
-    }
+    // private void OnDisable()
+    // {
+    //     playerControls.Player.Disable();
+    //
+    //     // Unsubscribe events
+    //     //playerControls.Player.Jump.started -= Jump;
+    //     playerControls.Player.Interact.performed -= Interact;
+    //     playerControls.Player.Walk.performed -= WalkToggle;
+    //     playerControls.Player.OpenInventory.performed -= OpenInventory;
+    //     playerControls.Player.EnterVehicle.performed -= EnterVehicle;
+    //     playerControls.Player.Pause.performed -= OpenPause;
+    //     playerControls.Player.OpenMap.performed -= OpenMap;
+    //     playerControls.Player.ResetCamera.performed -= ResetCamera;
+    // }
 
     // Start is called before the first frame update
-    void Start()
-    {
-        Time.timeScale = 1.0f;
-        targetSpeed = jogSpeed; // Default speed
-    }
+    // void Start()
+    // {
+    //     Time.timeScale = 1.0f;
+    //     targetSpeed = jogSpeed; // Default speed
+    // }
 
     // Update is called once per frame
-    void FixedUpdate()
-    {
-        Vector2 movementDirection = playerControls.Land.Move.ReadValue<Vector2>();
-        // Debug.Log("Movement Input: " + movementDirection);
+    // void FixedUpdate()
+    // {
+    //     Vector2 movementDirection = playerControls.Player.Move.ReadValue<Vector2>();
+    //     // Debug.Log("Movement Input: " + movementDirection);
 
-        isIdle = movementDirection == Vector2.zero;
+    //     isIdle = movementDirection == Vector2.zero;
 
-        CheckIfInAir();
+    //     CheckIfInAir();
 
-        // Move character only when ON GROUND
-        if (!inAir)
-        {
-            playerRigidbody.AddForce(new Vector3(movementDirection.x, 0, movementDirection.y) * targetSpeed, ForceMode.Force);
-        }
+    //     // Move character only when ON GROUND
+    //     if (!inAir)
+    //     {
+    //         playerRigidbody.AddForce(new Vector3(movementDirection.x, 0, movementDirection.y) * targetSpeed, ForceMode.Force);
+    //     }
 
-        UpdateMovementAnimSpeed();
+    //     UpdateMovementAnimSpeed();
 
-        // Play animation smoothly
-        playerAnim.SetFloat("moveSpeed", movementAnimSpeed, 0.1f, Time.deltaTime);
+    //     // Play animation smoothly
+    //     playerAnim.SetFloat("moveSpeed", movementAnimSpeed, 0.1f, Time.deltaTime);
 
-        // Smooth rotation
-        if (!isIdle)
-        {
-            float targetRotation = Mathf.Atan2(movementDirection.x, movementDirection.y) * Mathf.Rad2Deg;
-            float rotationVelocity = 10f;
-            float rotation = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetRotation, ref rotationVelocity, 0.07f);
+    //     // Smooth rotation
+    //     if (!isIdle)
+    //     {
+    //         float targetRotation = Mathf.Atan2(movementDirection.x, movementDirection.y) * Mathf.Rad2Deg;
+    //         float rotationVelocity = 10f;
+    //         float rotation = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetRotation, ref rotationVelocity, 0.07f);
 
-            transform.rotation = Quaternion.Euler(0.0f, rotation, 0.0f);
-        }
-    }
+    //         transform.rotation = Quaternion.Euler(0.0f, rotation, 0.0f);
+    //     }
+    // }
 
     // === === === === ===
     // Player Controls Events
@@ -155,8 +161,74 @@ public class MainPlayerController : MonoBehaviour
     }
 
     // === === === === ===
+    // NEW functions
+    // === === === === ===
+
+    public void HandleAllMovement()
+    {
+        HandleMovement();
+        HandleRotation();
+    }
+
+    private void HandleMovement()
+    {
+        movementDirection = new Vector3(cameraTransform.forward.x, 0, cameraTransform.forward.z) * inputManager.verticalInput;
+        movementDirection += cameraTransform.right * inputManager.horizontalInput;
+        movementDirection.Normalize();
+        movementDirection.y = 0;
+
+        movementDirection *= GetPlayerSpeed();
+
+
+        Vector3 movementVelocity = movementDirection;
+        playerRigidbody.velocity = movementVelocity;
+    }
+
+    private void HandleRotation()
+    {
+        Vector3 targetDirection = Vector3.zero;
+
+        targetDirection = cameraTransform.forward * inputManager.verticalInput;
+        targetDirection += cameraTransform.right * inputManager.horizontalInput;
+        targetDirection.Normalize();
+        targetDirection.y = 0;
+
+        if (targetDirection == Vector3.zero) targetDirection = transform.forward;
+
+        Quaternion targetRotation = Quaternion.LookRotation(targetDirection);
+        Quaternion playerRotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
+
+        transform.rotation = playerRotation;
+    }
+
+    // === === === === ===
     // Helper functions
     // === === === === ===
+
+    private float GetPlayerSpeed()
+    {
+        float speed = 0.0f;
+
+        if (inputManager.verticalInput > 0.0f && inputManager.verticalInput < 0.35f)
+        {
+            speed = walkSpeed; // Walk
+        }
+        else if (inputManager.verticalInput > 0.35f)
+        {
+            speed = jogSpeed; // Jog
+        }
+        else if (inputManager.verticalInput < 0.0f && inputManager.verticalInput > -0.35f)
+        {
+            speed = walkSpeed; // Walk
+        }
+        else if (inputManager.verticalInput < -0.35f)
+        {
+            speed = jogSpeed; // Jog
+        }
+
+        Debug.Log($"Setting speed to: {speed}...");
+        return speed;
+    }
 
     /// <summary>
     /// To check if jump animation is currently playing.
@@ -201,32 +273,32 @@ public class MainPlayerController : MonoBehaviour
     /// </summary>
     private void UpdateMovementAnimSpeed()
     {
-        if (!isIdle)
-        {
-            if (playerControls.Land.Sprint.IsInProgress())
-            {
-                targetSpeed = sprintSpeed;
-                movementAnimSpeed = 1.0f;
-                //Debug.Log("Sprinting... | Speed: " + targetSpeed);
-            }
-            else if (isWalking)
-            {
-                targetSpeed = walkSpeed;
-                movementAnimSpeed = 0.33f;
-                //Debug.Log("Walking... | Speed: " + targetSpeed);
-            }
-            else
-            {
-                targetSpeed = jogSpeed;
-                movementAnimSpeed = 0.66f;
-                //Debug.Log("Jogging... | Speed: " + targetSpeed);
-            }
-        }
-        else
-        {
-            // When player is idle
-            movementAnimSpeed = 0.0f;
-            //Debug.Log("Idling...");
-        }
+        // if (!isIdle)
+        // {
+        //     if (playerControls.Player.Sprint.IsInProgress())
+        //     {
+        //         targetSpeed = sprintSpeed;
+        //         movementAnimSpeed = 1.0f;
+        //         //Debug.Log("Sprinting... | Speed: " + targetSpeed);
+        //     }
+        //     else if (isWalking)
+        //     {
+        //         targetSpeed = walkSpeed;
+        //         movementAnimSpeed = 0.33f;
+        //         //Debug.Log("Walking... | Speed: " + targetSpeed);
+        //     }
+        //     else
+        //     {
+        //         targetSpeed = jogSpeed;
+        //         movementAnimSpeed = 0.66f;
+        //         //Debug.Log("Jogging... | Speed: " + targetSpeed);
+        //     }
+        // }
+        // else
+        // {
+        //     // When player is idle
+        //     movementAnimSpeed = 0.0f;
+        //     //Debug.Log("Idling...");
+        // }
     }
 }

@@ -24,13 +24,22 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
     ""name"": ""PlayerControls"",
     ""maps"": [
         {
-            ""name"": ""Land"",
+            ""name"": ""Player"",
             ""id"": ""32525e3c-6da1-48e0-bf33-6c50c0f60cb1"",
             ""actions"": [
                 {
                     ""name"": ""Move"",
-                    ""type"": ""Value"",
+                    ""type"": ""PassThrough"",
                     ""id"": ""945cc772-5ba1-40eb-9439-ebf46eb3d30f"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Look"",
+                    ""type"": ""Value"",
+                    ""id"": ""687b556a-c378-40de-b12a-36151beb8844"",
                     ""expectedControlType"": ""Vector2"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -122,7 +131,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 {
                     ""name"": ""WASD"",
                     ""id"": ""c68b9264-a612-406e-bafc-eb7f0411509d"",
-                    ""path"": ""2DVector"",
+                    ""path"": ""2DVector(mode=2)"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -177,7 +186,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 {
                     ""name"": ""Arrow Keys"",
                     ""id"": ""ffbdabe5-e6c2-4529-8514-6476e1f55867"",
-                    ""path"": ""2DVector"",
+                    ""path"": ""2DVector(mode=2)"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -230,15 +239,59 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": true
                 },
                 {
-                    ""name"": """",
-                    ""id"": ""5600f30d-1bb5-4ddd-88e5-bc730f89745a"",
-                    ""path"": ""<Gamepad>/leftStick"",
+                    ""name"": ""Left Stick"",
+                    ""id"": ""f157d022-5f16-4c83-8edc-3ec499feb4e9"",
+                    ""path"": ""2DVector(mode=2)"",
                     ""interactions"": """",
-                    ""processors"": ""StickDeadzone(min=0.6)"",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""up"",
+                    ""id"": ""bcdf96c5-91d7-4827-9d35-688b98fee5b7"",
+                    ""path"": ""<Gamepad>/leftStick/up"",
+                    ""interactions"": """",
+                    ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Move"",
                     ""isComposite"": false,
-                    ""isPartOfComposite"": false
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""63edba3b-0e6a-4e88-af98-121c8af2386c"",
+                    ""path"": ""<Gamepad>/leftStick/down"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""4364375d-3571-4d0a-b1c1-fa6c68ef22ea"",
+                    ""path"": ""<Gamepad>/leftStick/left"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""right"",
+                    ""id"": ""b38b0c6a-5636-4529-9d40-2cd953068726"",
+                    ""path"": ""<Gamepad>/leftStick/right"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
                 },
                 {
                     ""name"": """",
@@ -468,6 +521,28 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Reset Camera"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""991e15fb-7598-4e7b-85ae-ab4c4ad5b5f0"",
+                    ""path"": ""<Pointer>/delta"",
+                    ""interactions"": """",
+                    ""processors"": ""InvertVector2(invertX=false),ScaleVector2(x=0.05,y=0.05)"",
+                    ""groups"": ""Desktop"",
+                    ""action"": ""Look"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ed2a1b91-e2c4-4c1c-ac95-2d84c35c08f4"",
+                    ""path"": ""<Gamepad>/rightStick"",
+                    ""interactions"": """",
+                    ""processors"": ""InvertVector2(invertX=false),ScaleVector2(x=300,y=300),StickDeadzone"",
+                    ""groups"": """",
+                    ""action"": ""Look"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -779,18 +854,19 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         }
     ]
 }");
-        // Land
-        m_Land = asset.FindActionMap("Land", throwIfNotFound: true);
-        m_Land_Move = m_Land.FindAction("Move", throwIfNotFound: true);
-        m_Land_Jump = m_Land.FindAction("Jump", throwIfNotFound: true);
-        m_Land_Interact = m_Land.FindAction("Interact", throwIfNotFound: true);
-        m_Land_Sprint = m_Land.FindAction("Sprint", throwIfNotFound: true);
-        m_Land_Walk = m_Land.FindAction("Walk", throwIfNotFound: true);
-        m_Land_OpenInventory = m_Land.FindAction("Open Inventory", throwIfNotFound: true);
-        m_Land_EnterVehicle = m_Land.FindAction("Enter Vehicle", throwIfNotFound: true);
-        m_Land_Pause = m_Land.FindAction("Pause", throwIfNotFound: true);
-        m_Land_OpenMap = m_Land.FindAction("Open Map", throwIfNotFound: true);
-        m_Land_ResetCamera = m_Land.FindAction("Reset Camera", throwIfNotFound: true);
+        // Player
+        m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
+        m_Player_Move = m_Player.FindAction("Move", throwIfNotFound: true);
+        m_Player_Look = m_Player.FindAction("Look", throwIfNotFound: true);
+        m_Player_Jump = m_Player.FindAction("Jump", throwIfNotFound: true);
+        m_Player_Interact = m_Player.FindAction("Interact", throwIfNotFound: true);
+        m_Player_Sprint = m_Player.FindAction("Sprint", throwIfNotFound: true);
+        m_Player_Walk = m_Player.FindAction("Walk", throwIfNotFound: true);
+        m_Player_OpenInventory = m_Player.FindAction("Open Inventory", throwIfNotFound: true);
+        m_Player_EnterVehicle = m_Player.FindAction("Enter Vehicle", throwIfNotFound: true);
+        m_Player_Pause = m_Player.FindAction("Pause", throwIfNotFound: true);
+        m_Player_OpenMap = m_Player.FindAction("Open Map", throwIfNotFound: true);
+        m_Player_ResetCamera = m_Player.FindAction("Reset Camera", throwIfNotFound: true);
         // Vehicle
         m_Vehicle = asset.FindActionMap("Vehicle", throwIfNotFound: true);
         m_Vehicle_Drive = m_Vehicle.FindAction("Drive", throwIfNotFound: true);
@@ -853,79 +929,87 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         return asset.FindBinding(bindingMask, out action);
     }
 
-    // Land
-    private readonly InputActionMap m_Land;
-    private ILandActions m_LandActionsCallbackInterface;
-    private readonly InputAction m_Land_Move;
-    private readonly InputAction m_Land_Jump;
-    private readonly InputAction m_Land_Interact;
-    private readonly InputAction m_Land_Sprint;
-    private readonly InputAction m_Land_Walk;
-    private readonly InputAction m_Land_OpenInventory;
-    private readonly InputAction m_Land_EnterVehicle;
-    private readonly InputAction m_Land_Pause;
-    private readonly InputAction m_Land_OpenMap;
-    private readonly InputAction m_Land_ResetCamera;
-    public struct LandActions
+    // Player
+    private readonly InputActionMap m_Player;
+    private IPlayerActions m_PlayerActionsCallbackInterface;
+    private readonly InputAction m_Player_Move;
+    private readonly InputAction m_Player_Look;
+    private readonly InputAction m_Player_Jump;
+    private readonly InputAction m_Player_Interact;
+    private readonly InputAction m_Player_Sprint;
+    private readonly InputAction m_Player_Walk;
+    private readonly InputAction m_Player_OpenInventory;
+    private readonly InputAction m_Player_EnterVehicle;
+    private readonly InputAction m_Player_Pause;
+    private readonly InputAction m_Player_OpenMap;
+    private readonly InputAction m_Player_ResetCamera;
+    public struct PlayerActions
     {
         private @PlayerControls m_Wrapper;
-        public LandActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
-        public InputAction @Move => m_Wrapper.m_Land_Move;
-        public InputAction @Jump => m_Wrapper.m_Land_Jump;
-        public InputAction @Interact => m_Wrapper.m_Land_Interact;
-        public InputAction @Sprint => m_Wrapper.m_Land_Sprint;
-        public InputAction @Walk => m_Wrapper.m_Land_Walk;
-        public InputAction @OpenInventory => m_Wrapper.m_Land_OpenInventory;
-        public InputAction @EnterVehicle => m_Wrapper.m_Land_EnterVehicle;
-        public InputAction @Pause => m_Wrapper.m_Land_Pause;
-        public InputAction @OpenMap => m_Wrapper.m_Land_OpenMap;
-        public InputAction @ResetCamera => m_Wrapper.m_Land_ResetCamera;
-        public InputActionMap Get() { return m_Wrapper.m_Land; }
+        public PlayerActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Move => m_Wrapper.m_Player_Move;
+        public InputAction @Look => m_Wrapper.m_Player_Look;
+        public InputAction @Jump => m_Wrapper.m_Player_Jump;
+        public InputAction @Interact => m_Wrapper.m_Player_Interact;
+        public InputAction @Sprint => m_Wrapper.m_Player_Sprint;
+        public InputAction @Walk => m_Wrapper.m_Player_Walk;
+        public InputAction @OpenInventory => m_Wrapper.m_Player_OpenInventory;
+        public InputAction @EnterVehicle => m_Wrapper.m_Player_EnterVehicle;
+        public InputAction @Pause => m_Wrapper.m_Player_Pause;
+        public InputAction @OpenMap => m_Wrapper.m_Player_OpenMap;
+        public InputAction @ResetCamera => m_Wrapper.m_Player_ResetCamera;
+        public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
         public bool enabled => Get().enabled;
-        public static implicit operator InputActionMap(LandActions set) { return set.Get(); }
-        public void SetCallbacks(ILandActions instance)
+        public static implicit operator InputActionMap(PlayerActions set) { return set.Get(); }
+        public void SetCallbacks(IPlayerActions instance)
         {
-            if (m_Wrapper.m_LandActionsCallbackInterface != null)
+            if (m_Wrapper.m_PlayerActionsCallbackInterface != null)
             {
-                @Move.started -= m_Wrapper.m_LandActionsCallbackInterface.OnMove;
-                @Move.performed -= m_Wrapper.m_LandActionsCallbackInterface.OnMove;
-                @Move.canceled -= m_Wrapper.m_LandActionsCallbackInterface.OnMove;
-                @Jump.started -= m_Wrapper.m_LandActionsCallbackInterface.OnJump;
-                @Jump.performed -= m_Wrapper.m_LandActionsCallbackInterface.OnJump;
-                @Jump.canceled -= m_Wrapper.m_LandActionsCallbackInterface.OnJump;
-                @Interact.started -= m_Wrapper.m_LandActionsCallbackInterface.OnInteract;
-                @Interact.performed -= m_Wrapper.m_LandActionsCallbackInterface.OnInteract;
-                @Interact.canceled -= m_Wrapper.m_LandActionsCallbackInterface.OnInteract;
-                @Sprint.started -= m_Wrapper.m_LandActionsCallbackInterface.OnSprint;
-                @Sprint.performed -= m_Wrapper.m_LandActionsCallbackInterface.OnSprint;
-                @Sprint.canceled -= m_Wrapper.m_LandActionsCallbackInterface.OnSprint;
-                @Walk.started -= m_Wrapper.m_LandActionsCallbackInterface.OnWalk;
-                @Walk.performed -= m_Wrapper.m_LandActionsCallbackInterface.OnWalk;
-                @Walk.canceled -= m_Wrapper.m_LandActionsCallbackInterface.OnWalk;
-                @OpenInventory.started -= m_Wrapper.m_LandActionsCallbackInterface.OnOpenInventory;
-                @OpenInventory.performed -= m_Wrapper.m_LandActionsCallbackInterface.OnOpenInventory;
-                @OpenInventory.canceled -= m_Wrapper.m_LandActionsCallbackInterface.OnOpenInventory;
-                @EnterVehicle.started -= m_Wrapper.m_LandActionsCallbackInterface.OnEnterVehicle;
-                @EnterVehicle.performed -= m_Wrapper.m_LandActionsCallbackInterface.OnEnterVehicle;
-                @EnterVehicle.canceled -= m_Wrapper.m_LandActionsCallbackInterface.OnEnterVehicle;
-                @Pause.started -= m_Wrapper.m_LandActionsCallbackInterface.OnPause;
-                @Pause.performed -= m_Wrapper.m_LandActionsCallbackInterface.OnPause;
-                @Pause.canceled -= m_Wrapper.m_LandActionsCallbackInterface.OnPause;
-                @OpenMap.started -= m_Wrapper.m_LandActionsCallbackInterface.OnOpenMap;
-                @OpenMap.performed -= m_Wrapper.m_LandActionsCallbackInterface.OnOpenMap;
-                @OpenMap.canceled -= m_Wrapper.m_LandActionsCallbackInterface.OnOpenMap;
-                @ResetCamera.started -= m_Wrapper.m_LandActionsCallbackInterface.OnResetCamera;
-                @ResetCamera.performed -= m_Wrapper.m_LandActionsCallbackInterface.OnResetCamera;
-                @ResetCamera.canceled -= m_Wrapper.m_LandActionsCallbackInterface.OnResetCamera;
+                @Move.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMove;
+                @Move.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMove;
+                @Move.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMove;
+                @Look.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnLook;
+                @Look.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnLook;
+                @Look.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnLook;
+                @Jump.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnJump;
+                @Jump.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnJump;
+                @Jump.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnJump;
+                @Interact.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnInteract;
+                @Interact.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnInteract;
+                @Interact.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnInteract;
+                @Sprint.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSprint;
+                @Sprint.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSprint;
+                @Sprint.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSprint;
+                @Walk.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnWalk;
+                @Walk.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnWalk;
+                @Walk.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnWalk;
+                @OpenInventory.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnOpenInventory;
+                @OpenInventory.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnOpenInventory;
+                @OpenInventory.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnOpenInventory;
+                @EnterVehicle.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnEnterVehicle;
+                @EnterVehicle.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnEnterVehicle;
+                @EnterVehicle.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnEnterVehicle;
+                @Pause.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPause;
+                @Pause.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPause;
+                @Pause.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPause;
+                @OpenMap.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnOpenMap;
+                @OpenMap.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnOpenMap;
+                @OpenMap.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnOpenMap;
+                @ResetCamera.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnResetCamera;
+                @ResetCamera.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnResetCamera;
+                @ResetCamera.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnResetCamera;
             }
-            m_Wrapper.m_LandActionsCallbackInterface = instance;
+            m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
             {
                 @Move.started += instance.OnMove;
                 @Move.performed += instance.OnMove;
                 @Move.canceled += instance.OnMove;
+                @Look.started += instance.OnLook;
+                @Look.performed += instance.OnLook;
+                @Look.canceled += instance.OnLook;
                 @Jump.started += instance.OnJump;
                 @Jump.performed += instance.OnJump;
                 @Jump.canceled += instance.OnJump;
@@ -956,7 +1040,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
             }
         }
     }
-    public LandActions @Land => new LandActions(this);
+    public PlayerActions @Player => new PlayerActions(this);
 
     // Vehicle
     private readonly InputActionMap m_Vehicle;
@@ -1023,9 +1107,10 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
             return asset.controlSchemes[m_DesktopSchemeIndex];
         }
     }
-    public interface ILandActions
+    public interface IPlayerActions
     {
         void OnMove(InputAction.CallbackContext context);
+        void OnLook(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
         void OnInteract(InputAction.CallbackContext context);
         void OnSprint(InputAction.CallbackContext context);
