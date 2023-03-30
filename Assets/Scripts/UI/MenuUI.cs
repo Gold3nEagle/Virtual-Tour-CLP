@@ -1,95 +1,97 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class MenuUI
 {
+    private List<Menu> menusList;
+
     /// <summary>
-    /// <list type="number">
+    /// To control various menus functionalities
+    /// </summary>
+    public MenuUI()
+    {
+        menusList = new List<Menu>();
+
+        menusList.Add(new Menu("Inventory Menu", "MenuCanvas"));
+        menusList.Add(new Menu("Shop Menu", "MenuCanvas"));
+        menusList.Add(new Menu("Pause Menu", "MenuCanvas"));
+    }
+
+    /// <summary>
+    /// Toggles between the available menus using an index (list below):
+    ///     <list type="number">
     ///         <item>
-    ///             <term>"inv"</term>
+    ///             <term>Index #0</term>
     ///             <description>Inventory menu</description>
     ///         </item>
     ///         <item>
-    ///             <term>"shop"</term>
+    ///             <term>Index #1</term>
     ///             <description>Shop menu</description>
     ///         </item>
     ///         <item>
-    ///             <term>"pause"</term>
+    ///             <term>Index #2</term>
     ///             <description>Pause menu</description>
     ///         </item>
     ///     </list>
     /// </summary>
-    /// <param name="menuTitle">Can be either: 'inv', 'shop', or 'pause'</param>
-    /// <param name="canvasTitle">The main canvas gameObject name</param>
-    public MenuUI(string menuTitle, string canvasTitle = "MenuCanvas")
+    public void ToggleMenuVisibility(int menuIndex)
     {
-        this.menuTitle = menuTitle;
-        this.canvasTitle = canvasTitle;
-
-        canvasGO = GameObject.Find(canvasTitle);
-
-        switch (menuTitle)
+        if (menusList[menuIndex].IsMenuOpen)
         {
-            case "inv":
-                childTransform = canvasGO.transform.Find("Inventory Menu");
-                break;
-            case "shop":
-                childTransform = canvasGO.transform.Find("Shop Menu");
-                break;
-            case "pause":
-                childTransform = canvasGO.transform.Find("Pause Menu");
-                break;
-            default:
-                Debug.LogError($@"The entered menu title [{menuTitle}] doesn't exist...
-                Please pass either of the following parameters to activate the GameObjects within the canvas:
-                1. `inv` - To activate 'Inventory Menu' GameObject.
-                2. `shop` - To activate 'Shop Menu' GameObject.
-                3. `pause` - To activate 'Pause Menu' GameObject.");
-                return;
+            CloseMenu(menuIndex);
+            // Debug.Log($"{menusList[menuIndex].Title} has been closed...");
         }
-
-        menuGO = childTransform.gameObject;
+        else
+        {
+            CloseAllMenus();
+            OpenMenu(menuIndex);
+            // Debug.Log($"{menusList[menuIndex].Title} has been opened...");
+        }
     }
 
-    private string menuTitle;
-    private string canvasTitle;
-    private Transform childTransform;
-    private GameObject canvasGO;
-    private GameObject menuGO;
-    private bool isMenuOpen = false;
-
-    public string MenuTitle { get; set; }
-    public bool IsMenuOpen { get; }
-
-    /// <summary>
-    /// Activates the menu
-    /// </summary>
-    public void OpenMenu()
+    private void OpenMenu(int index)
     {
-        if (isMenuOpen)
-        {
-            //Debug.Log($"The menu [{menuTitle}] is already opened, will close now...");
-            CloseMenu();
-            return;
-        }
-
         Time.timeScale = 0.0f;
-        menuGO.SetActive(true);
-        isMenuOpen = true;
+        SetCursorVisibility(true);
+        menusList[index].MenuGameObject.SetActive(true);
+        menusList[index].IsMenuOpen = true;
     }
 
-    /// <summary>
-    /// Deactivates the menu
-    /// </summary>
-    public void CloseMenu()
+    private void CloseMenu(int index)
     {
-        if (!isMenuOpen)
-        {
-            //Debug.Log($"The menu [{menuTitle}] is not yet opened...");
-            return;
-        }
-
         Time.timeScale = 1.0f;
-        menuGO.SetActive(false);
-        isMenuOpen = false;
+        SetCursorVisibility(false);
+        menusList[index].MenuGameObject.SetActive(false);
+        menusList[index].IsMenuOpen = false;
+    }
+
+    private void CloseAllMenus()
+    {
+        Time.timeScale = 1.0f;
+        SetCursorVisibility(false);
+
+        foreach (Menu menu in menusList)
+        {
+            menu.MenuGameObject.SetActive(false);
+            menu.IsMenuOpen = false;
+            // Debug.Log($"{menu.Title} has been closed...");
+        }
+    }
+
+    private void SetCursorVisibility(bool visible)
+    {
+        if (visible)
+        {
+            // Unhide and unlock the cursor
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.None;
+        }
+        else
+        {
+            // Hide and lock the cursor
+            Cursor.visible = false;
+            Cursor.lockState = CursorLockMode.Locked;
+        }
     }
 }

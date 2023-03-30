@@ -18,18 +18,18 @@ public class CarEnterance : MonoBehaviour
     }
     private void OnEnable()
     {
-        playerControls.Land.EnterVehicle.performed += EnterVehicle;
+        playerControls.Player.EnterVehicle.performed += EnterVehicle;
     }
 
     private void OnDisable()
     {
-        playerControls.Land.EnterVehicle.performed -= EnterVehicle;
+        playerControls.Player.EnterVehicle.performed -= EnterVehicle;
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
     private void EnterVehicle(InputAction.CallbackContext context)
     {
@@ -39,7 +39,7 @@ public class CarEnterance : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.tag == "Player")
+        if (other.tag == "Player")
         {
             inRange = true;
             Debug.Log("You can enter the car now, press E to enter");
