@@ -6,24 +6,20 @@ using UnityEngine.InputSystem;
 public class CarEnterance : MonoBehaviour
 {
     private BoxCollider thisColl;
-    private PlayerControls playerControls;
     private bool inRange;
-    void Awake()
-    {
-        playerControls = new PlayerControls();
-    }
     void Start()
     {
         thisColl = GetComponent<BoxCollider>();
     }
     private void OnEnable()
     {
-        playerControls.Player.EnterVehicle.performed += EnterVehicle;
+        //playerControls.Player.EnterVehicle.performed += EnterVehicle;
+        GameManager.instance.playerControls.Player.EnterVehicle.performed += EnterVehicle;
     }
 
     private void OnDisable()
     {
-        playerControls.Player.EnterVehicle.performed -= EnterVehicle;
+        //playerControls.Player.EnterVehicle.performed -= EnterVehicle;
     }
 
     // Update is called once per frame
@@ -35,6 +31,8 @@ public class CarEnterance : MonoBehaviour
     {
         if (!inRange) return;
         Debug.Log("Entering vehicle...");
+
+        GameManager.instance.SwitchToVehicleControls();
     }
 
     private void OnTriggerEnter(Collider other)

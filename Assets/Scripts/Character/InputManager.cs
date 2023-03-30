@@ -7,7 +7,7 @@ using UnityEngine;
 
 public class InputManager : MonoBehaviour
 {
-    private PlayerControls playerControls;
+    //private GameManager.instance.playerControls GameManager.instance.playerControls;
     private MainPlayerController mainPlayerController;
     private AnimatorManager animatorManager;
     private MenuUI menuUI;
@@ -23,6 +23,7 @@ public class InputManager : MonoBehaviour
     public float cameraInputY;
 
     public bool sprintBtnInput;
+    public bool isInVehicle;
     public bool walkBtnInput;
 
     public void OnResumeBtnClicked() { menuUI.ResumeGame(); }
@@ -36,31 +37,27 @@ public class InputManager : MonoBehaviour
 
     private void OnEnable()
     {
-        if (playerControls == null)
-        {
-            playerControls = new PlayerControls();
 
-            // Subscribe events
+        // Subscribe events
 
-            // Movement - Player
-            playerControls.Player.Move.performed += inputValue => movementInput = inputValue.ReadValue<Vector2>();
-            playerControls.Player.Look.performed += inputValue => cameraInput = inputValue.ReadValue<Vector2>();
+        // Movement - Player
+        GameManager.instance.playerControls.Player.Move.performed += inputValue => movementInput = inputValue.ReadValue<Vector2>();
+        GameManager.instance.playerControls.Player.Look.performed += inputValue => cameraInput = inputValue.ReadValue<Vector2>();
 
-            playerControls.Player.Sprint.performed += _ => sprintBtnInput = true;
-            playerControls.Player.Sprint.canceled += _ => sprintBtnInput = false;
+        GameManager.instance.playerControls.Player.Sprint.performed += _ => sprintBtnInput = true;
+        GameManager.instance.playerControls.Player.Sprint.canceled += _ => sprintBtnInput = false;
 
-            playerControls.Player.Walk.performed += _ => walkBtnInput = !walkBtnInput;
+        GameManager.instance.playerControls.Player.Walk.performed += _ => walkBtnInput = !walkBtnInput;
 
-            // Interactions
-            playerControls.Player.OpenInventory.performed += _ => menuUI.ToggleMenuVisibility(0);
-            playerControls.Player.Interact.performed += _ => menuUI.ToggleMenuVisibility(1);
-            playerControls.Player.Pause.performed += _ => menuUI.ToggleMenuVisibility(2);
-        }
+        // Interactions
+        GameManager.instance.playerControls.Player.OpenInventory.performed += _ => menuUI.ToggleMenuVisibility(0);
+        GameManager.instance.playerControls.Player.Interact.performed += _ => menuUI.ToggleMenuVisibility(1);
+        GameManager.instance.playerControls.Player.Pause.performed += _ => menuUI.ToggleMenuVisibility(2);
 
-        playerControls.Enable();
+        //GameManager.instance.playerControls.Player.EnterVehicle.performed += _ => isInVehicle = !isInVehicle;
     }
 
-    private void OnDisable() { playerControls.Disable(); }
+    //private void OnDisable() { GameManager.instance.playerControls.Disable(); }
 
     // === === === === ===
     // Movement - Player

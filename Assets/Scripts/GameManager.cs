@@ -5,25 +5,39 @@ using Cinemachine;
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
-    public GameObject playerCameraObject;
+    //public GameObject playerCameraObject;
+    [HideInInspector] public bool isInVehicle;
+    public GameObject player;
+    [HideInInspector] public PlayerControls playerControls;
+
     void Awake()
     {
         instance = this;
+        playerControls = new PlayerControls();
+        Debug.Log("GameManager Awake");
     }
 
-    // Update is called once per frame
-    void Update()
+    void Start()
     {
-        
+        playerControls.Player.Enable();
+        Debug.Log("Player: " + playerControls.Player.enabled);
     }
 
-    public void SwitchToCarCamera()
+    public void SwitchToPlayerControls()
     {
-        playerCameraObject.SetActive(false);
+        playerControls.Vehicle.Disable();
+        playerControls.Player.Enable();
+        isInVehicle = false;
+        //TODO add new location to player
+        player.SetActive(true);
     }
 
-    public void SwitchToPlayerCamera()
+    public void SwitchToVehicleControls()
     {
-        playerCameraObject.SetActive(true);
+        playerControls.Player.Disable();
+        playerControls.Vehicle.Enable();
+        isInVehicle = true;
+        player.SetActive(false);
     }
+
 }
