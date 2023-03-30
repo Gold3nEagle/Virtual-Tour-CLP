@@ -25,6 +25,8 @@ public class InputManager : MonoBehaviour
     public bool sprintBtnInput;
     public bool walkBtnInput;
 
+    public void OnResumeBtnClicked() { menuUI.ResumeGame(); }
+
     private void Awake()
     {
         animatorManager = GetComponent<AnimatorManager>();
