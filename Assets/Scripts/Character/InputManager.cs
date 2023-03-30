@@ -97,7 +97,7 @@ public class InputManager : MonoBehaviour
 
     private void HandleWalkingInput()
     {
-        if (walkBtnInput)
+        if (walkBtnInput && moveAmount > 0.0f)
         {
             mainPlayerController.isWalking = true;
         }

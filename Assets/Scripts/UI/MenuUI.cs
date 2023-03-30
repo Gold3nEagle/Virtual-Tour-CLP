@@ -76,10 +76,6 @@ public class MenuUI
             menu.MenuGameObject.SetActive(false);
             menu.IsMenuOpen = false;
             // Debug.Log($"{menu.Title} has been closed...");
-
-            //Debug.Log($"The menu [{menuTitle}] is already opened, will close now...");
-            //CloseMenu();
-            //return;
         }
     }
 
@@ -96,9 +92,6 @@ public class MenuUI
             // Hide and lock the cursor
             Cursor.visible = false;
             Cursor.lockState = CursorLockMode.Locked;
-
-            //Debug.Log($"The menu [{menuTitle}] is not yet opened...");
-            //return;
         }
     }
 }

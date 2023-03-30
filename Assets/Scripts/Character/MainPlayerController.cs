@@ -45,6 +45,7 @@ public class MainPlayerController : MonoBehaviour
         movementDirection *= GetPlayerSpeed();
 
         Vector3 movementVelocity = movementDirection;
+        movementVelocity.y = playerRigidbody.velocity.y;
         playerRigidbody.velocity = movementVelocity;
     }
 
