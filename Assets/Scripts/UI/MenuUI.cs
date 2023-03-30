@@ -16,6 +16,8 @@ public class MenuUI
         menusList.Add(new Menu("Inventory Menu", "MenuCanvas"));
         menusList.Add(new Menu("Shop Menu", "MenuCanvas"));
         menusList.Add(new Menu("Pause Menu", "MenuCanvas"));
+
+        CloseAllMenus();
     }
 
     /// <summary>
@@ -77,6 +79,11 @@ public class MenuUI
             menu.IsMenuOpen = false;
             // Debug.Log($"{menu.Title} has been closed...");
         }
+    }
+
+    public void ResumeGame()
+    {
+        CloseMenu(2); // Close pause menu
     }
 
     private void SetCursorVisibility(bool visible)
