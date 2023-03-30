@@ -15,6 +15,7 @@ public class CarEnterance : MonoBehaviour
     {
         //playerControls.Player.EnterVehicle.performed += EnterVehicle;
         GameManager.instance.playerControls.Player.EnterVehicle.performed += EnterVehicle;
+        GameManager.instance.playerControls.Vehicle.Exit.performed += ExitVehicle;
     }
 
     private void OnDisable()
@@ -35,6 +36,13 @@ public class CarEnterance : MonoBehaviour
         GameManager.instance.SwitchToVehicleControls();
     }
 
+    private void ExitVehicle(InputAction.CallbackContext context)
+    {
+        if(GameManager.instance.isInVehicle)
+        {
+            GameManager.instance.SwitchToPlayerControls();
+        }
+    }
     private void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Player")

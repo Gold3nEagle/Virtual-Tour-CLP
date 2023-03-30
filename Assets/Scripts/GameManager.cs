@@ -8,7 +8,16 @@ public class GameManager : MonoBehaviour
     //public GameObject playerCameraObject;
     [HideInInspector] public bool isInVehicle;
     public GameObject player;
+    public GameObject car;
+    public GameObject vehicleMainCamera;
+    public GameObject vehicleVirtualCamera;
+    public Vector3 playerExitVehicleOffset;
     [HideInInspector] public PlayerControls playerControls;
+
+    private GameObject characterOBJ;
+    private Rigidbody carBody;
+    private float inCarMass;
+    private float outsideCarMass = 1000;
 
     void Awake()
     {
@@ -20,7 +29,10 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         playerControls.Player.Enable();
-        Debug.Log("Player: " + playerControls.Player.enabled);
+        carBody = car.GetComponent<Rigidbody>();
+        inCarMass = carBody.mass;
+        carBody.mass = outsideCarMass;
+        characterOBJ = player.transform.GetChild(1).transform.GetChild(0).gameObject;
     }
 
     public void SwitchToPlayerControls()
@@ -28,8 +40,13 @@ public class GameManager : MonoBehaviour
         playerControls.Vehicle.Disable();
         playerControls.Player.Enable();
         isInVehicle = false;
-        //TODO add new location to player
+        //player.transform.position = car.transform.position + playerExitVehicleOffset;
+        //characterOBJ.transform.localPosition = (car.transform.position + playerExitVehicleOffset) - player.transform.position;
+        characterOBJ.transform.position = car.transform.position + playerExitVehicleOffset;
         player.SetActive(true);
+        vehicleMainCamera.SetActive(false);
+        vehicleVirtualCamera.SetActive(false);
+        carBody.mass = outsideCarMass;        
     }
 
     public void SwitchToVehicleControls()
@@ -38,6 +55,9 @@ public class GameManager : MonoBehaviour
         playerControls.Vehicle.Enable();
         isInVehicle = true;
         player.SetActive(false);
+        vehicleMainCamera.SetActive(true);
+        vehicleVirtualCamera.SetActive(true);
+        carBody.mass = inCarMass;
     }
 
 }
