@@ -23,7 +23,6 @@ public class GameManager : MonoBehaviour
     {
         instance = this;
         playerControls = new PlayerControls();
-        Debug.Log("GameManager Awake");
     }
 
     void Start()
