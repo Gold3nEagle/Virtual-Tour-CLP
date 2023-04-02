@@ -7,12 +7,13 @@ public class LoadSave : MonoBehaviour
 {
     private void Awake()
     {
-        if (SceneManager.GetActiveScene().name != "MainMenu")
+        if (AdvancedSavingSystem.instance == null)
         {
             Debug.Log("Player's save data won't be loaded, please run from 'Main Menu' scene...");
             this.enabled = false;
             return;
         }
     }
+
     void Start() { AdvancedSavingSystem.instance.Load(); }
 }

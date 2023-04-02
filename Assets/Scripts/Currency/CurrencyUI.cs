@@ -8,7 +8,7 @@ public class CurrencyUI : MonoBehaviour
 
     void Awake()
     {
-        if (SceneManager.GetActiveScene().name != "MainMenu")
+        if (CurrencySystem.instance == null)
         {
             Debug.Log("Player's money won't be restored, please run from 'Main Menu' scene...");
             this.enabled = false;
