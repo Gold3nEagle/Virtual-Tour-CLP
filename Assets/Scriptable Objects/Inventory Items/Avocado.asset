@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae66b475d91424c2883069307080473e, type: 3}
+  m_Name: Avocado
+  m_EditorClassIdentifier: 
+  itemName: Avocado
+  description: The avocado is a medium-sized, evergreen tree in the laurel family.
+    It is native to the Americas and was first domesticated by Mesoamerican tribes
+    more than 5,000 years ago. Then as now it was prized for its large and unusually
+    oily fruit.
+  icon: {fileID: 21300000, guid: a3c02d64af2bf4278896239c64fae0b1, type: 3}
+  price: 4

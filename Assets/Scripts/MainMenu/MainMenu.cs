@@ -24,14 +24,14 @@ public class MainMenu : MonoBehaviour
     {
         CurrencySystem.instance.currentMoney = 0;
         DisableMenuButtons();
-        SceneManager.LoadSceneAsync("SayedTesting");
+        SceneManager.LoadSceneAsync("White-Boxing");
     }
     public void OnContinueClicked()
     {
         DisableMenuButtons();
-        
+
         AdvancedSavingSystem.instance.Load();
-        SceneManager.LoadSceneAsync("SayedTesting");
+        SceneManager.LoadSceneAsync("White-Boxing");
     }
     public void OnQuit()
     {
