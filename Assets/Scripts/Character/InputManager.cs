@@ -7,10 +7,8 @@ using UnityEngine;
 
 public class InputManager : MonoBehaviour
 {
-    //private GameManager.instance.playerControls GameManager.instance.playerControls;
     private MainPlayerController mainPlayerController;
     private AnimatorManager animatorManager;
-    // private MenuUI menuUI;
 
     public Vector2 movementInput;
     public Vector2 cameraInput;
@@ -26,13 +24,10 @@ public class InputManager : MonoBehaviour
     public bool isInVehicle;
     public bool walkBtnInput;
 
-    // public void OnResumeBtnClicked() { menuUI.ResumeGame(); }
-
     private void Awake()
     {
         animatorManager = GetComponent<AnimatorManager>();
         mainPlayerController = GetComponent<MainPlayerController>();
-        // menuUI = new MenuUI();
     }
 
     private void OnEnable()
@@ -48,8 +43,6 @@ public class InputManager : MonoBehaviour
 
         GameManager.instance.playerControls.Player.Walk.performed += _ => walkBtnInput = !walkBtnInput;
     }
-
-    //private void OnDisable() { GameManager.instance.playerControls.Disable(); }
 
     // === === === === ===
     // Movement - Player
