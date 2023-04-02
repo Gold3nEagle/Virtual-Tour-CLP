@@ -17,22 +17,20 @@ public class CarController : MonoBehaviour
     private float maxXRotation = 60f;
     private float raycastDistance = 1.2f;   // Distance of the raycast from the car's center
     private bool isBraking;
-    private PlayerControls playerControls;
 
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();    // Get the rigidbody component of the vehicle
-        playerControls = new PlayerControls();
     }
-    private void OnEnable()
-    {
-        playerControls.Vehicle.Enable();
-    }
+    //private void OnEnable()
+    //{
+    //    GameManager.instance.playerControls.Vehicle.Enable();
+    //}
 
-    private void OnDisable()
-    {
-        playerControls.Vehicle.Disable();
-    }
+    //private void OnDisable()
+    //{
+    //    GameManager.instance.playerControls.Vehicle.Disable();
+    //}
 
     private void FixedUpdate()
     {
@@ -66,7 +64,7 @@ public class CarController : MonoBehaviour
     {
         if (isBraking || !isOnGround) return;
         float currentAcc = acceleration;
-        Vector2 moveDirection = playerControls.Vehicle.Drive.ReadValue<Vector2>();
+        Vector2 moveDirection = GameManager.instance.playerControls.Vehicle.Drive.ReadValue<Vector2>();
 
         if (moveDirection.y >= 1)
         {
@@ -89,7 +87,7 @@ public class CarController : MonoBehaviour
     // Brake the vehicle
     private void Brake()
     {
-        if(playerControls.Vehicle.Brake.inProgress && rb.velocity.magnitude > 0 && isOnGround)
+        if(GameManager.instance.playerControls.Vehicle.Brake.inProgress && rb.velocity.magnitude > 0 && isOnGround)
         {
             isBraking = true;
             if (isMovingBackwards())
@@ -105,7 +103,7 @@ public class CarController : MonoBehaviour
     private void Steer()
     {
         float currentCarSpeed = rb.velocity.magnitude;
-        Vector2 moveDirection = playerControls.Vehicle.Steer.ReadValue<Vector2>();
+        Vector2 moveDirection = GameManager.instance.playerControls.Vehicle.Steer.ReadValue<Vector2>();
         if (isOnGround && currentCarSpeed > 0.1f && (Vector3.Dot(rb.velocity.normalized, transform.forward) > 0 || isMovingBackwards()))
         {
             // Calculate the steering angle based on the current speed
