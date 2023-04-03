@@ -7,6 +7,7 @@ TagManager:
   - Money
   - Stock Item
   - CinemachineTarget
+  - Terrain
   layers:
   - Default
   - TransparentFX

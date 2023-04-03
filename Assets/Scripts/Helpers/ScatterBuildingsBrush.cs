@@ -1,46 +1,58 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class ScatterBuildingsBrush : MonoBehaviour
 {
-    public GameObject buildingPrefab;
-    public int numBuildings;
-    public Transform cursorTransform; // The transform of the cursor used to define the circular area
+    public GameObject[] buildingPrefabs;
+    public int numberOfBuildings;
+    public GameObject brush;
 
     private List<GameObject> spawnedBuildings = new List<GameObject>();
 
-    [ContextMenu("Generate City")]
-    void GenerateCity()
+    [ContextMenu("Generate Buildings")]
+    void GenerateBuildings()
     {
-        Terrain terrain = Terrain.activeTerrain;
-
-        // Get the radius of the circular area from the cursor Transform's scale
-        float radius = cursorTransform.localScale.x * 0.5f;
-
-        // Spawn the buildings and add them to the spawnedBuildings list
-        for (int i = 0; i < numBuildings; i++)
+        if (buildingPrefabs == null || buildingPrefabs.Length == 0)
         {
-            Vector2 randomCirclePos = Random.insideUnitCircle * radius;
-            Vector3 position = new Vector3(randomCirclePos.x, 0, randomCirclePos.y) + cursorTransform.position;
-            position.y = terrain.SampleHeight(position) + 0.5f * buildingPrefab.transform.localScale.y;
-            Quaternion rotation = Quaternion.Euler(0, Random.Range(0, 360), 0);
-            GameObject newBuilding = Instantiate(buildingPrefab, position, rotation);
-            newBuilding.transform.parent = transform;
-            spawnedBuildings.Add(newBuilding);
+            Debug.LogError("No building prefabs assigned.");
+            return;
+        }
+
+        for (int i = 0; i < numberOfBuildings; i++)
+        {
+            Vector3 randomPoint = Random.insideUnitCircle * brush.transform.localScale.x;
+            Vector3 spawnPosition = brush.transform.position + new Vector3(randomPoint.x, 0, randomPoint.y);
+
+            RaycastHit hit;
+            if (Physics.Raycast(spawnPosition + Vector3.up * 1000f, Vector3.down, out hit, Mathf.Infinity))
+            {
+                if (hit.collider.CompareTag("Terrain"))
+                {
+                    spawnPosition.y = hit.point.y;
+
+                    GameObject buildingPrefab = buildingPrefabs[Random.Range(0, buildingPrefabs.Length)];
+                    GameObject spawnedBuilding = Instantiate(buildingPrefab, spawnPosition, Quaternion.identity);
+                    spawnedBuildings.Add(spawnedBuilding);
+                }
+            }
         }
     }
 
-    [ContextMenu("Undo Last Generation")]
-    void UndoLastGeneration()
+    [ContextMenu("Revert Last Buildings")]
+    void RevertLastBuildings()
     {
-        // Remove the last n spawned buildings from the list and destroy them
-        int n = Mathf.Min(numBuildings, spawnedBuildings.Count);
-        for (int i = 0; i < n; i++)
+        if (spawnedBuildings.Count == 0)
         {
-            GameObject buildingToDestroy = spawnedBuildings[spawnedBuildings.Count - 1];
+            Debug.LogWarning("No buildings to revert.");
+            return;
+        }
+
+        for (int i = 0; i < numberOfBuildings && spawnedBuildings.Count > 0; i++)
+        {
+            GameObject lastBuilding = spawnedBuildings[spawnedBuildings.Count - 1];
             spawnedBuildings.RemoveAt(spawnedBuildings.Count - 1);
-            DestroyImmediate(buildingToDestroy);
+            DestroyImmediate(lastBuilding);
         }
     }
 }
