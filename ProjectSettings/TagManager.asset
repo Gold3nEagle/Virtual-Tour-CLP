@@ -8,6 +8,7 @@ TagManager:
   - Stock Item
   - CinemachineTarget
   - Terrain
+  - Road
   layers:
   - Default
   - TransparentFX
