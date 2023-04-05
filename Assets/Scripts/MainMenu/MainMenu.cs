@@ -22,7 +22,17 @@ public class MainMenu : MonoBehaviour
     }
     public void OnNewGameClicked()
     {
-        CurrencySystem.instance.currentMoney = 0;
+        //CurrencySystem.instance.currentMoney = 0;
+        string saveFilePath = Path.Combine(Application.persistentDataPath, "saveData.text");
+        if (File.Exists(saveFilePath))
+        {
+            File.Delete(saveFilePath);
+            Debug.Log("Save file deleted successfully.");
+        }
+        else
+        {
+            Debug.Log("Save file not found.");
+        }
         DisableMenuButtons();
         SceneManager.LoadSceneAsync("Game");
     }
