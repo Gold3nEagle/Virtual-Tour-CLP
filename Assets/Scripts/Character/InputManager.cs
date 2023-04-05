@@ -7,10 +7,8 @@ using UnityEngine;
 
 public class InputManager : MonoBehaviour
 {
-    //private GameManager.instance.playerControls GameManager.instance.playerControls;
     private MainPlayerController mainPlayerController;
     private AnimatorManager animatorManager;
-    private MenuUI menuUI;
 
     public Vector2 movementInput;
     public Vector2 cameraInput;
@@ -26,18 +24,14 @@ public class InputManager : MonoBehaviour
     public bool isInVehicle;
     public bool walkBtnInput;
 
-    public void OnResumeBtnClicked() { menuUI.ResumeGame(); }
-
     private void Awake()
     {
         animatorManager = GetComponent<AnimatorManager>();
         mainPlayerController = GetComponent<MainPlayerController>();
-        menuUI = new MenuUI();
     }
 
     private void OnEnable()
     {
-
         // Subscribe events
 
         // Movement - Player
@@ -48,16 +42,7 @@ public class InputManager : MonoBehaviour
         GameManager.instance.playerControls.Player.Sprint.canceled += _ => sprintBtnInput = false;
 
         GameManager.instance.playerControls.Player.Walk.performed += _ => walkBtnInput = !walkBtnInput;
-
-        // Interactions
-        GameManager.instance.playerControls.Player.OpenInventory.performed += _ => menuUI.ToggleMenuVisibility(0);
-        GameManager.instance.playerControls.Player.Interact.performed += _ => menuUI.ToggleMenuVisibility(1);
-        GameManager.instance.playerControls.Player.Pause.performed += _ => menuUI.ToggleMenuVisibility(2);
-
-        //GameManager.instance.playerControls.Player.EnterVehicle.performed += _ => isInVehicle = !isInVehicle;
     }
-
-    //private void OnDisable() { GameManager.instance.playerControls.Disable(); }
 
     // === === === === ===
     // Movement - Player
@@ -105,10 +90,4 @@ public class InputManager : MonoBehaviour
             mainPlayerController.isWalking = false;
         }
     }
-
-    // === === === === ===
-    // Interactions
-    // === === === === ===
-
-    // None yet...
 }
