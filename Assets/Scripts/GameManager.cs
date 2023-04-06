@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,15 +7,15 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
     public GameObject player;
+    public GameObject characterOBJ;
     public GameObject car;
     public GameObject vehicleMainCamera;
     public GameObject vehicleVirtualCamera;
     public Vector3 playerExitVehicleOffset;
-    [HideInInspector] public bool isInVehicle;
+    /*[HideInInspector]*/ public bool isInVehicle;
     [HideInInspector] public bool isPlayerWithinCarRange;
     [HideInInspector] public PlayerControls playerControls;
 
-    private GameObject characterOBJ;
     private Rigidbody carBody;
     private float inCarMass;
     private float outsideCarMass = 1000;
@@ -32,7 +33,6 @@ public class GameManager : MonoBehaviour
         carBody = car.GetComponent<Rigidbody>();
         inCarMass = carBody.mass;
         carBody.mass = outsideCarMass;
-        characterOBJ = player.transform.GetChild(1).transform.GetChild(0).gameObject;
     }
 
     public void SwitchToPlayerControls()
@@ -43,7 +43,7 @@ public class GameManager : MonoBehaviour
         isInVehicle = false;
         //player.transform.position = car.transform.position + playerExitVehicleOffset;
         //characterOBJ.transform.localPosition = (car.transform.position + playerExitVehicleOffset) - player.transform.position;
-        characterOBJ.transform.position = car.transform.position + playerExitVehicleOffset;
+        characterOBJ.transform.position = GetPlayerOffset();
         player.SetActive(true);
         vehicleMainCamera.SetActive(false);
         vehicleVirtualCamera.SetActive(false);
@@ -60,5 +60,10 @@ public class GameManager : MonoBehaviour
         vehicleMainCamera.SetActive(true);
         vehicleVirtualCamera.SetActive(true);
         carBody.mass = inCarMass;
+    }
+
+    public Vector3 GetPlayerOffset()
+    {
+        return car.transform.position + playerExitVehicleOffset;
     }
 }
