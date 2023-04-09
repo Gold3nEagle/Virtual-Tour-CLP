@@ -7167,7 +7167,7 @@ MonoBehaviour:
   cameraFollowSpeed: 0.15
   cameraLookSpeed: 1
   cameraPivotSpeed: 1
-  minimumPivotAngle: -20
+  minimumPivotAngle: -15
   maximumPivotAngle: 60
   minimumCollisionOffset: 0.2
   cameraCollisionRadius: 0.2
