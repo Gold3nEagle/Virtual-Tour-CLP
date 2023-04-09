@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3937330394923482635}
   - component: {fileID: 3937330394923482676}
+  - component: {fileID: 1682956587621590297}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -44,10 +45,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a80650dc7326f4c049062a6747dc1753, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isInVehicle: 0
   player: {fileID: 0}
   car: {fileID: 0}
   vehicleMainCamera: {fileID: 0}
   vehicleVirtualCamera: {fileID: 0}
   playerExitVehicleOffset: {x: -2, y: 0, z: 0}
-  characterOBJ: {fileID: 0}
+  isInVehicle: 0
+  isPlayerWithinCarRange: 0
+--- !u!114 &1682956587621590297
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3937330394923482634}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b64148e41bab875439768f6c0eb8c648, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

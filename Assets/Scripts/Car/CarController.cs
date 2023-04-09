@@ -1,7 +1,8 @@
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class CarController : MonoBehaviour
+public class CarController : MonoBehaviour, ISaveable
 {
     public float acceleration = 22f;       // Acceleration force of the vehicle
     public float steering = 10f;           // Steering speed of the vehicle
@@ -189,5 +190,45 @@ public class CarController : MonoBehaviour
     {
         return Vector3.Dot(rb.velocity.normalized, -transform.forward) > 0;
     }
-     
+
+
+
+    public object CaptureState()
+    {
+        //pos = transform.position;
+        return new SaveData
+        {
+            //playerPostion = pos
+            carPostionX = transform.position.x,
+            carPostionY = transform.position.y,
+            carPostionZ = transform.position.z,
+            carRotationX = transform.rotation.x,
+            carRotationY = transform.rotation.y,
+            carRotationZ = transform.rotation.z,
+            carRotationW = transform.rotation.w
+        };
+    }
+
+    public void RestoreState(object state)
+    {
+        var saveData = (SaveData)state;
+        Vector3 savedPos = new Vector3(saveData.carPostionX, saveData.carPostionY, saveData.carPostionZ);
+        transform.position = savedPos;
+        Quaternion carRotation = new Quaternion(saveData.carRotationX, saveData.carRotationY, saveData.carRotationZ, saveData.carRotationW);
+        transform.rotation = carRotation;
+
+    }
+
+    [Serializable]
+    public struct SaveData
+    {
+        public float carPostionX;
+        public float carPostionY;
+        public float carPostionZ;
+        public float carRotationX;
+        public float carRotationY;
+        public float carRotationZ;
+        public float carRotationW;
+    }
+
 }
