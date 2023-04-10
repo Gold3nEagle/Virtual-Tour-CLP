@@ -801,7 +801,7 @@ PlayerSettings:
   webGLPowerPreference: 2
   scriptingDefineSymbols:
     Android: TMP_PRESENT;USE_NEW_INPUT;USE_CINEMACHINE
-    Standalone: TMP_PRESENT;USE_NEW_INPUT;USE_CINEMACHINE
+    Standalone: TMP_PRESENT;USE_NEW_INPUT;USE_CINEMACHINE;READY_PLAYER_ME
     WebGL: TMP_PRESENT;USE_NEW_INPUT;USE_CINEMACHINE
   additionalCompilerArguments: {}
   platformArchitecture: {}

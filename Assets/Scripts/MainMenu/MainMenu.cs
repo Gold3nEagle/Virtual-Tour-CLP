@@ -34,14 +34,14 @@ public class MainMenu : MonoBehaviour
             Debug.Log("Save file not found.");
         }
         DisableMenuButtons();
-        SceneManager.LoadSceneAsync("Game");
+        SceneManager.LoadSceneAsync("GameQuest");
     }
     public void OnContinueClicked()
     {
         DisableMenuButtons();
 
         AdvancedSavingSystem.instance.Load();
-        SceneManager.LoadSceneAsync("Game");
+        SceneManager.LoadSceneAsync("GameQuest");
     }
     public void OnQuit()
     {
