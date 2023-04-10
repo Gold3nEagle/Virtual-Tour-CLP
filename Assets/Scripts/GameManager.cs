@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -19,6 +20,7 @@ public class GameManager : MonoBehaviour
     private Rigidbody carBody;
     private float inCarMass;
     private float outsideCarMass = 1000;
+    //private Camera vehicleCamComponent;
 
     void Awake()
     {
@@ -33,6 +35,7 @@ public class GameManager : MonoBehaviour
         carBody = car.GetComponent<Rigidbody>();
         inCarMass = carBody.mass;
         carBody.mass = outsideCarMass;
+        //vehicleCamComponent = vehicleMainCamera.GetComponent<Camera>();
     }
 
     public void SwitchToPlayerControls()
@@ -66,4 +69,15 @@ public class GameManager : MonoBehaviour
     {
         return car.transform.position + playerExitVehicleOffset;
     }
+
+    //public Camera GetActiveCamera()
+    //{
+    //    if (player.activeInHierarchy)
+    //    {
+    //        Debug.Log("Returning main cam..");
+    //        return Camera.main;
+    //    }
+    //    Debug.Log("Returning vehicle cam..");
+    //    return vehicleCamComponent;
+    //}
 }

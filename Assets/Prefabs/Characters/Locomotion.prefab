@@ -7135,6 +7135,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c9164506c0e5f464abf85784d784f5dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  img: {fileID: 0}
+  target: {fileID: 0}
+  meter: {fileID: 0}
+  offset: {x: 0, y: 0, z: 0}
 --- !u!1 &6397133576736670379
 GameObject:
   m_ObjectHideFlags: 0
