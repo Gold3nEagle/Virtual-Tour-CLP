@@ -6,15 +6,15 @@ public class WaypointManager : MonoBehaviour
 {
     public static WaypointManager instance;
     public GameObject waypointPrefab;
-    public List<GameObject> waypointsList;
+    public List<Waypoint> waypointsList;
 
     void Start()
     {
         instance = this;
-        waypointsList = new List<GameObject>();
+        waypointsList = new List<Waypoint>();
     }
 
-    public GameObject AddWaypoint(string waypointID, GameObject objectToFollow)
+    public Waypoint AddWaypoint(string waypointID, GameObject objectToFollow)
     {
         if(GetWaypoint(waypointID) != null)
         {
@@ -25,11 +25,11 @@ public class WaypointManager : MonoBehaviour
         Waypoint thisWayp = waypointOBJ.GetComponent<Waypoint>();
         thisWayp.SetValues(waypointID, objectToFollow);
         thisWayp.enabled = true;
-        waypointsList.Add(waypointOBJ);
-        return waypointOBJ;
+        waypointsList.Add(thisWayp);
+        return thisWayp;
     }
 
-    public GameObject AddWaypoint(string waypointID, Vector3 posToFollow)
+    public Waypoint AddWaypoint(string waypointID, Vector3 posToFollow)
     {
         if (GetWaypoint(waypointID) != null)
         {
@@ -40,15 +40,15 @@ public class WaypointManager : MonoBehaviour
         Waypoint thisWayp = waypointOBJ.GetComponent<Waypoint>();
         thisWayp.SetValues(waypointID, posToFollow);
         thisWayp.enabled = true;
-        waypointsList.Add(waypointOBJ);
-        return waypointOBJ;
+        waypointsList.Add(thisWayp);
+        return thisWayp;
     }
 
-    public GameObject GetWaypoint(string waypointID)
+    public Waypoint GetWaypoint(string waypointID)
     {
-        foreach (GameObject waypoint in waypointsList)
+        foreach (Waypoint waypoint in waypointsList)
         {
-            if(waypoint.GetComponent<Waypoint>().waypointID == waypointID)
+            if(waypoint.waypointID == waypointID)
             {
                 return waypoint;
             }
@@ -58,11 +58,11 @@ public class WaypointManager : MonoBehaviour
 
     public void RemoveWaypoint(string waypointID)
     {
-        foreach (GameObject waypoint in waypointsList)
+        foreach (Waypoint waypoint in waypointsList)
         {
-            if (waypoint.GetComponent<Waypoint>().waypointID == waypointID)
+            if (waypoint.waypointID == waypointID)
             {
-                Destroy(waypoint);
+                Destroy(waypoint.gameObject);
                 return;
             }
         }

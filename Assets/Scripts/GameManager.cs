@@ -13,19 +13,30 @@ public class GameManager : MonoBehaviour
     public GameObject vehicleMainCamera;
     public GameObject vehicleVirtualCamera;
     public Vector3 playerExitVehicleOffset;
-    /*[HideInInspector]*/ public bool isInVehicle;
+    [HideInInspector] public bool isInVehicle;
     [HideInInspector] public bool isPlayerWithinCarRange;
     [HideInInspector] public PlayerControls playerControls;
 
     private Rigidbody carBody;
     private float inCarMass;
     private float outsideCarMass = 1000;
-    //private Camera vehicleCamComponent;
 
     void Awake()
     {
         instance = this;
         playerControls = new PlayerControls();
+    }
+
+    void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.V))
+        {
+            WaypointManager.instance.AddWaypoint("way1", transform.position);
+        }
+        else if(Input.GetKeyDown(KeyCode.B))
+        {
+            WaypointManager.instance.RemoveWaypoint("way1");
+        }
     }
 
     void Start()
@@ -35,7 +46,6 @@ public class GameManager : MonoBehaviour
         carBody = car.GetComponent<Rigidbody>();
         inCarMass = carBody.mass;
         carBody.mass = outsideCarMass;
-        //vehicleCamComponent = vehicleMainCamera.GetComponent<Camera>();
     }
 
     public void SwitchToPlayerControls()
@@ -44,8 +54,6 @@ public class GameManager : MonoBehaviour
         playerControls.Player.Enable();
 
         isInVehicle = false;
-        //player.transform.position = car.transform.position + playerExitVehicleOffset;
-        //characterOBJ.transform.localPosition = (car.transform.position + playerExitVehicleOffset) - player.transform.position;
         characterOBJ.transform.position = GetPlayerOffset();
         player.SetActive(true);
         vehicleMainCamera.SetActive(false);
@@ -70,14 +78,4 @@ public class GameManager : MonoBehaviour
         return car.transform.position + playerExitVehicleOffset;
     }
 
-    //public Camera GetActiveCamera()
-    //{
-    //    if (player.activeInHierarchy)
-    //    {
-    //        Debug.Log("Returning main cam..");
-    //        return Camera.main;
-    //    }
-    //    Debug.Log("Returning vehicle cam..");
-    //    return vehicleCamComponent;
-    //}
 }

@@ -27,7 +27,7 @@ public class Waypoint : MonoBehaviour
         float minX = img.GetPixelAdjustedRect().width / 2;
         float maxX = Screen.width - minX;
 
-        float minY = img.GetPixelAdjustedRect().height;// / 1.5f;
+        float minY = img.GetPixelAdjustedRect().height;
         float maxY = Screen.height - (minY / 1.5f);
         Vector3 followPos;
         if(moveableTarget)
@@ -76,6 +76,6 @@ public class Waypoint : MonoBehaviour
 
     private void OnDestroy()
     {
-        WaypointManager.instance.waypointsList.Remove(gameObject);
+        WaypointManager.instance.waypointsList.Remove(this);
     }
 }
