@@ -4,15 +4,28 @@ using UnityEngine;
 
 public class activeCursor : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public void EnableCursor()
     {
-        
+        SetCursorVisibility(true);
+    }
+    public void DisableCursor()
+    {
+        SetCursorVisibility(false);
     }
 
-    // Update is called once per frame
-    void Update()
+    private void SetCursorVisibility(bool visible)
     {
-        
+        if (visible)
+        {
+            // Unhide and unlock the cursor
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.None;
+        }
+        else
+        {
+            // Hide and lock the cursor
+            Cursor.visible = false;
+            Cursor.lockState = CursorLockMode.Locked;
+        }
     }
 }
