@@ -2430,7 +2430,9 @@ SkinnedMeshRenderer:
   - {fileID: 7080074876954317938}
   - {fileID: 4333850324585887761}
   - {fileID: 106517946958809276}
-  m_BlendShapeWeights: []
+  m_BlendShapeWeights:
+  - 0
+  - 0
   m_RootBone: {fileID: 5895638308376709167}
   m_AABB:
     m_Center: {x: 0.0000717697, y: 0.006499515, z: 0.00028333016}
@@ -5779,7 +5781,9 @@ SkinnedMeshRenderer:
   - {fileID: 7080074876954317938}
   - {fileID: 4333850324585887761}
   - {fileID: 106517946958809276}
-  m_BlendShapeWeights: []
+  m_BlendShapeWeights:
+  - 0
+  - 0
   m_RootBone: {fileID: 5895638308376709167}
   m_AABB:
     m_Center: {x: -0.00024519727, y: 0.0070416983, z: 0.0010822443}
@@ -7012,6 +7016,7 @@ GameObject:
   - component: {fileID: 6397133576024593416}
   - component: {fileID: 6397133576024593415}
   - component: {fileID: 6397133576024593414}
+  - component: {fileID: 5657300518332866726}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -7118,6 +7123,22 @@ MonoBehaviour:
   m_RequiresDepthTexture: 0
   m_RequiresColorTexture: 0
   m_Version: 2
+--- !u!114 &5657300518332866726
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6397133576024593413}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9164506c0e5f464abf85784d784f5dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  img: {fileID: 0}
+  target: {fileID: 0}
+  meter: {fileID: 0}
+  offset: {x: 0, y: 0, z: 0}
 --- !u!1 &6397133576736670379
 GameObject:
   m_ObjectHideFlags: 0
@@ -7192,7 +7213,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &6397133576770436193
 Transform:
   m_ObjectHideFlags: 0
@@ -8099,7 +8120,9 @@ SkinnedMeshRenderer:
   - {fileID: 7080074876954317938}
   - {fileID: 4333850324585887761}
   - {fileID: 106517946958809276}
-  m_BlendShapeWeights: []
+  m_BlendShapeWeights:
+  - 0
+  - 0
   m_RootBone: {fileID: 5895638308376709167}
   m_AABB:
     m_Center: {x: 0.00039983063, y: 0.0070901816, z: 0.0010393686}
@@ -8545,7 +8568,9 @@ SkinnedMeshRenderer:
   - {fileID: 7080074876954317938}
   - {fileID: 4333850324585887761}
   - {fileID: 106517946958809276}
-  m_BlendShapeWeights: []
+  m_BlendShapeWeights:
+  - 0
+  - 0
   m_RootBone: {fileID: 5895638308376709167}
   m_AABB:
     m_Center: {x: 0.00012431608, y: 0.00637812, z: 0.0010049827}
@@ -9084,7 +9109,7 @@ GameObject:
   - component: {fileID: 709889540583320393}
   m_Layer: 3
   m_Name: main character
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

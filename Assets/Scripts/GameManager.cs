@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -12,7 +13,7 @@ public class GameManager : MonoBehaviour
     public GameObject vehicleMainCamera;
     public GameObject vehicleVirtualCamera;
     public Vector3 playerExitVehicleOffset;
-    /*[HideInInspector]*/ public bool isInVehicle;
+    [HideInInspector] public bool isInVehicle;
     [HideInInspector] public bool isPlayerWithinCarRange;
     [HideInInspector] public PlayerControls playerControls;
 
@@ -24,6 +25,18 @@ public class GameManager : MonoBehaviour
     {
         instance = this;
         playerControls = new PlayerControls();
+    }
+
+    void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.V))
+        {
+            WaypointManager.instance.AddWaypoint("way1", transform.position);
+        }
+        else if(Input.GetKeyDown(KeyCode.B))
+        {
+            WaypointManager.instance.RemoveWaypoint("way1");
+        }
     }
 
     void Start()
@@ -41,8 +54,6 @@ public class GameManager : MonoBehaviour
         playerControls.Player.Enable();
 
         isInVehicle = false;
-        //player.transform.position = car.transform.position + playerExitVehicleOffset;
-        //characterOBJ.transform.localPosition = (car.transform.position + playerExitVehicleOffset) - player.transform.position;
         characterOBJ.transform.position = GetPlayerOffset();
         player.SetActive(true);
         vehicleMainCamera.SetActive(false);
@@ -66,4 +77,5 @@ public class GameManager : MonoBehaviour
     {
         return car.transform.position + playerExitVehicleOffset;
     }
+
 }
