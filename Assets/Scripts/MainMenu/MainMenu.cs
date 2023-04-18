@@ -14,6 +14,9 @@ public class MainMenu : MonoBehaviour
 
     private void Start()
     {
+        int quality = PlayerPrefs.GetInt("currentQ");
+        QualitySettings.SetQualityLevel(quality);
+        
         Savepath = $"{Application.persistentDataPath}/saveData.text";
         if (!File.Exists(Savepath))
         {
