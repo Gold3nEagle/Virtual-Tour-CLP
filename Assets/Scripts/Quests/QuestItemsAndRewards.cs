@@ -23,7 +23,13 @@ public class QuestItemsAndRewards : MonoBehaviour
 
     public void giveItem(string itemName)
     {
-       
+        foreach (Item item in ItemsManager.items.List)
+        {
+            if (item.Name == itemName && item.IsQuestItem)
+            {
+                item.ToggleIsObtained();
+            }
+        }
     }
 
     
