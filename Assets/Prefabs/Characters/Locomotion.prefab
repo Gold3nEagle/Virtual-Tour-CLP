@@ -7174,7 +7174,7 @@ MonoBehaviour:
   cameraCollisionOffset: 0.2
   collisionLayers:
     serializedVersion: 2
-    m_Bits: 1
+    m_Bits: 65
   lookAngle: 0
   pivotAngle: 0
 --- !u!1 &6397133576770436192
