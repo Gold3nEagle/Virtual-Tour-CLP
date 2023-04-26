@@ -7,6 +7,7 @@ public class PlayerManager : MonoBehaviour
     private InputManager inputManager;
     private MainPlayerController mainPlayerController;
     private CameraManager cameraManager;
+    private bool handleMovement = true;
 
     private void Awake()
     {
@@ -17,16 +18,28 @@ public class PlayerManager : MonoBehaviour
 
     private void Update()
     {
-        inputManager.HandleAllInputs();
+        if (handleMovement) { inputManager.HandleAllInputs(); }
+        else { inputManager.DoNotHandleAllInputs(); }
     }
 
     private void FixedUpdate()
     {
-        mainPlayerController.HandleAllMovement();
+        if (handleMovement) { mainPlayerController.HandleAllMovement(); }
+        else { mainPlayerController.DoNotHandleAllMovement(); }
     }
 
     private void LateUpdate()
     {
         if (Time.timeScale != 0.0f) cameraManager.HandleAllCameraMovement();
+    }
+
+    public void StopPlayerMovement()
+    {
+        handleMovement = false;
+    }
+
+    public void ContinuePlayerMovement()
+    {
+        handleMovement = true;
     }
 }
