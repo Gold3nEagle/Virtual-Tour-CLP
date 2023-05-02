@@ -30,7 +30,8 @@ public class InputManager : MonoBehaviour
         mainPlayerController = GetComponent<MainPlayerController>();
     }
 
-    private void OnEnable()
+    // Replaced `OnEnable()` with `Start()` because for literally no reason the player's controls wouldn't work (happened after adding the trees to terrain i guess)
+    private void Start()
     {
         // Subscribe events
 

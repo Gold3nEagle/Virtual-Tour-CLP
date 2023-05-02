@@ -7171,14 +7171,14 @@ MonoBehaviour:
   cameraFollowSpeed: 0.15
   cameraLookSpeed: 1
   cameraPivotSpeed: 1
-  minimumPivotAngle: -20
+  minimumPivotAngle: -60
   maximumPivotAngle: 60
   minimumCollisionOffset: 0.2
   cameraCollisionRadius: 0.2
   cameraCollisionOffset: 0.2
   collisionLayers:
     serializedVersion: 2
-    m_Bits: 1
+    m_Bits: 65
   lookAngle: 0
   pivotAngle: 0
 --- !u!1 &6397133576770436192
