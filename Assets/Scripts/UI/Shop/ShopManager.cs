@@ -1,3 +1,4 @@
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -12,4 +13,28 @@ public class ShopManager : MonoBehaviour
         ItemsManager.items.ObtainSelectedItem();
         buyButton.interactable = false;
     }
+
+    public bool CheckBuyItem(string itemName)
+    {
+        foreach (Item item in ItemsManager.items.List)
+        {
+            if (item.Name == itemName && item.IsObtained)
+            {
+               
+                return true;
+            }
+
+        }
+        return false;
+    }
+
+    //private void OnEnable()
+    //{
+    //    Lua.RegisterFunction("CheckBuyItem", this, SymbolExtensions.GetMethodInfo(() => CheckBuyItem(string.Empty)));
+    //}
+
+    //private void OnDisable()
+    //{
+    //    Lua.UnregisterFunction("CheckBuyItem");
+    //}
 }
