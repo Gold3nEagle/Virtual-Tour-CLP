@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Events;
 
 /// <summary>
 /// Class to store a list of items of type `Item`
@@ -15,7 +14,6 @@ public class Items
     public List<Item> List { get => items; }
     public Item SelectedItem { get => selectedItem; }
 
-    public static UnityEvent<string> OnItemPurchase = new UnityEvent<string>();
     public Items()
     {
         items = new List<Item>();
@@ -52,7 +50,7 @@ public class Items
             CurrencySystem.instance.DeductMoney(selectedItem.Price);
             AudioManager.instance.Play("Purchased");
         }
-        OnItemPurchase.Invoke(selectedItem.Name);
+
         Debug.Log($"Purchased {selectedItem.Name} for {selectedItem.Price}.0 | Current balance: BHD {CurrencySystem.instance.currentMoney}.0");
     }
 

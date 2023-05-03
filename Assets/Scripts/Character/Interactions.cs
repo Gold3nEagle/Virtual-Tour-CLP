@@ -55,6 +55,4 @@ public class Interactions : MonoBehaviour
             GameManager.instance.SwitchToPlayerControls();
         }
     }
-
-    
 }

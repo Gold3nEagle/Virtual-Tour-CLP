@@ -7,7 +7,6 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
-    public GameObject cameraOBJ;
     public GameObject player;
     public GameObject characterOBJ;
     public GameObject car;

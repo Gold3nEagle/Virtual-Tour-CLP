@@ -801,7 +801,7 @@ PlayerSettings:
   webGLPowerPreference: 2
   scriptingDefineSymbols:
     Android: TMP_PRESENT;USE_NEW_INPUT;USE_CINEMACHINE
-    Standalone: TMP_PRESENT;USE_NEW_INPUT;USE_CINEMACHINE;READY_PLAYER_ME
+    Standalone: TMP_PRESENT;USE_NEW_INPUT;USE_CINEMACHINE
     WebGL: TMP_PRESENT;USE_NEW_INPUT;USE_CINEMACHINE
   additionalCompilerArguments: {}
   platformArchitecture: {}
@@ -824,8 +824,8 @@ PlayerSettings:
     Standalone: 3
   m_RenderingPath: 1
   m_MobileRenderingPath: 1
-  metroPackageName: TemplateLightweight
-  metroPackageVersion: 1.0.0.0
+  metroPackageName: Template_Lightweight
+  metroPackageVersion: 
   metroCertificatePath: 
   metroCertificatePassword: 
   metroCertificateSubject: 
@@ -833,7 +833,7 @@ PlayerSettings:
   metroCertificateNotAfter: 0000000000000000
   metroApplicationDescription: Template_Lightweight
   wsaImages: {}
-  metroTileShortName: Virtual-Tour-CLP
+  metroTileShortName: 
   metroTileShowName: 0
   metroMediumTileShowName: 0
   metroLargeTileShowName: 0
