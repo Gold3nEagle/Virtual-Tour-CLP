@@ -1,3 +1,4 @@
+using PixelCrushers.DialogueSystem;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
@@ -18,6 +19,9 @@ public class MainMenu : MonoBehaviour
 
     private void Start()
     {
+        int quality = PlayerPrefs.GetInt("currentQ");
+        QualitySettings.SetQualityLevel(quality);
+        
         Savepath = $"{Application.persistentDataPath}/saveData.text";
         if (!File.Exists(Savepath))
         {
@@ -27,11 +31,13 @@ public class MainMenu : MonoBehaviour
     public void OnNewGameClicked()
     {
         AudioManager.instance.Play("Click");
-        //CurrencySystem.instance.currentMoney = 0;
+        CurrencySystem.instance.currentMoney = 0;
         string saveFilePath = Path.Combine(Application.persistentDataPath, "saveData.text");
         if (File.Exists(saveFilePath))
         {
             File.Delete(saveFilePath);
+            DialogueManager.ResetDatabase(DatabaseResetOptions.KeepAllLoaded);
+            DialogueManager.SendUpdateTracker();
             Debug.Log("Save file deleted successfully.");
         }
         else
@@ -39,15 +45,16 @@ public class MainMenu : MonoBehaviour
             Debug.Log("Save file not found.");
         }
         DisableMenuButtons();
-        SceneManager.LoadSceneAsync("Game");
+        SceneManager.LoadSceneAsync(1);
     }
     public void OnContinueClicked()
     {
         AudioManager.instance.Play("Click");
         DisableMenuButtons();
-
+        //string save = PlayerPrefs.GetString("SaveDialogue");
+        //PersistentDataManager.ApplySaveData(save);
         AdvancedSavingSystem.instance.Load();
-        SceneManager.LoadSceneAsync("Game");
+        SceneManager.LoadSceneAsync(1);
     }
     public void OnOptionClicked()
     {

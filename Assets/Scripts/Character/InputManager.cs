@@ -30,7 +30,8 @@ public class InputManager : MonoBehaviour
         mainPlayerController = GetComponent<MainPlayerController>();
     }
 
-    private void OnEnable()
+    // Replaced `OnEnable()` with `Start()` because for literally no reason the player's controls wouldn't work (happened after adding the trees to terrain i guess)
+    private void Start()
     {
         // Subscribe events
 
@@ -50,12 +51,19 @@ public class InputManager : MonoBehaviour
 
     public void HandleAllInputs()
     {
-        HandleMovementInput();
+        HandleMovementInput(true);
         HandleSprintingInput();
         HandleWalkingInput();
     }
 
-    private void HandleMovementInput()
+    public void DoNotHandleAllInputs()
+    {
+        HandleMovementInput(false);
+        HandleSprintingInput();
+        HandleWalkingInput();
+    }
+
+    private void HandleMovementInput(bool isActive)
     {
         verticalInput = movementInput.y;
         horizontalInput = movementInput.x;
@@ -63,7 +71,7 @@ public class InputManager : MonoBehaviour
         cameraInputY = cameraInput.y;
         cameraInputX = cameraInput.x;
 
-        moveAmount = Mathf.Clamp01(Mathf.Abs(horizontalInput) + Mathf.Abs(verticalInput));
+        moveAmount = isActive ? Mathf.Clamp01(Mathf.Abs(horizontalInput) + Mathf.Abs(verticalInput)) : 0.0f;
         animatorManager.UpdateAnimatorValues(0, moveAmount, mainPlayerController.isSprinting, mainPlayerController.isWalking);
     }
 

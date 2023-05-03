@@ -31,14 +31,23 @@ public class MainPlayerController : MonoBehaviour
 
     public void HandleAllMovement()
     {
-        HandleMovement();
-        HandleRotation();
+        HandleMovement(true);
+        HandleRotation(true);
     }
 
-    private void HandleMovement()
+    public void DoNotHandleAllMovement()
+    {
+        HandleMovement(false);
+        HandleRotation(false);
+    }
+
+    private void HandleMovement(bool isActive)
     {
         movementDirection = new Vector3(cameraTransform.forward.x, 0, cameraTransform.forward.z) * inputManager.verticalInput;
         movementDirection += cameraTransform.right * inputManager.horizontalInput;
+
+        if (!isActive) movementDirection = new Vector3(0, 0, 0);
+
         movementDirection.Normalize();
         movementDirection.y = 0;
 
@@ -49,12 +58,15 @@ public class MainPlayerController : MonoBehaviour
         playerRigidbody.velocity = movementVelocity;
     }
 
-    private void HandleRotation()
+    private void HandleRotation(bool isActive)
     {
         Vector3 targetDirection = Vector3.zero;
 
         targetDirection = cameraTransform.forward * inputManager.verticalInput;
         targetDirection += cameraTransform.right * inputManager.horizontalInput;
+
+        if (!isActive) targetDirection = new Vector3(0, 0, 0);
+
         targetDirection.Normalize();
         targetDirection.y = 0;
 
