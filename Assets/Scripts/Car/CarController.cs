@@ -1,4 +1,5 @@
 using System;
+using Cinemachine;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -10,10 +11,13 @@ public class CarController : MonoBehaviour, ISaveable
     public float brakePower = 10f;         // Brake power of the vehicle
     public float getSpeed;
     public float powerSteerBellowSpeed = 20;
+    public CinemachineFreeLook freeLookCam;
+    public float camShakeIntensity = 1f;
     public Transform[] wheels;
 
+    [SerializeField] private bool isOnGround;
     private Rigidbody rb;                  // Reference to the rigidbody of the vehicle
-    [SerializeField]private bool isOnGround;
+    private CinemachineBasicMultiChannelPerlin[] noise;
     private float maxZRotation = 15f;        // max rotation for x and z axis to prevent the car from flipping
     private float maxXRotation = 60f;
     private float raycastDistance = 1.2f;   // Distance of the raycast from the car's center
@@ -23,15 +27,23 @@ public class CarController : MonoBehaviour, ISaveable
     {
         rb = GetComponent<Rigidbody>();    // Get the rigidbody component of the vehicle
     }
-    //private void OnEnable()
-    //{
-    //    GameManager.instance.playerControls.Vehicle.Enable();
-    //}
 
-    //private void OnDisable()
-    //{
-    //    GameManager.instance.playerControls.Vehicle.Disable();
-    //}
+    private void Start()
+    {
+        // Get the noise components from the three rigs of the Cinemachine FreeLook Camera
+        noise = new CinemachineBasicMultiChannelPerlin[3];
+        for (int i = 0; i < 3; i++)
+        {
+            var vcam = freeLookCam.GetRig(i);
+            noise[i] = vcam.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
+            if (noise[i] == null)
+            {
+                // Add the CinemachineBasicMultiChannelPerlin component if it doesn't exist
+                noise[i] = vcam.AddCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
+            }
+        }
+    }
+
 
     private void FixedUpdate()
     {
@@ -42,6 +54,8 @@ public class CarController : MonoBehaviour, ISaveable
         LockRotation();
         LimitSpeed();
         RotateWheels();
+        HandleEngineSound();
+        ShakeCamera();
         getSpeed = rb.velocity.magnitude;
         if (isBraking) isBraking = false;
     }
@@ -191,7 +205,32 @@ public class CarController : MonoBehaviour, ISaveable
         return Vector3.Dot(rb.velocity.normalized, -transform.forward) > 0;
     }
 
+    private void HandleEngineSound()
+    {
+        if (AudioManager.instance.IsPlaying("CarDriving"))
+        {
+            float engineSoundLevel = getSpeed / maxSpeed;
+            AudioManager.instance.SetSoundVolumeTo("CarDriving", engineSoundLevel);
+        }
+    }
 
+    private void ShakeCamera()
+    {
+        if(getSpeed >= maxSpeed)
+        {
+            for (int i = 0; i < 3; i++)
+            {
+                noise[i].m_AmplitudeGain = camShakeIntensity;
+            }
+        }
+        else
+        {
+            for (int i = 0; i < 3; i++)
+            {
+                noise[i].m_AmplitudeGain = 0f;
+            }
+        }
+    }
 
     public object CaptureState()
     {

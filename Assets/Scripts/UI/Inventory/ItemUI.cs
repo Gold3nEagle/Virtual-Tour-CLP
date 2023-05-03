@@ -22,6 +22,7 @@ public class ItemUI : MonoBehaviour
 
     public void OnSelected()
     {
+        AudioManager.instance.Play("Click");
         foreach (GameObject go in GameObject.FindGameObjectsWithTag("Stock Item"))
         {
             go.GetComponent<Image>().enabled = false;

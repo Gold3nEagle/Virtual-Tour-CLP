@@ -4,16 +4,17 @@ using UnityEngine;
 
 public class AudioManager : MonoBehaviour
 {
+    public static AudioManager instance;
     [Range(0f, 1f)]
     public float masterVolume = 1;
     [Range(0f, 1f)]
     public float musicVolume = 1;
     [Range(0f, 1f)]
     public float SFXVolume = 1;
-    public List<GameObject> soundsObjectsList;
     public Sound[] sounds;
+
+    private List<GameObject> soundsObjectsList;
     private float[] volumes;
-    public static AudioManager instance;
     private bool Muted = false;
 
     // Use this for initialization
@@ -148,6 +149,33 @@ public class AudioManager : MonoBehaviour
         else
         {
             s.volume += amount;
+        }
+        UpdateSoundsLevel(s);
+    }
+
+    public void SetSoundVolumeTo(string name, float newVolume)
+    {
+        if (Muted)
+        {
+            return;
+        }
+        Sound s = Array.Find(sounds, sound => sound.name == name);
+        if (s == null)
+        {
+            Debug.LogWarning("Sound " + name + " not found!");
+            return;
+        }
+        if(newVolume > 1)
+        {
+            s.volume = 1;
+        }
+        else if(newVolume < 0)
+        {
+            s.volume = 0;
+        }
+        else
+        {
+            s.volume = newVolume;
         }
         UpdateSoundsLevel(s);
     }

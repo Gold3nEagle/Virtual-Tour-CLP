@@ -13,12 +13,14 @@ public class PauseMenu : MonoBehaviour
 
     public void ReturnToMenu()
     {
+        AudioManager.instance.Play("Click");
         SceneManager.LoadScene("MainMenu");
         pauseMenuPanel.SetActive(false);
     }
 
     public void OnClickSaveGame()
     {
+        AudioManager.instance.Play("Click");
         //string save = PersistentDataManager.GetSaveData();
         //PlayerPrefs.SetString("SaveDialogue",save);
         AdvancedSavingSystem.instance.Save();
