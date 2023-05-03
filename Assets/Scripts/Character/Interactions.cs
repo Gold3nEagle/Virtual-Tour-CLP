@@ -31,7 +31,11 @@ public class Interactions : MonoBehaviour
     // Interactions
     // === === === === ===
 
-    public void OnResumeBtnClicked() { menuUI.ResumeGame(); }
+    public void OnResumeBtnClicked()
+    {
+        AudioManager.instance.Play("Click");
+        menuUI.ResumeGame();
+    }
 
     private void EnterExitVehicle(InputAction.CallbackContext context)
     {
@@ -39,11 +43,15 @@ public class Interactions : MonoBehaviour
         {
             if (GameManager.instance.isPlayerWithinCarRange)
             {
+                AudioManager.instance.Play("StartEngine");
+                AudioManager.instance.Play("CarDriving");
                 GameManager.instance.SwitchToVehicleControls();
             }
         }
         else
         {
+            AudioManager.instance.Stop("CarDriving");
+            AudioManager.instance.Play("StopEngine");
             GameManager.instance.SwitchToPlayerControls();
         }
     }
