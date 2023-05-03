@@ -1,3 +1,5 @@
+using PixelCrushers.DialogueSystem;
+using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -7,6 +9,7 @@ public class PauseMenu : MonoBehaviour
 
     public GameObject pauseMenuPanel;
     public GameObject saveText;
+    public string save;
 
     public void ReturnToMenu()
     {
@@ -16,8 +19,13 @@ public class PauseMenu : MonoBehaviour
 
     public void OnClickSaveGame()
     {
+        //string save = PersistentDataManager.GetSaveData();
+        //PlayerPrefs.SetString("SaveDialogue",save);
         AdvancedSavingSystem.instance.Save();
         saveText.SetActive(true);
         Invoke("SetFalse", 0.1f);
     }
+
+ 
+
 }

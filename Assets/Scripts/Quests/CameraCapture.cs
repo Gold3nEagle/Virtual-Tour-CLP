@@ -35,7 +35,7 @@ public class CameraCapture : MonoBehaviour
         // Disable panel1 and enable panel2
         uiPanel.SetActive(false);
         camPanel.SetActive(true);
-
+        PlayerManager.StopPlayer();
         // Wait for 3 seconds before reversing the process
         StartCoroutine(WaitAndSwitch());
     }
@@ -48,6 +48,7 @@ public class CameraCapture : MonoBehaviour
         camPanel.SetActive(false);
         uiPanel.SetActive(true);
         questCam.SetActive(false);
+        PlayerManager.ContinuePlayer();
         GameManager.instance.cameraOBJ.SetActive(true);
         
     }

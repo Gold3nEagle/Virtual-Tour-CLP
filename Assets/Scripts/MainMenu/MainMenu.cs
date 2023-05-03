@@ -1,3 +1,4 @@
+using PixelCrushers.DialogueSystem;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
@@ -25,11 +26,13 @@ public class MainMenu : MonoBehaviour
     }
     public void OnNewGameClicked()
     {
-        //CurrencySystem.instance.currentMoney = 0;
+        CurrencySystem.instance.currentMoney = 0;
         string saveFilePath = Path.Combine(Application.persistentDataPath, "saveData.text");
         if (File.Exists(saveFilePath))
         {
             File.Delete(saveFilePath);
+            DialogueManager.ResetDatabase(DatabaseResetOptions.KeepAllLoaded);
+            DialogueManager.SendUpdateTracker();
             Debug.Log("Save file deleted successfully.");
         }
         else
@@ -42,7 +45,8 @@ public class MainMenu : MonoBehaviour
     public void OnContinueClicked()
     {
         DisableMenuButtons();
-
+        //string save = PlayerPrefs.GetString("SaveDialogue");
+        //PersistentDataManager.ApplySaveData(save);
         AdvancedSavingSystem.instance.Load();
         SceneManager.LoadSceneAsync(1);
     }

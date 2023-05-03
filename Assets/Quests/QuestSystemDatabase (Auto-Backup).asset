@@ -4761,6 +4761,61 @@ MonoBehaviour:
         type: 0
         typeString: 
       - title: Sequence
+        value: 
+        type: 0
+        typeString: 
+      conversationID: 7
+      isRoot: 0
+      isGroup: 0
+      nodeColor: 
+      delaySimStatus: 0
+      falseConditionAction: Block
+      conditionPriority: 2
+      outgoingLinks:
+      - originConversationID: 7
+        originDialogueID: 5
+        destinationConversationID: 7
+        destinationDialogueID: 6
+        isConnector: 0
+        priority: 2
+      conditionsString: 
+      userScript: 
+      onExecute:
+        m_PersistentCalls:
+          m_Calls: []
+      canvasRect:
+        serializedVersion: 2
+        x: 21.06186
+        y: 230.80417
+        width: 160
+        height: 30
+    - id: 6
+      fields:
+      - title: Title
+        value: 
+        type: 0
+        typeString: 
+      - title: Description
+        value: 
+        type: 0
+        typeString: 
+      - title: Actor
+        value: 1
+        type: 5
+        typeString: CustomFieldType_Actor
+      - title: Conversant
+        value: 8
+        type: 5
+        typeString: CustomFieldType_Actor
+      - title: Menu Text
+        value: 
+        type: 0
+        typeString: 
+      - title: Dialogue Text
+        value: '[Leave].'
+        type: 0
+        typeString: 
+      - title: Sequence
         value: SetActive(Picture Areas,true)
         type: 0
         typeString: 
@@ -4786,12 +4841,12 @@ MonoBehaviour:
       canvasRect:
         serializedVersion: 2
         x: 21.06186
-        y: 206.06189
+        y: 280.80417
         width: 160
         height: 30
     entryGroups: []
     canvasScrollPosition: {x: 0, y: 0}
-    canvasZoom: 0.97
+    canvasZoom: 0.7000003
   - id: 8
     fields:
     - title: Title
@@ -5446,8 +5501,8 @@ MonoBehaviour:
         width: 160
         height: 30
     entryGroups: []
-    canvasScrollPosition: {x: 0, y: 14.117645}
-    canvasZoom: 0.85000014
+    canvasScrollPosition: {x: 0, y: 10.114782}
+    canvasZoom: 0.8200002
   - id: 9
     fields:
     - title: Title

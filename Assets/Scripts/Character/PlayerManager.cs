@@ -8,6 +8,7 @@ public class PlayerManager : MonoBehaviour
     private MainPlayerController mainPlayerController;
     private CameraManager cameraManager;
     private bool handleMovement = true;
+    public static bool handleMovementStatic = true;
 
     private void Awake()
     {
@@ -18,13 +19,13 @@ public class PlayerManager : MonoBehaviour
 
     private void Update()
     {
-        if (handleMovement) { inputManager.HandleAllInputs(); }
+        if (handleMovement && handleMovementStatic) { inputManager.HandleAllInputs(); }
         else { inputManager.DoNotHandleAllInputs(); }
     }
 
     private void FixedUpdate()
     {
-        if (handleMovement) { mainPlayerController.HandleAllMovement(); }
+        if (handleMovement && handleMovementStatic) { mainPlayerController.HandleAllMovement(); }
         else { mainPlayerController.DoNotHandleAllMovement(); }
     }
 
@@ -41,5 +42,14 @@ public class PlayerManager : MonoBehaviour
     public void ContinuePlayerMovement()
     {
         handleMovement = true;
+    }
+    public static void StopPlayer()
+    {
+        handleMovementStatic = false;
+    }
+
+    public static void ContinuePlayer()
+    {
+        handleMovementStatic = true;
     }
 }
