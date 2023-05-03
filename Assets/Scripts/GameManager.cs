@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-
+using TMPro;
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
@@ -14,7 +14,9 @@ public class GameManager : MonoBehaviour
     public GameObject vehicleMainCamera;
     public GameObject vehicleVirtualCamera;
     public Vector3 playerExitVehicleOffset;
+    public TextMeshProUGUI promptTXT;
     [HideInInspector] public bool isInVehicle;
+    [HideInInspector] public bool isNearShop = false;
     [HideInInspector] public bool isPlayerWithinCarRange;
     [HideInInspector] public PlayerControls playerControls;
 
@@ -77,6 +79,17 @@ public class GameManager : MonoBehaviour
     public Vector3 GetPlayerOffset()
     {
         return car.transform.position + playerExitVehicleOffset;
+    }
+
+    public void ShowPrompt(string message)
+    {
+        promptTXT.text = message;
+        promptTXT.gameObject.SetActive(true);
+    }
+
+    public void HidePrompt()
+    {
+        promptTXT.gameObject.SetActive(false);
     }
 
 }

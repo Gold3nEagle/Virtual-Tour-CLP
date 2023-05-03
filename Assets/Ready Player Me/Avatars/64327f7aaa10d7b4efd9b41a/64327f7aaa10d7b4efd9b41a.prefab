@@ -1883,6 +1883,7 @@ GameObject:
   - component: {fileID: 2081797372120578295}
   - component: {fileID: 1776195399032386906}
   - component: {fileID: 4568791746545769976}
+  - component: {fileID: 4128654141660231170}
   m_Layer: 0
   m_Name: 64327f7aaa10d7b4efd9b41a
   m_TagString: Untagged
@@ -1952,6 +1953,18 @@ MonoBehaviour:
   AvatarMetadata:
     BodyType: 1
     OutfitGender: 1
+--- !u!114 &4128654141660231170
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4447234895503491401}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 25a31ea80ed4cfb469288bedd4ff3fa3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4596966664987101536
 GameObject:
   m_ObjectHideFlags: 0
