@@ -104,3 +104,11 @@ MonoBehaviour:
     loop: 0
     singleInstance: 0
     type: 0
+  - name: Steps
+    clip: {fileID: 8300000, guid: bd41bba85b5e34907a6196a2e91807f4, type: 3}
+    volume: 1
+    pitch: 1
+    source: {fileID: 0}
+    loop: 0
+    singleInstance: 0
+    type: 0
