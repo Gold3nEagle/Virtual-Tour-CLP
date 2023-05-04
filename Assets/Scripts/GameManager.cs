@@ -32,11 +32,11 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.V))
+        if (Input.GetKeyDown(KeyCode.V))
         {
             WaypointManager.instance.AddWaypoint("way1", transform.position);
         }
-        else if(Input.GetKeyDown(KeyCode.B))
+        else if (Input.GetKeyDown(KeyCode.B))
         {
             WaypointManager.instance.RemoveWaypoint("way1");
         }
@@ -74,6 +74,8 @@ public class GameManager : MonoBehaviour
         vehicleMainCamera.SetActive(true);
         vehicleVirtualCamera.SetActive(true);
         carBody.mass = inCarMass;
+
+        HidePrompt();
     }
 
     public Vector3 GetPlayerOffset()

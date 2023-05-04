@@ -10,11 +10,19 @@ public class CarInRangeDetector : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Player") GameManager.instance.isPlayerWithinCarRange = true;
+        if (other.tag == "Player")
+        {
+            GameManager.instance.isPlayerWithinCarRange = true;
+            GameManager.instance.ShowPrompt("Press E to enter the car");
+        }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.tag == "Player") GameManager.instance.isPlayerWithinCarRange = false;
+        if (other.tag == "Player")
+        {
+            GameManager.instance.isPlayerWithinCarRange = false;
+            GameManager.instance.HidePrompt();
+        }
     }
 }
