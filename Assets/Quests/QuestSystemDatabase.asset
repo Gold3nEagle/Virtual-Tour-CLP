@@ -516,7 +516,7 @@ MonoBehaviour:
       type: 2
       typeString: CustomFieldType_Boolean
     - title: Entry Count
-      value: 4
+      value: 3
       type: 1
       typeString: CustomFieldType_Number
     - title: Entry 1 State
@@ -524,34 +524,26 @@ MonoBehaviour:
       type: 0
       typeString: 
     - title: Entry 1
-      value: Go to Al Khamis Mousque
-      type: 0
-      typeString: 
-    - title: Entry 2
-      value: Read about the mousque history from the signboard
-      type: 0
-      typeString: 
-    - title: Entry 2 State
-      value: unassigned
-      type: 0
-      typeString: 
-    - title: Entry 4 State
-      value: unassigned
-      type: 0
-      typeString: 
-    - title: Entry 4
-      value: Return to Bu Yaqoob after taking the pictures.
-      type: 0
-      typeString: 
-    - title: Entry 3
-      value: Take pictures of the mousque from the marked areas. Pictures taken [var=Mosq.Pictures]/4
+      value: Go to Al Khamis Mousque and read about its history
       type: 0
       typeString: 
     - title: Entry 3 State
       value: unassigned
       type: 0
       typeString: 
-    - title: Entry 3 Pictures taken [var=Mosq.Pictures]/4
+    - title: Entry 3
+      value: Return to Bu Yaqoob after taking the pictures.
+      type: 0
+      typeString: 
+    - title: Entry 2
+      value: Take pictures of the mousque from the marked areas. Pictures taken [var=Mosq.Pictures]/2
+      type: 0
+      typeString: 
+    - title: Entry 2 State
+      value: unassigned
+      type: 0
+      typeString: 
+    - title: Entry 2 Pictures taken [var=Mosq.Pictures]/4
       value: 
       type: 0
       typeString: CustomFieldType_Text
@@ -3383,7 +3375,7 @@ MonoBehaviour:
       canvasRect:
         serializedVersion: 2
         x: 20
-        y: 104
+        y: 107.79747
         width: 160
         height: 30
     - id: 2
@@ -3695,9 +3687,7 @@ MonoBehaviour:
       userScript: 'SetQuestState("Bab AlBahrain", "success");
 
         SetQuestEntryState("Bab
-        AlBahrain", 5, "success");
-
-'
+        AlBahrain", 5, "success")'
       onExecute:
         m_PersistentCalls:
           m_Calls: []
@@ -4184,7 +4174,7 @@ MonoBehaviour:
         type: 0
         typeString: 
       - title: Sequence
-        value: SetActive(Masjid Al Khamis,true)
+        value: 
         type: 0
         typeString: 
       - title: EventGuid
@@ -4254,7 +4244,7 @@ MonoBehaviour:
         destinationDialogueID: 10
         isConnector: 0
         priority: 2
-      conditionsString: Variable["Mosq.Pictures"] >= 4
+      conditionsString: Variable["Mosq.Pictures"] >= 2
       userScript: 
       onExecute:
         m_PersistentCalls:
@@ -4360,10 +4350,10 @@ MonoBehaviour:
       userScript: 'SetQuestState("The Ancient Mosque", "success");
 
         SetQuestEntryState("The
-        Ancient Mosque", 3, "success");
+        Ancient Mosque", 2, "success");
 
         SetQuestEntryState("The Ancient
-        Mosque", 4, "success")'
+        Mosque", 3, "success")'
       onExecute:
         m_PersistentCalls:
           m_Calls: []
@@ -4534,15 +4524,14 @@ MonoBehaviour:
         destinationDialogueID: 4
         isConnector: 0
         priority: 2
-      conditionsString: (CurrentQuestEntryState("The Ancient Mosque", 1) == "success")
-        and (CurrentQuestEntryState("The Ancient Mosque", 2) == "active")
+      conditionsString: CurrentQuestEntryState("The Ancient Mosque", 1) == "active"
       userScript: 
       onExecute:
         m_PersistentCalls:
           m_Calls: []
       canvasRect:
         serializedVersion: 2
-        x: 19
+        x: 20.42857
         y: 104
         width: 160
         height: 30
@@ -4645,7 +4634,7 @@ MonoBehaviour:
       falseConditionAction: Block
       conditionPriority: 2
       outgoingLinks: []
-      conditionsString: CurrentQuestEntryState("The Ancient Mosque", 2) == "success"
+      conditionsString: CurrentQuestEntryState("The Ancient Mosque", 1) == "success"
       userScript: 
       onExecute:
         m_PersistentCalls:
@@ -4805,25 +4794,25 @@ MonoBehaviour:
       conditionPriority: 2
       outgoingLinks: []
       conditionsString: 
-      userScript: 'SetQuestEntryState("The Ancient Mosque", 2, "success");
+      userScript: 'SetQuestEntryState("The Ancient Mosque", 1, "success");
 
         SetQuestEntryState("The
-        Ancient Mosque", 3, "active");
+        Ancient Mosque", 2, "active");
 
         SetQuestEntryState("The Ancient Mosque",
-        4, "active")'
+        3, "active")'
       onExecute:
         m_PersistentCalls:
           m_Calls: []
       canvasRect:
         serializedVersion: 2
-        x: 21.06186
-        y: 280.80417
+        x: 22.490425
+        y: 283.66132
         width: 160
         height: 30
     entryGroups: []
     canvasScrollPosition: {x: 0, y: 0}
-    canvasZoom: 0.7000003
+    canvasZoom: 0.6700003
   - id: 8
     fields:
     - title: Title

@@ -51,8 +51,8 @@ public class MainMenu : MonoBehaviour
     {
         AudioManager.instance.Play("Click");
         DisableMenuButtons();
-        //string save = PlayerPrefs.GetString("SaveDialogue");
-        //PersistentDataManager.ApplySaveData(save);
+        string save = PlayerPrefs.GetString("SaveDialogue");
+        PersistentDataManager.ApplySaveData(save);
         AdvancedSavingSystem.instance.Load();
         SceneManager.LoadSceneAsync(1);
     }
