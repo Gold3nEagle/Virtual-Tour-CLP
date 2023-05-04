@@ -48,8 +48,8 @@ public class Item
     /// <param name="itemName">The item's name, usually the same as the file name</param>
     public Item(string itemName)
     {
-        string path = itemScriptableObjPath + itemName + ".asset";
-        ItemScriptableObj tempItemSO = AssetDatabase.LoadAssetAtPath<ItemScriptableObj>(path);
+        string path = "Inventory Items/" + name;
+        ItemScriptableObj tempItemSO = Resources.Load<ItemScriptableObj>(path);
 
         this.name = tempItemSO.itemName;
         this.desc = tempItemSO.description;
@@ -83,8 +83,8 @@ public class Item
 
     public void PopulateItemInfo()
     {
-        string path = itemScriptableObjPath + name + ".asset";
-        ItemScriptableObj tempItemSO = AssetDatabase.LoadAssetAtPath<ItemScriptableObj>(path);
+        string path = "Inventory Items/" + name;
+        ItemScriptableObj tempItemSO = Resources.Load<ItemScriptableObj>(path);
 
         this.desc = tempItemSO.description;
         this.icon = tempItemSO.icon;
