@@ -45,12 +45,13 @@ public class CameraCapture : MonoBehaviour
         yield return new WaitForSeconds(3);
 
         // Disable panel2 and enable panel1
+        AudioManager.instance.Play("CameraCapture");
         camPanel.SetActive(false);
         uiPanel.SetActive(true);
         questCam.SetActive(false);
         PlayerManager.ContinuePlayer();
         GameManager.instance.cameraOBJ.SetActive(true);
-        
+
     }
 
     // Modify the RotateCameraToTarget method to smoothly rotate the camera

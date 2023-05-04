@@ -88,3 +88,19 @@ MonoBehaviour:
     loop: 0
     singleInstance: 0
     type: 0
+  - name: CameraCapture
+    clip: {fileID: 8300000, guid: 02d0f13c96cea4ec884d27ee4b425f96, type: 3}
+    volume: 1
+    pitch: 1
+    source: {fileID: 0}
+    loop: 0
+    singleInstance: 0
+    type: 0
+  - name: QuestFinished
+    clip: {fileID: 8300000, guid: a4f9754f062494ba6937fb5b86b743e9, type: 3}
+    volume: 1
+    pitch: 1
+    source: {fileID: 0}
+    loop: 0
+    singleInstance: 0
+    type: 0
