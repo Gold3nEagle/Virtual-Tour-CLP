@@ -13,6 +13,7 @@ public class PauseMenu : MonoBehaviour
 
     public void ReturnToMenu()
     {
+        AudioManager.instance.Stop("CarDriving");
         AudioManager.instance.Play("Click");
         SceneManager.LoadScene("MainMenu");
         pauseMenuPanel.SetActive(false);
