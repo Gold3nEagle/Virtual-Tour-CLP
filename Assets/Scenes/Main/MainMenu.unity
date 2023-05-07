@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028334, g: 0.22571336, b: 0.3069219, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028305, g: 0.22571313, b: 0.3069213, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1045,7 +1045,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8934268459234903886, guid: 54ab5b770cd23d94aa00168533e4bd41, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8934268459234903886, guid: 54ab5b770cd23d94aa00168533e4bd41, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
@@ -1058,7 +1058,7 @@ PrefabInstance:
     - target: {fileID: 8934268459234903886, guid: 54ab5b770cd23d94aa00168533e4bd41, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
-      objectReference: {fileID: 1050185762}
+      objectReference: {fileID: 0}
     - target: {fileID: 8934268459234903886, guid: 54ab5b770cd23d94aa00168533e4bd41, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
       value: 2
@@ -1077,7 +1077,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8934268459234903886, guid: 54ab5b770cd23d94aa00168533e4bd41, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_IntArgument
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8934268459234903886, guid: 54ab5b770cd23d94aa00168533e4bd41, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
@@ -1172,11 +1172,6 @@ PrefabInstance:
 --- !u!224 &910721487 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 8934268459234903887, guid: 54ab5b770cd23d94aa00168533e4bd41, type: 3}
-  m_PrefabInstance: {fileID: 910721486}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &910721488 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8934268459234903884, guid: 54ab5b770cd23d94aa00168533e4bd41, type: 3}
   m_PrefabInstance: {fileID: 910721486}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &961739749
@@ -1302,25 +1297,12 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8934268459234903886, guid: 54ab5b770cd23d94aa00168533e4bd41, type: 3}
   m_PrefabInstance: {fileID: 910721486}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 910721488}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1050185762
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 910721488}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 28d3329b6cd68ab4a99cdab5d7d333c3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  defaultStartingSceneName: 
 --- !u!1001 &1054050819
 PrefabInstance:
   m_ObjectHideFlags: 0

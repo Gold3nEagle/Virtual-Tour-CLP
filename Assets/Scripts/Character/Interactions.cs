@@ -20,7 +20,7 @@ public class Interactions : MonoBehaviour
 
         // Subscribe events
         playerControls.Interactions.OpenInventory.performed += _ => menuUI.ToggleMenuVisibility(0);
-        playerControls.Interactions.Interact.performed += _ => menuUI.ToggleMenuVisibility(1);
+        playerControls.Interactions.Interact.performed += CheckShopNearby;
         playerControls.Interactions.Pause.performed += _ => menuUI.ToggleMenuVisibility(2);
         playerControls.Interactions.EnterExitVehicle.performed += EnterExitVehicle;
     }
@@ -56,5 +56,16 @@ public class Interactions : MonoBehaviour
         }
     }
 
-    
+    private void CheckShopNearby(InputAction.CallbackContext context)
+    {
+        if (GameManager.instance.isNearShop)
+        {
+            GameManager.instance.HidePrompt();
+            menuUI.ToggleMenuVisibility(1);
+        }
+        else
+        {
+            return;
+        }
+    }
 }

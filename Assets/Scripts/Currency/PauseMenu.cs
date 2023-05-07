@@ -13,6 +13,7 @@ public class PauseMenu : MonoBehaviour
 
     public void ReturnToMenu()
     {
+        AudioManager.instance.Stop("CarDriving");
         AudioManager.instance.Play("Click");
         SceneManager.LoadScene("MainMenu");
         pauseMenuPanel.SetActive(false);
@@ -21,8 +22,8 @@ public class PauseMenu : MonoBehaviour
     public void OnClickSaveGame()
     {
         AudioManager.instance.Play("Click");
-        //string save = PersistentDataManager.GetSaveData();
-        //PlayerPrefs.SetString("SaveDialogue",save);
+        string save = PersistentDataManager.GetSaveData();
+        PlayerPrefs.SetString("SaveDialogue",save);
         AdvancedSavingSystem.instance.Save();
         saveText.SetActive(true);
         Invoke("SetFalse", 0.1f);

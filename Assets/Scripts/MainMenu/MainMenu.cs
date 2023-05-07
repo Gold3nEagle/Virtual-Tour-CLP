@@ -21,7 +21,7 @@ public class MainMenu : MonoBehaviour
     {
         int quality = PlayerPrefs.GetInt("currentQ");
         QualitySettings.SetQualityLevel(quality);
-        
+
         Savepath = $"{Application.persistentDataPath}/saveData.text";
         if (!File.Exists(Savepath))
         {
@@ -45,16 +45,16 @@ public class MainMenu : MonoBehaviour
             Debug.Log("Save file not found.");
         }
         DisableMenuButtons();
-        SceneManager.LoadSceneAsync(1);
+        SceneManager.LoadScene(1);
     }
     public void OnContinueClicked()
     {
         AudioManager.instance.Play("Click");
         DisableMenuButtons();
-        //string save = PlayerPrefs.GetString("SaveDialogue");
-        //PersistentDataManager.ApplySaveData(save);
+        string save = PlayerPrefs.GetString("SaveDialogue");
+        PersistentDataManager.ApplySaveData(save);
         AdvancedSavingSystem.instance.Load();
-        SceneManager.LoadSceneAsync(1);
+        SceneManager.LoadScene(1);
     }
     public void OnOptionClicked()
     {
@@ -65,7 +65,7 @@ public class MainMenu : MonoBehaviour
     public void OnCreditsClicked()
     {
         AudioManager.instance.Play("Click");
-       //TODO: Display credits here
+        //TODO: Display credits here
     }
     public void OnBackFromOption()
     {

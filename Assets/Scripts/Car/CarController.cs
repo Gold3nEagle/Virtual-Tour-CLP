@@ -102,7 +102,7 @@ public class CarController : MonoBehaviour, ISaveable
     // Brake the vehicle
     private void Brake()
     {
-        if(GameManager.instance.playerControls.Vehicle.Brake.inProgress && rb.velocity.magnitude > 0 && isOnGround)
+        if (GameManager.instance.playerControls.Vehicle.Brake.inProgress && rb.velocity.magnitude > 0 && isOnGround)
         {
             isBraking = true;
             if (isMovingBackwards())
@@ -136,7 +136,7 @@ public class CarController : MonoBehaviour, ISaveable
             // Apply the steering angle to the vehicle's transform
             transform.Rotate(Vector3.up * steeringAngle * Time.fixedDeltaTime);
 
-            if(isMovingBackwards())
+            if (isMovingBackwards())
             {
                 steeringAngle *= 0.6f;
                 steeringAngle = -steeringAngle;
@@ -216,7 +216,7 @@ public class CarController : MonoBehaviour, ISaveable
 
     private void ShakeCamera()
     {
-        if(getSpeed >= maxSpeed)
+        if (getSpeed >= maxSpeed)
         {
             for (int i = 0; i < 3; i++)
             {

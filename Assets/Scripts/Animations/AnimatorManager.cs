@@ -90,4 +90,9 @@ public class AnimatorManager : MonoBehaviour
     //    UpdateAnimatorValues(0,0,false,false);
     //    Debug.Log("animation is did");
     //}
+
+    public void FootStepsSound()
+    {
+        AudioManager.instance.Play("Steps");
+    }
 }

@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class QuestItemsAndRewards : MonoBehaviour
 {
-    
+
     public void giveMoney()
     {
         CurrencySystem.instance.AddMoney(10);
@@ -13,6 +13,7 @@ public class QuestItemsAndRewards : MonoBehaviour
 
     public void reward(int rewardValue)
     {
+        AudioManager.instance.Play("QuestFinished");
         CurrencySystem.instance.AddMoney(rewardValue);
     }
 
@@ -32,5 +33,5 @@ public class QuestItemsAndRewards : MonoBehaviour
         }
     }
 
-    
+
 }

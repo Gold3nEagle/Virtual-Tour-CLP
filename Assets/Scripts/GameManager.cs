@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-
+using TMPro;
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
@@ -14,7 +14,9 @@ public class GameManager : MonoBehaviour
     public GameObject vehicleMainCamera;
     public GameObject vehicleVirtualCamera;
     public Vector3 playerExitVehicleOffset;
+    public TextMeshProUGUI promptTXT;
     [HideInInspector] public bool isInVehicle;
+    [HideInInspector] public bool isNearShop = false;
     [HideInInspector] public bool isPlayerWithinCarRange;
     [HideInInspector] public PlayerControls playerControls;
 
@@ -30,11 +32,11 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.V))
+        if (Input.GetKeyDown(KeyCode.V))
         {
             WaypointManager.instance.AddWaypoint("way1", transform.position);
         }
-        else if(Input.GetKeyDown(KeyCode.B))
+        else if (Input.GetKeyDown(KeyCode.B))
         {
             WaypointManager.instance.RemoveWaypoint("way1");
         }
@@ -72,11 +74,24 @@ public class GameManager : MonoBehaviour
         vehicleMainCamera.SetActive(true);
         vehicleVirtualCamera.SetActive(true);
         carBody.mass = inCarMass;
+
+        HidePrompt();
     }
 
     public Vector3 GetPlayerOffset()
     {
         return car.transform.position + playerExitVehicleOffset;
+    }
+
+    public void ShowPrompt(string message)
+    {
+        promptTXT.text = message;
+        promptTXT.gameObject.SetActive(true);
+    }
+
+    public void HidePrompt()
+    {
+        promptTXT.gameObject.SetActive(false);
     }
 
 }
