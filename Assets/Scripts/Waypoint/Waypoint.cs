@@ -57,7 +57,10 @@ public class Waypoint : MonoBehaviour
         pos.y = Mathf.Clamp(pos.y, minY, maxY);
 
         img.transform.position = pos;
-        meter.text = ((int)Vector3.Distance(followPos, Camera.main.gameObject.transform.position)).ToString() + "m";
+        if(meter != null)
+        {
+            meter.text = ((int)Vector3.Distance(followPos, Camera.main.gameObject.transform.position)).ToString() + "m";
+        }
     }
 
     public void SetValues(string id, GameObject gameObjectToFollow)

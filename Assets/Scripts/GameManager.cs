@@ -36,9 +36,14 @@ public class GameManager : MonoBehaviour
         {
             WaypointManager.instance.AddWaypoint("way1", transform.position);
         }
+        else if (Input.GetKeyDown(KeyCode.Q))
+        {
+            WaypointManager.instance.AddQuestWaypoint("qWay", new Vector3(100,0,100));
+        }
         else if (Input.GetKeyDown(KeyCode.B))
         {
             WaypointManager.instance.RemoveWaypoint("way1");
+            WaypointManager.instance.RemoveWaypoint("qWay");
         }
     }
 
