@@ -7,10 +7,8 @@ using UnityEngine;
 
 public class InputManager : MonoBehaviour
 {
-    //private GameManager.instance.playerControls GameManager.instance.playerControls;
     private MainPlayerController mainPlayerController;
     private AnimatorManager animatorManager;
-    private MenuUI menuUI;
 
     public Vector2 movementInput;
     public Vector2 cameraInput;
@@ -26,18 +24,15 @@ public class InputManager : MonoBehaviour
     public bool isInVehicle;
     public bool walkBtnInput;
 
-    public void OnResumeBtnClicked() { menuUI.ResumeGame(); }
-
     private void Awake()
     {
         animatorManager = GetComponent<AnimatorManager>();
         mainPlayerController = GetComponent<MainPlayerController>();
-        menuUI = new MenuUI();
     }
 
-    private void OnEnable()
+    // Replaced `OnEnable()` with `Start()` because for literally no reason the player's controls wouldn't work (happened after adding the trees to terrain i guess)
+    private void Start()
     {
-
         // Subscribe events
 
         // Movement - Player
@@ -48,16 +43,7 @@ public class InputManager : MonoBehaviour
         GameManager.instance.playerControls.Player.Sprint.canceled += _ => sprintBtnInput = false;
 
         GameManager.instance.playerControls.Player.Walk.performed += _ => walkBtnInput = !walkBtnInput;
-
-        // Interactions
-        GameManager.instance.playerControls.Player.OpenInventory.performed += _ => menuUI.ToggleMenuVisibility(0);
-        GameManager.instance.playerControls.Player.Interact.performed += _ => menuUI.ToggleMenuVisibility(1);
-        GameManager.instance.playerControls.Player.Pause.performed += _ => menuUI.ToggleMenuVisibility(2);
-
-        //GameManager.instance.playerControls.Player.EnterVehicle.performed += _ => isInVehicle = !isInVehicle;
     }
-
-    //private void OnDisable() { GameManager.instance.playerControls.Disable(); }
 
     // === === === === ===
     // Movement - Player
@@ -65,12 +51,19 @@ public class InputManager : MonoBehaviour
 
     public void HandleAllInputs()
     {
-        HandleMovementInput();
+        HandleMovementInput(true);
         HandleSprintingInput();
         HandleWalkingInput();
     }
 
-    private void HandleMovementInput()
+    public void DoNotHandleAllInputs()
+    {
+        HandleMovementInput(false);
+        HandleSprintingInput();
+        HandleWalkingInput();
+    }
+
+    private void HandleMovementInput(bool isActive)
     {
         verticalInput = movementInput.y;
         horizontalInput = movementInput.x;
@@ -78,7 +71,7 @@ public class InputManager : MonoBehaviour
         cameraInputY = cameraInput.y;
         cameraInputX = cameraInput.x;
 
-        moveAmount = Mathf.Clamp01(Mathf.Abs(horizontalInput) + Mathf.Abs(verticalInput));
+        moveAmount = isActive ? Mathf.Clamp01(Mathf.Abs(horizontalInput) + Mathf.Abs(verticalInput)) : 0.0f;
         animatorManager.UpdateAnimatorValues(0, moveAmount, mainPlayerController.isSprinting, mainPlayerController.isWalking);
     }
 
@@ -105,10 +98,4 @@ public class InputManager : MonoBehaviour
             mainPlayerController.isWalking = false;
         }
     }
-
-    // === === === === ===
-    // Interactions
-    // === === === === ===
-
-    // None yet...
 }

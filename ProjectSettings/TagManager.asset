@@ -7,6 +7,8 @@ TagManager:
   - Money
   - Stock Item
   - CinemachineTarget
+  - Terrain
+  - Road
   layers:
   - Default
   - TransparentFX
@@ -14,7 +16,7 @@ TagManager:
   - Player
   - Water
   - UI
-  - 
+  - Terrain
   - 
   - 
   - 

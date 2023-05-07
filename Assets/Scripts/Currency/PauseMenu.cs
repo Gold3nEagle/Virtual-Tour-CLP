@@ -1,3 +1,5 @@
+using PixelCrushers.DialogueSystem;
+using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -7,17 +9,26 @@ public class PauseMenu : MonoBehaviour
 
     public GameObject pauseMenuPanel;
     public GameObject saveText;
+    public string save;
 
     public void ReturnToMenu()
     {
+        AudioManager.instance.Stop("CarDriving");
+        AudioManager.instance.Play("Click");
         SceneManager.LoadScene("MainMenu");
         pauseMenuPanel.SetActive(false);
     }
 
     public void OnClickSaveGame()
     {
+        AudioManager.instance.Play("Click");
+        string save = PersistentDataManager.GetSaveData();
+        PlayerPrefs.SetString("SaveDialogue",save);
         AdvancedSavingSystem.instance.Save();
         saveText.SetActive(true);
         Invoke("SetFalse", 0.1f);
     }
+
+ 
+
 }

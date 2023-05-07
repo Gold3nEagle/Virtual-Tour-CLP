@@ -62,60 +62,6 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""Open Inventory"",
-                    ""type"": ""Button"",
-                    ""id"": ""be74e52c-0beb-4733-8d13-93fffd5d2497"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""Interact"",
-                    ""type"": ""Button"",
-                    ""id"": ""8df3b4a3-cff0-4cc4-8c6f-42154ab84235"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""Pause"",
-                    ""type"": ""Button"",
-                    ""id"": ""30877352-a9f7-4d67-bc3a-d415b079d68a"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""Enter Vehicle"",
-                    ""type"": ""Button"",
-                    ""id"": ""6f1736d5-5df3-4e3c-8676-3e114f088891"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""Open Map"",
-                    ""type"": ""Button"",
-                    ""id"": ""39345c49-a1b8-4d39-8ed2-6203a40e5477"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""Reset Camera"",
-                    ""type"": ""Button"",
-                    ""id"": ""d5dce9a7-6cac-4152-8b3a-e5d6cd3bc1ce"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -286,83 +232,6 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""7d119aff-16d7-47dd-8ca6-fc712cb8c42c"",
-                    ""path"": ""<Keyboard>/e"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Desktop"",
-                    ""action"": ""Enter Vehicle"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""7fefde00-18b1-4d65-a7a5-e35d737d8a6a"",
-                    ""path"": ""<Gamepad>/buttonNorth"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Enter Vehicle"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""73573ff0-1e32-4fe5-a4f8-ec1cec1ad789"",
-                    ""path"": ""<Keyboard>/m"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Desktop"",
-                    ""action"": ""Open Map"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""6ee17a14-2078-4c56-9623-6e875558038b"",
-                    ""path"": ""<Gamepad>/select"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Open Map"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""30d3b8c3-cac5-4c03-9906-f178feb3f798"",
-                    ""path"": ""<DualShockGamepad>/touchpadButton"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Open Map"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""f4b3aabc-bf92-4932-b5f9-e82834f933ca"",
-                    ""path"": ""<Mouse>/middleButton"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Desktop"",
-                    ""action"": ""Reset Camera"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""c2fd0318-4a0d-484b-a31e-a124b754f709"",
-                    ""path"": ""<Gamepad>/rightStickPress"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Reset Camera"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""991e15fb-7598-4e7b-85ae-ab4c4ad5b5f0"",
                     ""path"": ""<Mouse>/delta"",
                     ""interactions"": """",
@@ -470,83 +339,6 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""action"": ""Walk"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""1210816a-0d88-47e0-9f6e-64c6e429ca0e"",
-                    ""path"": ""<Keyboard>/p"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Desktop"",
-                    ""action"": ""Pause"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""2cdb0e92-2a3f-4d89-b90f-8ad59631aa85"",
-                    ""path"": ""<Keyboard>/escape"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Desktop"",
-                    ""action"": ""Pause"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""f67a509e-ee05-41da-8a65-8dfd6915fde0"",
-                    ""path"": ""<Gamepad>/start"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Pause"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""1f53f746-5b6d-4a4d-8a8b-d2b70063e75e"",
-                    ""path"": ""<Keyboard>/i"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Desktop"",
-                    ""action"": ""Open Inventory"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""b5068a9b-b064-4144-b152-49bb0ac5e585"",
-                    ""path"": ""<Gamepad>/dpad/right"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Open Inventory"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""4daf7768-09e5-434e-bf30-7c60f3a095ee"",
-                    ""path"": ""<Keyboard>/f"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Desktop"",
-                    ""action"": ""Interact"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""a7349afb-8e78-498b-af0c-5f7b2793c0e5"",
-                    ""path"": ""<Gamepad>/buttonSouth"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Interact"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -576,15 +368,6 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""name"": ""Brake"",
                     ""type"": ""Button"",
                     ""id"": ""35597716-c42d-4998-87e9-a321271011e5"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""Exit"",
-                    ""type"": ""Button"",
-                    ""id"": ""5931cdff-e17c-4eff-8599-d67e67bcb629"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -714,28 +497,6 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 },
                 {
-                    ""name"": """",
-                    ""id"": ""07cc637c-bda6-4562-88f6-c5eb18d8f192"",
-                    ""path"": ""<Gamepad>/buttonNorth"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Exit"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""2e085386-3830-47de-95fc-7a55a36eb813"",
-                    ""path"": ""<Keyboard>/e"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Desktop"",
-                    ""action"": ""Exit"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
                     ""name"": ""AD"",
                     ""id"": ""38dcb657-e398-4eff-ac45-e1e1db1563ee"",
                     ""path"": ""2DVector"",
@@ -835,6 +596,191 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": true
                 }
             ]
+        },
+        {
+            ""name"": ""Interactions"",
+            ""id"": ""6e740747-a202-4e5c-88ee-3526b0bb3ecb"",
+            ""actions"": [
+                {
+                    ""name"": ""Open Inventory"",
+                    ""type"": ""Button"",
+                    ""id"": ""345f8c34-5909-4a23-b0b7-d2d73ca2220a"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Enter/ Exit Vehicle"",
+                    ""type"": ""Button"",
+                    ""id"": ""9d3542a2-c350-424c-abfe-170cd57b8e21"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Open Map"",
+                    ""type"": ""Button"",
+                    ""id"": ""ae2245d8-4cd5-4412-a925-53bc5c7641d2"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Interact"",
+                    ""type"": ""Button"",
+                    ""id"": ""ddaf7209-7fb7-44f3-bd4a-2e681d903272"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Pause"",
+                    ""type"": ""Button"",
+                    ""id"": ""9cb6f303-de14-4e3e-a1ff-32612c589ed4"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""4fcd5010-7ee9-473f-bce4-85e6aba5235b"",
+                    ""path"": ""<Keyboard>/i"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Desktop"",
+                    ""action"": ""Open Inventory"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d3bf899f-c39e-40c1-8b0f-58db8d554436"",
+                    ""path"": ""<Gamepad>/dpad/right"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Open Inventory"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""9e454472-820d-4507-a1a2-aa8ff54be4d8"",
+                    ""path"": ""<Keyboard>/f"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Desktop"",
+                    ""action"": ""Interact"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""4fa44e50-7d24-48f5-adbf-0ad7b79ec65a"",
+                    ""path"": ""<Gamepad>/buttonSouth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Interact"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""bfb2e615-afd0-41c2-9ff6-4794750b7868"",
+                    ""path"": ""<Keyboard>/p"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Desktop"",
+                    ""action"": ""Pause"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""cc041186-365f-4267-ba41-19d453a0c802"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Desktop"",
+                    ""action"": ""Pause"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""180d3dd2-f2b7-48bb-bee4-6e1a7d083760"",
+                    ""path"": ""<Gamepad>/start"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Pause"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""30ca7a0f-3224-4044-8476-001fea7d2231"",
+                    ""path"": ""<Keyboard>/m"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Desktop"",
+                    ""action"": ""Open Map"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a9bdc987-964b-4851-a5ec-434dd9d82cda"",
+                    ""path"": ""<Gamepad>/select"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Open Map"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""84fd5118-3f62-4010-b9f1-3c70f3abdc13"",
+                    ""path"": ""<DualShockGamepad>/touchpadButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Open Map"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""5ff0a980-68b5-4e4d-a419-fa223c37a495"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Desktop"",
+                    ""action"": ""Enter/ Exit Vehicle"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""1fe3d6c0-ae91-4e49-8082-008a4476b372"",
+                    ""path"": ""<Gamepad>/buttonNorth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Enter/ Exit Vehicle"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": [
@@ -862,18 +808,18 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         m_Player_Look = m_Player.FindAction("Look", throwIfNotFound: true);
         m_Player_Sprint = m_Player.FindAction("Sprint", throwIfNotFound: true);
         m_Player_Walk = m_Player.FindAction("Walk", throwIfNotFound: true);
-        m_Player_OpenInventory = m_Player.FindAction("Open Inventory", throwIfNotFound: true);
-        m_Player_Interact = m_Player.FindAction("Interact", throwIfNotFound: true);
-        m_Player_Pause = m_Player.FindAction("Pause", throwIfNotFound: true);
-        m_Player_EnterVehicle = m_Player.FindAction("Enter Vehicle", throwIfNotFound: true);
-        m_Player_OpenMap = m_Player.FindAction("Open Map", throwIfNotFound: true);
-        m_Player_ResetCamera = m_Player.FindAction("Reset Camera", throwIfNotFound: true);
         // Vehicle
         m_Vehicle = asset.FindActionMap("Vehicle", throwIfNotFound: true);
         m_Vehicle_Drive = m_Vehicle.FindAction("Drive", throwIfNotFound: true);
         m_Vehicle_Steer = m_Vehicle.FindAction("Steer", throwIfNotFound: true);
         m_Vehicle_Brake = m_Vehicle.FindAction("Brake", throwIfNotFound: true);
-        m_Vehicle_Exit = m_Vehicle.FindAction("Exit", throwIfNotFound: true);
+        // Interactions
+        m_Interactions = asset.FindActionMap("Interactions", throwIfNotFound: true);
+        m_Interactions_OpenInventory = m_Interactions.FindAction("Open Inventory", throwIfNotFound: true);
+        m_Interactions_EnterExitVehicle = m_Interactions.FindAction("Enter/ Exit Vehicle", throwIfNotFound: true);
+        m_Interactions_OpenMap = m_Interactions.FindAction("Open Map", throwIfNotFound: true);
+        m_Interactions_Interact = m_Interactions.FindAction("Interact", throwIfNotFound: true);
+        m_Interactions_Pause = m_Interactions.FindAction("Pause", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -937,12 +883,6 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Look;
     private readonly InputAction m_Player_Sprint;
     private readonly InputAction m_Player_Walk;
-    private readonly InputAction m_Player_OpenInventory;
-    private readonly InputAction m_Player_Interact;
-    private readonly InputAction m_Player_Pause;
-    private readonly InputAction m_Player_EnterVehicle;
-    private readonly InputAction m_Player_OpenMap;
-    private readonly InputAction m_Player_ResetCamera;
     public struct PlayerActions
     {
         private @PlayerControls m_Wrapper;
@@ -951,12 +891,6 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         public InputAction @Look => m_Wrapper.m_Player_Look;
         public InputAction @Sprint => m_Wrapper.m_Player_Sprint;
         public InputAction @Walk => m_Wrapper.m_Player_Walk;
-        public InputAction @OpenInventory => m_Wrapper.m_Player_OpenInventory;
-        public InputAction @Interact => m_Wrapper.m_Player_Interact;
-        public InputAction @Pause => m_Wrapper.m_Player_Pause;
-        public InputAction @EnterVehicle => m_Wrapper.m_Player_EnterVehicle;
-        public InputAction @OpenMap => m_Wrapper.m_Player_OpenMap;
-        public InputAction @ResetCamera => m_Wrapper.m_Player_ResetCamera;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -978,24 +912,6 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @Walk.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnWalk;
                 @Walk.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnWalk;
                 @Walk.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnWalk;
-                @OpenInventory.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnOpenInventory;
-                @OpenInventory.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnOpenInventory;
-                @OpenInventory.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnOpenInventory;
-                @Interact.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnInteract;
-                @Interact.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnInteract;
-                @Interact.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnInteract;
-                @Pause.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPause;
-                @Pause.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPause;
-                @Pause.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPause;
-                @EnterVehicle.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnEnterVehicle;
-                @EnterVehicle.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnEnterVehicle;
-                @EnterVehicle.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnEnterVehicle;
-                @OpenMap.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnOpenMap;
-                @OpenMap.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnOpenMap;
-                @OpenMap.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnOpenMap;
-                @ResetCamera.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnResetCamera;
-                @ResetCamera.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnResetCamera;
-                @ResetCamera.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnResetCamera;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -1012,24 +928,6 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @Walk.started += instance.OnWalk;
                 @Walk.performed += instance.OnWalk;
                 @Walk.canceled += instance.OnWalk;
-                @OpenInventory.started += instance.OnOpenInventory;
-                @OpenInventory.performed += instance.OnOpenInventory;
-                @OpenInventory.canceled += instance.OnOpenInventory;
-                @Interact.started += instance.OnInteract;
-                @Interact.performed += instance.OnInteract;
-                @Interact.canceled += instance.OnInteract;
-                @Pause.started += instance.OnPause;
-                @Pause.performed += instance.OnPause;
-                @Pause.canceled += instance.OnPause;
-                @EnterVehicle.started += instance.OnEnterVehicle;
-                @EnterVehicle.performed += instance.OnEnterVehicle;
-                @EnterVehicle.canceled += instance.OnEnterVehicle;
-                @OpenMap.started += instance.OnOpenMap;
-                @OpenMap.performed += instance.OnOpenMap;
-                @OpenMap.canceled += instance.OnOpenMap;
-                @ResetCamera.started += instance.OnResetCamera;
-                @ResetCamera.performed += instance.OnResetCamera;
-                @ResetCamera.canceled += instance.OnResetCamera;
             }
         }
     }
@@ -1041,7 +939,6 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
     private readonly InputAction m_Vehicle_Drive;
     private readonly InputAction m_Vehicle_Steer;
     private readonly InputAction m_Vehicle_Brake;
-    private readonly InputAction m_Vehicle_Exit;
     public struct VehicleActions
     {
         private @PlayerControls m_Wrapper;
@@ -1049,7 +946,6 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         public InputAction @Drive => m_Wrapper.m_Vehicle_Drive;
         public InputAction @Steer => m_Wrapper.m_Vehicle_Steer;
         public InputAction @Brake => m_Wrapper.m_Vehicle_Brake;
-        public InputAction @Exit => m_Wrapper.m_Vehicle_Exit;
         public InputActionMap Get() { return m_Wrapper.m_Vehicle; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1068,9 +964,6 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @Brake.started -= m_Wrapper.m_VehicleActionsCallbackInterface.OnBrake;
                 @Brake.performed -= m_Wrapper.m_VehicleActionsCallbackInterface.OnBrake;
                 @Brake.canceled -= m_Wrapper.m_VehicleActionsCallbackInterface.OnBrake;
-                @Exit.started -= m_Wrapper.m_VehicleActionsCallbackInterface.OnExit;
-                @Exit.performed -= m_Wrapper.m_VehicleActionsCallbackInterface.OnExit;
-                @Exit.canceled -= m_Wrapper.m_VehicleActionsCallbackInterface.OnExit;
             }
             m_Wrapper.m_VehicleActionsCallbackInterface = instance;
             if (instance != null)
@@ -1084,13 +977,75 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @Brake.started += instance.OnBrake;
                 @Brake.performed += instance.OnBrake;
                 @Brake.canceled += instance.OnBrake;
-                @Exit.started += instance.OnExit;
-                @Exit.performed += instance.OnExit;
-                @Exit.canceled += instance.OnExit;
             }
         }
     }
     public VehicleActions @Vehicle => new VehicleActions(this);
+
+    // Interactions
+    private readonly InputActionMap m_Interactions;
+    private IInteractionsActions m_InteractionsActionsCallbackInterface;
+    private readonly InputAction m_Interactions_OpenInventory;
+    private readonly InputAction m_Interactions_EnterExitVehicle;
+    private readonly InputAction m_Interactions_OpenMap;
+    private readonly InputAction m_Interactions_Interact;
+    private readonly InputAction m_Interactions_Pause;
+    public struct InteractionsActions
+    {
+        private @PlayerControls m_Wrapper;
+        public InteractionsActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
+        public InputAction @OpenInventory => m_Wrapper.m_Interactions_OpenInventory;
+        public InputAction @EnterExitVehicle => m_Wrapper.m_Interactions_EnterExitVehicle;
+        public InputAction @OpenMap => m_Wrapper.m_Interactions_OpenMap;
+        public InputAction @Interact => m_Wrapper.m_Interactions_Interact;
+        public InputAction @Pause => m_Wrapper.m_Interactions_Pause;
+        public InputActionMap Get() { return m_Wrapper.m_Interactions; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(InteractionsActions set) { return set.Get(); }
+        public void SetCallbacks(IInteractionsActions instance)
+        {
+            if (m_Wrapper.m_InteractionsActionsCallbackInterface != null)
+            {
+                @OpenInventory.started -= m_Wrapper.m_InteractionsActionsCallbackInterface.OnOpenInventory;
+                @OpenInventory.performed -= m_Wrapper.m_InteractionsActionsCallbackInterface.OnOpenInventory;
+                @OpenInventory.canceled -= m_Wrapper.m_InteractionsActionsCallbackInterface.OnOpenInventory;
+                @EnterExitVehicle.started -= m_Wrapper.m_InteractionsActionsCallbackInterface.OnEnterExitVehicle;
+                @EnterExitVehicle.performed -= m_Wrapper.m_InteractionsActionsCallbackInterface.OnEnterExitVehicle;
+                @EnterExitVehicle.canceled -= m_Wrapper.m_InteractionsActionsCallbackInterface.OnEnterExitVehicle;
+                @OpenMap.started -= m_Wrapper.m_InteractionsActionsCallbackInterface.OnOpenMap;
+                @OpenMap.performed -= m_Wrapper.m_InteractionsActionsCallbackInterface.OnOpenMap;
+                @OpenMap.canceled -= m_Wrapper.m_InteractionsActionsCallbackInterface.OnOpenMap;
+                @Interact.started -= m_Wrapper.m_InteractionsActionsCallbackInterface.OnInteract;
+                @Interact.performed -= m_Wrapper.m_InteractionsActionsCallbackInterface.OnInteract;
+                @Interact.canceled -= m_Wrapper.m_InteractionsActionsCallbackInterface.OnInteract;
+                @Pause.started -= m_Wrapper.m_InteractionsActionsCallbackInterface.OnPause;
+                @Pause.performed -= m_Wrapper.m_InteractionsActionsCallbackInterface.OnPause;
+                @Pause.canceled -= m_Wrapper.m_InteractionsActionsCallbackInterface.OnPause;
+            }
+            m_Wrapper.m_InteractionsActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+                @OpenInventory.started += instance.OnOpenInventory;
+                @OpenInventory.performed += instance.OnOpenInventory;
+                @OpenInventory.canceled += instance.OnOpenInventory;
+                @EnterExitVehicle.started += instance.OnEnterExitVehicle;
+                @EnterExitVehicle.performed += instance.OnEnterExitVehicle;
+                @EnterExitVehicle.canceled += instance.OnEnterExitVehicle;
+                @OpenMap.started += instance.OnOpenMap;
+                @OpenMap.performed += instance.OnOpenMap;
+                @OpenMap.canceled += instance.OnOpenMap;
+                @Interact.started += instance.OnInteract;
+                @Interact.performed += instance.OnInteract;
+                @Interact.canceled += instance.OnInteract;
+                @Pause.started += instance.OnPause;
+                @Pause.performed += instance.OnPause;
+                @Pause.canceled += instance.OnPause;
+            }
+        }
+    }
+    public InteractionsActions @Interactions => new InteractionsActions(this);
     private int m_DesktopSchemeIndex = -1;
     public InputControlScheme DesktopScheme
     {
@@ -1106,18 +1061,19 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         void OnLook(InputAction.CallbackContext context);
         void OnSprint(InputAction.CallbackContext context);
         void OnWalk(InputAction.CallbackContext context);
-        void OnOpenInventory(InputAction.CallbackContext context);
-        void OnInteract(InputAction.CallbackContext context);
-        void OnPause(InputAction.CallbackContext context);
-        void OnEnterVehicle(InputAction.CallbackContext context);
-        void OnOpenMap(InputAction.CallbackContext context);
-        void OnResetCamera(InputAction.CallbackContext context);
     }
     public interface IVehicleActions
     {
         void OnDrive(InputAction.CallbackContext context);
         void OnSteer(InputAction.CallbackContext context);
         void OnBrake(InputAction.CallbackContext context);
-        void OnExit(InputAction.CallbackContext context);
+    }
+    public interface IInteractionsActions
+    {
+        void OnOpenInventory(InputAction.CallbackContext context);
+        void OnEnterExitVehicle(InputAction.CallbackContext context);
+        void OnOpenMap(InputAction.CallbackContext context);
+        void OnInteract(InputAction.CallbackContext context);
+        void OnPause(InputAction.CallbackContext context);
     }
 }

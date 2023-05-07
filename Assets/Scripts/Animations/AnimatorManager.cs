@@ -84,4 +84,15 @@ public class AnimatorManager : MonoBehaviour
         animator.SetFloat(horizontal, !animationSnapping ? horizontalMovement : snappedHorizontal, 0.1f, Time.deltaTime);
         animator.SetFloat(vertical, !animationSnapping ? verticalMovement : snappedVertical, 0.1f, Time.deltaTime);
     }
+
+    //public void ResetAnimaiton() 
+    //{
+    //    UpdateAnimatorValues(0,0,false,false);
+    //    Debug.Log("animation is did");
+    //}
+
+    public void FootStepsSound()
+    {
+        AudioManager.instance.Play("Steps");
+    }
 }
