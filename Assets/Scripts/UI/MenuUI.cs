@@ -19,7 +19,7 @@ public class MenuUI
 
         CloseAllMenus();
     }
-
+    
     /// <summary>
     /// Toggles between the available menus using an index (list below):
     ///     <list type="number">
@@ -58,6 +58,10 @@ public class MenuUI
         SetCursorVisibility(true);
         menusList[index].MenuGameObject.SetActive(true);
         menusList[index].IsMenuOpen = true;
+        if (GameManager.instance.isInVehicle)
+        {
+            AudioManager.instance.Stop("CarDriving");
+        }
     }
 
     private void CloseMenu(int index)
@@ -66,6 +70,10 @@ public class MenuUI
         SetCursorVisibility(false);
         menusList[index].MenuGameObject.SetActive(false);
         menusList[index].IsMenuOpen = false;
+        if (GameManager.instance.isInVehicle)
+        {
+            AudioManager.instance.Play("CarDriving");
+        }
     }
 
     private void CloseAllMenus()
