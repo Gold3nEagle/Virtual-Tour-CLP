@@ -55,7 +55,7 @@ public class MenuUI
     private void OpenMenu(int index)
     {
         Time.timeScale = 0.0f;
-        SetCursorVisibility(true);
+        CursorManager.instance.SetCursorVisibility(true);
         menusList[index].MenuGameObject.SetActive(true);
         menusList[index].IsMenuOpen = true;
     }
@@ -63,15 +63,15 @@ public class MenuUI
     private void CloseMenu(int index)
     {
         Time.timeScale = 1.0f;
-        SetCursorVisibility(false);
+        CursorManager.instance.SetCursorVisibility(false);
         menusList[index].MenuGameObject.SetActive(false);
         menusList[index].IsMenuOpen = false;
     }
 
-    private void CloseAllMenus()
+    public void CloseAllMenus()
     {
         Time.timeScale = 1.0f;
-        SetCursorVisibility(false);
+        CursorManager.instance.SetCursorVisibility(false);
 
         foreach (Menu menu in menusList)
         {
@@ -84,21 +84,5 @@ public class MenuUI
     public void ResumeGame()
     {
         CloseMenu(2); // Close pause menu
-    }
-
-    private void SetCursorVisibility(bool visible)
-    {
-        if (visible)
-        {
-            // Unhide and unlock the cursor
-            Cursor.visible = true;
-            Cursor.lockState = CursorLockMode.None;
-        }
-        else
-        {
-            // Hide and lock the cursor
-            Cursor.visible = false;
-            Cursor.lockState = CursorLockMode.Locked;
-        }
     }
 }
