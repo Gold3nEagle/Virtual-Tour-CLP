@@ -391,7 +391,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5781392558761942090}
   - component: {fileID: 6588890818401519345}
-  - component: {fileID: 1164285405138206446}
+  - component: {fileID: 6009976782652175750}
   m_Layer: 0
   m_Name: bahrain world trade center
   m_TagString: Untagged
@@ -438,7 +438,7 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
---- !u!114 &1164285405138206446
+--- !u!114 &6009976782652175750
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -447,6 +447,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 6588890818401519344}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 726113047157e40939f7ec1060d13e37, type: 3}
+  m_Script: {fileID: 11500000, guid: d5ff6431f1770804a986c814c928bf12, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

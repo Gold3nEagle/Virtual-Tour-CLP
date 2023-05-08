@@ -114,4 +114,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   waypointPrefab: {fileID: 1921280484710490306, guid: fe32e114f4dac4591940f3b43de01a74, type: 3}
+  questWaypointPrefab: {fileID: 1921280484710490306, guid: d48bc7c564c8d4f5494f33793a0cdc41, type: 3}
   waypointsList: []
