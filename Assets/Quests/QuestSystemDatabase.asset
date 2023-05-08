@@ -5599,7 +5599,7 @@ MonoBehaviour:
       canvasRect:
         serializedVersion: 2
         x: 207.64703
-        y: 4.705887
+        y: 3.3901062
         width: 160
         height: 30
     - id: 9
@@ -5613,7 +5613,7 @@ MonoBehaviour:
         type: 0
         typeString: 
       - title: Actor
-        value: 3
+        value: 10
         type: 5
         typeString: CustomFieldType_Actor
       - title: Conversant
@@ -5680,7 +5680,7 @@ MonoBehaviour:
         type: 5
         typeString: CustomFieldType_Actor
       - title: Conversant
-        value: 3
+        value: 10
         type: 5
         typeString: CustomFieldType_Actor
       - title: Menu Text
@@ -5737,7 +5737,7 @@ MonoBehaviour:
         type: 5
         typeString: CustomFieldType_Actor
       - title: Conversant
-        value: 3
+        value: 10
         type: 5
         typeString: CustomFieldType_Actor
       - title: Menu Text
@@ -5782,7 +5782,7 @@ MonoBehaviour:
         type: 0
         typeString: 
       - title: Actor
-        value: 3
+        value: 10
         type: 5
         typeString: CustomFieldType_Actor
       - title: Conversant
@@ -5845,7 +5845,7 @@ MonoBehaviour:
         type: 5
         typeString: CustomFieldType_Actor
       - title: Conversant
-        value: 3
+        value: 10
         type: 5
         typeString: CustomFieldType_Actor
       - title: Menu Text
@@ -5896,7 +5896,7 @@ MonoBehaviour:
         type: 0
         typeString: 
       - title: Actor
-        value: 3
+        value: 10
         type: 5
         typeString: CustomFieldType_Actor
       - title: Conversant
@@ -5940,7 +5940,7 @@ MonoBehaviour:
           m_Calls: []
       canvasRect:
         serializedVersion: 2
-        x: 434.41177
+        x: 437.26892
         y: 100.58823
         width: 160
         height: 30
@@ -5959,7 +5959,7 @@ MonoBehaviour:
         type: 5
         typeString: CustomFieldType_Actor
       - title: Conversant
-        value: 3
+        value: 10
         type: 5
         typeString: CustomFieldType_Actor
       - title: Menu Text
@@ -5994,8 +5994,8 @@ MonoBehaviour:
         width: 160
         height: 30
     entryGroups: []
-    canvasScrollPosition: {x: 0, y: 47.36841}
-    canvasZoom: 0.7600002
+    canvasScrollPosition: {x: 0, y: 0}
+    canvasZoom: 0.7000003
   - id: 10
     fields:
     - title: Title
