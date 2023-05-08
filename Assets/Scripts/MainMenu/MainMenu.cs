@@ -15,6 +15,7 @@ public class MainMenu : MonoBehaviour
 
     [Header("Menus")]
     [SerializeField] private GameObject optionMenu;
+    [SerializeField] private GameObject creditsMenu;
     [SerializeField] private GameObject mainMenu;
 
     private void Start()
@@ -65,7 +66,8 @@ public class MainMenu : MonoBehaviour
     public void OnCreditsClicked()
     {
         AudioManager.instance.Play("Click");
-        //TODO: Display credits here
+        creditsMenu.SetActive(true);
+        mainMenu.SetActive(false);
     }
     public void OnBackFromOption()
     {
@@ -73,6 +75,14 @@ public class MainMenu : MonoBehaviour
         optionMenu.SetActive(false);
         mainMenu.SetActive(true);
     }
+
+    public void OnBackFromCreditsMenu()
+    {
+        AudioManager.instance.Play("Click");
+        creditsMenu.SetActive(false);
+        mainMenu.SetActive(true);
+    }
+
     public void OnQuit()
     {
         AudioManager.instance.Play("Click");
