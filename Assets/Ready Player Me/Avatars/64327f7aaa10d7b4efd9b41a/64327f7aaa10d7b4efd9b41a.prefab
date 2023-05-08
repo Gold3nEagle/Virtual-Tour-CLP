@@ -1953,6 +1953,7 @@ MonoBehaviour:
   AvatarMetadata:
     BodyType: 1
     OutfitGender: 1
+    SkinTone: 
 --- !u!114 &4128654141660231170
 MonoBehaviour:
   m_ObjectHideFlags: 0

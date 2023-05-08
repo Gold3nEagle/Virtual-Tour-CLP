@@ -31,6 +31,7 @@ public class MainMenu : MonoBehaviour
     public void OnNewGameClicked()
     {
         AudioManager.instance.Play("Click");
+        PlayerPrefs.SetInt("inMasjidQuest", 0);
         CurrencySystem.instance.currentMoney = 0;
         string saveFilePath = Path.Combine(Application.persistentDataPath, "saveData.text");
         if (File.Exists(saveFilePath))
