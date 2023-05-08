@@ -14,6 +14,8 @@ public class CursorManager : MonoBehaviour
             Destroy(gameObject);
             return;
         }
+
+        instance.SetCursorVisibility(true);
     }
 
     public void SetCursorVisibility(bool visible)
