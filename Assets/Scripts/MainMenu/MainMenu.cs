@@ -11,10 +11,11 @@ public class MainMenu : MonoBehaviour
     [Header("Menu Buttons")]
     [SerializeField] private Button newGameButton;
     [SerializeField] private Button continueGameButton;
-    private string Savepath;
+    private string SavePath;
 
     [Header("Menus")]
     [SerializeField] private GameObject optionMenu;
+    [SerializeField] private GameObject creditsMenu;
     [SerializeField] private GameObject mainMenu;
 
     private void Start()
@@ -22,18 +23,20 @@ public class MainMenu : MonoBehaviour
         int quality = PlayerPrefs.GetInt("currentQ");
         QualitySettings.SetQualityLevel(quality);
 
-        Savepath = $"{Application.persistentDataPath}/saveData.text";
-        if (!File.Exists(Savepath))
+        SavePath = $"{Application.persistentDataPath}/saveData.text";
+        if (!File.Exists(SavePath))
         {
             continueGameButton.interactable = false;
         }
     }
+
     public void OnNewGameClicked()
     {
         AudioManager.instance.Play("Click");
         PlayerPrefs.SetInt("inMasjidQuest", 0);
         CurrencySystem.instance.currentMoney = 0;
         string saveFilePath = Path.Combine(Application.persistentDataPath, "saveData.text");
+
         if (File.Exists(saveFilePath))
         {
             File.Delete(saveFilePath);
@@ -45,9 +48,11 @@ public class MainMenu : MonoBehaviour
         {
             Debug.Log("Save file not found.");
         }
+
         DisableMenuButtons();
         SceneManager.LoadScene(1);
     }
+
     public void OnContinueClicked()
     {
         AudioManager.instance.Play("Click");
@@ -57,28 +62,35 @@ public class MainMenu : MonoBehaviour
         AdvancedSavingSystem.instance.Load();
         SceneManager.LoadScene(1);
     }
+
     public void OnOptionClicked()
     {
         AudioManager.instance.Play("Click");
         optionMenu.SetActive(true);
         mainMenu.SetActive(false);
     }
+
     public void OnCreditsClicked()
     {
         AudioManager.instance.Play("Click");
-        //TODO: Display credits here
+        creditsMenu.SetActive(true);
+        mainMenu.SetActive(false);
     }
-    public void OnBackFromOption()
+
+    public void OnBackBtnPressed()
     {
         AudioManager.instance.Play("Click");
         optionMenu.SetActive(false);
+        creditsMenu.SetActive(false);
         mainMenu.SetActive(true);
     }
-    public void OnQuit()
+
+    public void OnQuitBtnPressed()
     {
         AudioManager.instance.Play("Click");
         Application.Quit();
     }
+
     private void DisableMenuButtons()
     {
         newGameButton.interactable = false;

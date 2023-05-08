@@ -50578,6 +50578,7 @@ Transform:
   - {fileID: 3813609126785786205}
   - {fileID: 3813609126298848341}
   - {fileID: 3813609128045365186}
+  - {fileID: 6375534737953856889}
   - {fileID: 3813609126548159279}
   m_Father: {fileID: 3813609127897584222}
   m_RootOrder: 4
@@ -107978,6 +107979,72 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 6231460098427780646, guid: c10dab5c448e24cd0bd79503716db207, type: 3}
+--- !u!1001 &1152792577526015824
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 3813609127213825464}
+    m_Modifications:
+    - target: {fileID: 6306721376770341416, guid: 1fa3d4ee00bb641e7ab34bd226e8160f, type: 3}
+      propertyPath: m_Name
+      value: main menu - bahrain world trade center
+      objectReference: {fileID: 0}
+    - target: {fileID: 6306721376770341416, guid: 1fa3d4ee00bb641e7ab34bd226e8160f, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6306721376770341417, guid: 1fa3d4ee00bb641e7ab34bd226e8160f, type: 3}
+      propertyPath: m_RootOrder
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6306721376770341417, guid: 1fa3d4ee00bb641e7ab34bd226e8160f, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 2381
+      objectReference: {fileID: 0}
+    - target: {fileID: 6306721376770341417, guid: 1fa3d4ee00bb641e7ab34bd226e8160f, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 16.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 6306721376770341417, guid: 1fa3d4ee00bb641e7ab34bd226e8160f, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 3318.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6306721376770341417, guid: 1fa3d4ee00bb641e7ab34bd226e8160f, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.99735904
+      objectReference: {fileID: 0}
+    - target: {fileID: 6306721376770341417, guid: 1fa3d4ee00bb641e7ab34bd226e8160f, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6306721376770341417, guid: 1fa3d4ee00bb641e7ab34bd226e8160f, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.07262893
+      objectReference: {fileID: 0}
+    - target: {fileID: 6306721376770341417, guid: 1fa3d4ee00bb641e7ab34bd226e8160f, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6306721376770341417, guid: 1fa3d4ee00bb641e7ab34bd226e8160f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6306721376770341417, guid: 1fa3d4ee00bb641e7ab34bd226e8160f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -8.33
+      objectReference: {fileID: 0}
+    - target: {fileID: 6306721376770341417, guid: 1fa3d4ee00bb641e7ab34bd226e8160f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 1fa3d4ee00bb641e7ab34bd226e8160f, type: 3}
+--- !u!4 &6375534737953856889 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6306721376770341417, guid: 1fa3d4ee00bb641e7ab34bd226e8160f, type: 3}
+  m_PrefabInstance: {fileID: 1152792577526015824}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &3813609126260822027
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -112141,7 +112208,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 7863727875065059532, guid: 809a3e70d473342d5830ceb4da0a4f29, type: 3}
       propertyPath: m_RootOrder
-      value: 5
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 7863727875065059532, guid: 809a3e70d473342d5830ceb4da0a4f29, type: 3}
       propertyPath: m_LocalPosition.x

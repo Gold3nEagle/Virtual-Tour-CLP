@@ -6,7 +6,7 @@ using UnityEngine.InputSystem;
 public class Interactions : MonoBehaviour
 {
     private PlayerControls playerControls;
-    private MenuUI menuUI;
+    public MenuUI menuUI;
 
     private void Awake()
     {

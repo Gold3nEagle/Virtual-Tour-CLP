@@ -18,8 +18,6 @@ public class MainPlayerController : MonoBehaviour
 
     private void Awake()
     {
-        Cursor.visible = false;
-        Cursor.lockState = CursorLockMode.Locked;
         cameraTransform = Camera.main.transform;
         playerRigidbody = GetComponent<Rigidbody>();
         inputManager = GetComponent<InputManager>();
