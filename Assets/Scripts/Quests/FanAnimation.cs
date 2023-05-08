@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class FanAnimation : MonoBehaviour
 {
-    private Animator animator;
+    public static Animator animator;
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         animator = GetComponent<Animator>();
         animator.speed = 0;

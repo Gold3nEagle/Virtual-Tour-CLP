@@ -4609,7 +4609,7 @@ MonoBehaviour:
       canvasRect:
         serializedVersion: 2
         x: 19
-        y: 155.03093
+        y: 156.52348
         width: 160
         height: 30
     - id: 3
@@ -4774,7 +4774,7 @@ MonoBehaviour:
       canvasRect:
         serializedVersion: 2
         x: 21.06186
-        y: 230.80417
+        y: 232.29669
         width: 160
         height: 30
     - id: 6
@@ -4807,6 +4807,10 @@ MonoBehaviour:
         value: SetActive(Picture Areas,true)
         type: 0
         typeString: 
+      - title: EventGuid
+        value: cefa3d69-cef5-41dd-b0e4-6de4269a076c
+        type: 0
+        typeString: 
       conversationID: 7
       isRoot: 0
       isGroup: 0
@@ -4828,8 +4832,8 @@ MonoBehaviour:
           m_Calls: []
       canvasRect:
         serializedVersion: 2
-        x: 22.490425
-        y: 283.66132
+        x: 20.997887
+        y: 285.15387
         width: 160
         height: 30
     entryGroups: []
