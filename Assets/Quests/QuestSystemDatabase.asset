@@ -1260,6 +1260,10 @@ MonoBehaviour:
         value: 
         type: 0
         typeString: 
+      - title: EventGuid
+        value: 4b4fb0ae-ec19-4624-bbe9-9bb817502e98
+        type: 0
+        typeString: 
       conversationID: 1
       isRoot: 0
       isGroup: 0
@@ -1735,8 +1739,8 @@ MonoBehaviour:
         width: 160
         height: 30
     entryGroups: []
-    canvasScrollPosition: {x: 0, y: 200.41782}
-    canvasZoom: 0.6700003
+    canvasScrollPosition: {x: 1.6392822, y: 74.950745}
+    canvasZoom: 0.6100004
   - id: 2
     fields:
     - title: Title
@@ -2901,7 +2905,7 @@ MonoBehaviour:
         width: 160
         height: 30
     entryGroups: []
-    canvasScrollPosition: {x: 0, y: 102.5316}
+    canvasScrollPosition: {x: 0, y: 86.5316}
     canvasZoom: 0.7900002
   - id: 4
     fields:
@@ -3538,6 +3542,10 @@ MonoBehaviour:
         typeString: 
       - title: Sequence
         value: 
+        type: 0
+        typeString: 
+      - title: EventGuid
+        value: 2c4435e4-08df-45d0-a901-e08d44f88e31
         type: 0
         typeString: 
       conversationID: 5
@@ -5291,11 +5299,11 @@ MonoBehaviour:
       - title: Title
         value: 
         type: 0
-        typeString: 
+        typeString: CustomFieldType_Text
       - title: Description
         value: 
         type: 0
-        typeString: 
+        typeString: CustomFieldType_Text
       - title: Actor
         value: 1
         type: 5
@@ -5307,15 +5315,19 @@ MonoBehaviour:
       - title: Menu Text
         value: 
         type: 0
-        typeString: 
+        typeString: CustomFieldType_Text
       - title: Dialogue Text
         value: See you.
         type: 0
-        typeString: 
+        typeString: CustomFieldType_Text
       - title: Sequence
         value: 
         type: 0
-        typeString: 
+        typeString: CustomFieldType_Text
+      - title: EventGuid
+        value: e94ea8a2-24b2-40b6-b9aa-5be3403264bc
+        type: 0
+        typeString: CustomFieldType_Text
       conversationID: 8
       isRoot: 0
       isGroup: 0
@@ -5331,7 +5343,7 @@ MonoBehaviour:
           m_Calls: []
       canvasRect:
         serializedVersion: 2
-        x: 84
+        x: 82.63014
         y: 309
         width: 160
         height: 30
