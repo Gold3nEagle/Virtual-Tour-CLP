@@ -1739,8 +1739,8 @@ MonoBehaviour:
         width: 160
         height: 30
     entryGroups: []
-    canvasScrollPosition: {x: 1.6392822, y: 74.950745}
-    canvasZoom: 0.6100004
+    canvasScrollPosition: {x: 2.925827, y: 324.65808}
+    canvasZoom: 0.64000034
   - id: 2
     fields:
     - title: Title
@@ -2108,6 +2108,10 @@ MonoBehaviour:
         value: 
         type: 0
         typeString: 
+      - title: EventGuid
+        value: 95ac096a-df8b-4148-b258-abc80e84a955
+        type: 0
+        typeString: 
       conversationID: 2
       isRoot: 0
       isGroup: 0
@@ -2236,8 +2240,8 @@ MonoBehaviour:
         width: 160
         height: 30
     entryGroups: []
-    canvasScrollPosition: {x: 0, y: 0}
-    canvasZoom: 0.52000046
+    canvasScrollPosition: {x: 0, y: 244.92053}
+    canvasZoom: 0.8200002
   - id: 3
     fields:
     - title: Title
@@ -2690,8 +2694,8 @@ MonoBehaviour:
           m_Calls: []
       canvasRect:
         serializedVersion: 2
-        x: 23.79747
-        y: 255.202
+        x: 22.531647
+        y: 253.93619
         width: 160
         height: 30
     - id: 7
@@ -2905,8 +2909,8 @@ MonoBehaviour:
         width: 160
         height: 30
     entryGroups: []
-    canvasScrollPosition: {x: 0, y: 86.5316}
-    canvasZoom: 0.7900002
+    canvasScrollPosition: {x: 28.278614, y: 66.037865}
+    canvasZoom: 0.64000034
   - id: 4
     fields:
     - title: Title
@@ -3233,7 +3237,7 @@ MonoBehaviour:
         width: 160
         height: 30
     entryGroups: []
-    canvasScrollPosition: {x: 0, y: 77.21518}
+    canvasScrollPosition: {x: 0, y: 61.21518}
     canvasZoom: 0.7900002
   - id: 5
     fields:
@@ -3723,8 +3727,8 @@ MonoBehaviour:
           m_Calls: []
       canvasRect:
         serializedVersion: 2
-        x: 213.55319
-        y: 235.78722
+        x: 216.08484
+        y: 237.05302
         width: 160
         height: 30
     entryGroups: []
@@ -4227,7 +4231,7 @@ MonoBehaviour:
       canvasRect:
         serializedVersion: 2
         x: 145
-        y: 324
+        y: 325.63934
         width: 160
         height: 30
     - id: 8
@@ -4389,7 +4393,7 @@ MonoBehaviour:
           m_Calls: []
       canvasRect:
         serializedVersion: 2
-        x: 325
+        x: 323.36066
         y: 224
         width: 160
         height: 30
@@ -5344,7 +5348,7 @@ MonoBehaviour:
       canvasRect:
         serializedVersion: 2
         x: 82.63014
-        y: 309
+        y: 310.36987
         width: 160
         height: 30
     - id: 8
@@ -5482,6 +5486,10 @@ MonoBehaviour:
         value: 
         type: 0
         typeString: 
+      - title: EventGuid
+        value: ca79ad48-bdac-437e-b769-c10f4e5f03f6
+        type: 0
+        typeString: 
       conversationID: 8
       isRoot: 0
       isGroup: 0
@@ -5500,12 +5508,12 @@ MonoBehaviour:
           m_Calls: []
       canvasRect:
         serializedVersion: 2
-        x: 310
+        x: 309.99997
         y: 222.6471
         width: 160
         height: 30
     entryGroups: []
-    canvasScrollPosition: {x: 0, y: 45.205475}
+    canvasScrollPosition: {x: 0, y: 13.205475}
     canvasZoom: 0.73000026
   - id: 9
     fields:
@@ -5872,6 +5880,10 @@ MonoBehaviour:
         value: 
         type: 0
         typeString: 
+      - title: EventGuid
+        value: c21ec2ee-6d19-4401-a580-2b9ecb6f871b
+        type: 0
+        typeString: 
       conversationID: 9
       isRoot: 0
       isGroup: 0
@@ -6007,7 +6019,7 @@ MonoBehaviour:
         height: 30
     entryGroups: []
     canvasScrollPosition: {x: 0, y: 0}
-    canvasZoom: 0.7000003
+    canvasZoom: 0.64000034
   - id: 10
     fields:
     - title: Title
@@ -6444,7 +6456,7 @@ MonoBehaviour:
         width: 160
         height: 30
     entryGroups: []
-    canvasScrollPosition: {x: 0, y: 0}
+    canvasScrollPosition: {x: 7.59494, y: 2.177185}
     canvasZoom: 0.7900002
   syncInfo:
     syncActors: 0

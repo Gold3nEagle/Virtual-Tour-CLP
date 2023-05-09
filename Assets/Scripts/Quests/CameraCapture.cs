@@ -1,3 +1,4 @@
+using PixelCrushers.DialogueSystem;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,6 +9,7 @@ public class CameraCapture : MonoBehaviour
     public GameObject uiPanel;
     public GameObject camPanel;
     public GameObject targetObject; // Add a reference to the target GameObject
+    public GameObject BuYaqoob;
     public float rotationSpeed = 1.0f; // Add a variable for controlling the speed of rotation
 
     void Start()
@@ -51,7 +53,13 @@ public class CameraCapture : MonoBehaviour
         questCam.SetActive(false);
         PlayerManager.ContinuePlayer();
         GameManager.instance.cameraOBJ.SetActive(true);
-
+        if(DialogueLua.GetVariable("Mosq.Pictures").AsInt >= 2)
+        {
+            WaypointManager.instance.RemoveWaypoint("Masjid Al Khamis");
+            SetQuestsWaypoints.activeWaypoints.Remove("Masjid Al Khamis");
+            WaypointManager.instance.AddWaypoint("Bu Yaqoob", BuYaqoob);
+            SetQuestsWaypoints.activeWaypoints.Add("Bu Yaqoob");
+        }
     }
 
     // Modify the RotateCameraToTarget method to smoothly rotate the camera

@@ -33,6 +33,7 @@ public class MainMenu : MonoBehaviour
     public void OnNewGameClicked()
     {
         AudioManager.instance.Play("Click");
+        ResetWaypoints();
         PlayerPrefs.SetInt("inMasjidQuest", 0);
         CurrencySystem.instance.currentMoney = 0;
         string saveFilePath = Path.Combine(Application.persistentDataPath, "saveData.text");
@@ -40,19 +41,27 @@ public class MainMenu : MonoBehaviour
         if (File.Exists(saveFilePath))
         {
             File.Delete(saveFilePath);
-            DialogueManager.ResetDatabase(DatabaseResetOptions.KeepAllLoaded);
-            DialogueManager.SendUpdateTracker();
             Debug.Log("Save file deleted successfully.");
         }
         else
         {
             Debug.Log("Save file not found.");
         }
-
+        DialogueManager.ResetDatabase(DatabaseResetOptions.KeepAllLoaded);
+        DialogueManager.SendUpdateTracker();
         DisableMenuButtons();
         SceneManager.LoadScene(1);
     }
 
+    private void ResetWaypoints()
+    {
+        string[] waypointsIDs = { "TreeOfLife", "Ahmed", "TicketSeller", "OldMan", "ShopKeeper", "Ali", "Masjid Al Khamis", 
+            "PicArea", "PicArea (1)", "Bu Yaqoob", "Metal Box", "board for fan tower", "Mohamed" };
+        for (int i = 0; i < waypointsIDs.Length; i++)
+        {
+            PlayerPrefs.SetInt(waypointsIDs[i], 0);
+        }
+    }
     public void OnContinueClicked()
     {
         AudioManager.instance.Play("Click");
