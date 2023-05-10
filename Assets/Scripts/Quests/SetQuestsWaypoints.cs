@@ -27,7 +27,7 @@ public class SetQuestsWaypoints : MonoBehaviour
             if(PlayerPrefs.GetInt(objectsInQuests[i].name) == 1)
             {
                 WaypointManager.instance.AddWaypoint(objectsInQuests[i].name, objectsInQuests[i]);
-                activeWaypoints.Add(objectsInQuests[i].name);
+                AddToActiveWaypoints(objectsInQuests[i].name);
             }
         }
     }
@@ -44,7 +44,7 @@ public class SetQuestsWaypoints : MonoBehaviour
         WaypointManager.instance.RemoveWaypoint(ids[0]);
         WaypointManager.instance.AddWaypoint(ids[1], GetGameObject(ids[1]));
         activeWaypoints.Remove(ids[0]);
-        activeWaypoints.Add(ids[1]);
+        AddToActiveWaypoints(ids[1]);
     }
 
     public void QuestFinished(string waypointId)
@@ -61,5 +61,13 @@ public class SetQuestsWaypoints : MonoBehaviour
         }
         Debug.LogWarning("Quest game object not found!");
         return null;
+    }
+
+    public static void AddToActiveWaypoints(string waypointID)
+    {
+        if(!activeWaypoints.Contains(waypointID))
+        {
+            activeWaypoints.Add(waypointID);
+        }
     }
 }

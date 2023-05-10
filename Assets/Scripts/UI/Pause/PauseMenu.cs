@@ -36,6 +36,7 @@ public class PauseMenu : MonoBehaviour
         saveText.SetActive(true);
         Invoke("SetFalse", 0.1f);
         SaveWaypoints();
+        PlayerPrefs.SetInt("shopQItems", DialogueEventsListner.counter);
     }
 
     private void SaveWaypoints()
