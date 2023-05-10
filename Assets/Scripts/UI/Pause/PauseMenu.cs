@@ -35,5 +35,24 @@ public class PauseMenu : MonoBehaviour
         AdvancedSavingSystem.instance.Save();
         saveText.SetActive(true);
         Invoke("SetFalse", 0.1f);
+        SaveWaypoints();
+    }
+
+    private void SaveWaypoints()
+    {
+        string[] waypointsIDs = { "TreeOfLife", "Ahmed", "TicketSeller", "OldMan", "ShopKeeper", "Ali", "Masjid Al Khamis",
+            "PicArea", "PicArea (1)", "Bu Yaqoob", "Metal Box", "board for fan tower", "Mohamed" };
+
+        foreach(string waypointID in waypointsIDs)
+        {
+            if(SetQuestsWaypoints.activeWaypoints.Contains(waypointID))
+            {
+                PlayerPrefs.SetInt(waypointID, 1);
+            }
+            else
+            {
+                PlayerPrefs.SetInt(waypointID, 0);
+            }
+        }
     }
 }
