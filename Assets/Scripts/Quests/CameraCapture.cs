@@ -58,7 +58,7 @@ public class CameraCapture : MonoBehaviour
             WaypointManager.instance.RemoveWaypoint("Masjid Al Khamis");
             SetQuestsWaypoints.activeWaypoints.Remove("Masjid Al Khamis");
             WaypointManager.instance.AddWaypoint("Bu Yaqoob", BuYaqoob);
-            SetQuestsWaypoints.activeWaypoints.Add("Bu Yaqoob");
+            SetQuestsWaypoints.AddToActiveWaypoints("Bu Yaqoob");
         }
     }
 

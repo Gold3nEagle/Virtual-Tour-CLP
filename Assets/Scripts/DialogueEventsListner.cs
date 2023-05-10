@@ -7,9 +7,11 @@ using UnityEngine;
 public class DialogueEventsListner : MonoBehaviour
 {
     public GameObject Ali;
-    private int counter = 0;
+    public static int counter = 0;
     private void Start()
     {
+        counter = PlayerPrefs.GetInt("shopQItems");
+        Debug.Log(counter);
         Items.OnItemPurchase.AddListener(DidBuyItem);
     }
 
@@ -47,10 +49,11 @@ public class DialogueEventsListner : MonoBehaviour
             DialogueLua.SetVariable("Bab.Items", true);
             QuestLog.SetQuestEntryState("Bab AlBahrain", 1, "success");
             QuestLog.SetQuestEntryState("Bab AlBahrain", 5, "active");
+            DialogueManager.SendUpdateTracker();
             WaypointManager.instance.RemoveWaypoint("ShopKeeper");
             SetQuestsWaypoints.activeWaypoints.Remove("ShopKeeper");
             WaypointManager.instance.AddWaypoint("Ali", Ali);
-            SetQuestsWaypoints.activeWaypoints.Add("Ali");
+            SetQuestsWaypoints.AddToActiveWaypoints("Ali");
             
         }
     }
