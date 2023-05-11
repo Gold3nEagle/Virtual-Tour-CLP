@@ -7,7 +7,6 @@ public class FanQuestCamera : MonoBehaviour
 {
     public GameObject fanCamera;
     public GameObject uiPanel;
-    public GameObject miniMap;
     public GameObject waypointsHolder;
 
 
@@ -33,7 +32,6 @@ public class FanQuestCamera : MonoBehaviour
     {
         // Disable panel1 and enable panel2
         uiPanel.SetActive(false);
-        //miniMap.SetActive(false);
         waypointsHolder.SetActive(false);
         PlayerManager.StopPlayer();
         // Wait for 3 seconds before reversing the process
@@ -46,7 +44,6 @@ public class FanQuestCamera : MonoBehaviour
 
         
         uiPanel.SetActive(true);
-        //miniMap.SetActive(true);
         waypointsHolder.SetActive(true);
         fanCamera.SetActive(false);
         PlayerManager.ContinuePlayer();

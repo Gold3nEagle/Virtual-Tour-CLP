@@ -20,7 +20,7 @@ public class PauseMenu : MonoBehaviour
 
     public void ReturnToMenu()
     {
-        AudioManager.instance.Stop("CarDriving");
+        //AudioManager.instance.Stop("CarDriving");
         AudioManager.instance.Play("Click");
         interactions.menuUI.ToggleMenuVisibility(2);
         SceneManager.LoadScene("MainMenu");
