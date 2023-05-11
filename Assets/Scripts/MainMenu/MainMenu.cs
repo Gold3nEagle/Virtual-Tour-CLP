@@ -20,6 +20,7 @@ public class MainMenu : MonoBehaviour
 
     private void Start()
     {
+        AudioManager.instance.Stop("CarDriving");
         int quality = PlayerPrefs.GetInt("currentQ");
         QualitySettings.SetQualityLevel(quality);
 

@@ -9,7 +9,7 @@ public class WaypointManager : MonoBehaviour
     public GameObject questWaypointPrefab;
     public List<Waypoint> waypointsList;
 
-    void Start()
+    void Awake()
     {
         instance = this;
         waypointsList = new List<Waypoint>();

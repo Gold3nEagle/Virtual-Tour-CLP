@@ -32,24 +32,48 @@ public class AudioManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);  //this will make the gameobject to move to all scenes not only main menu
 
         volumes = new float[sounds.Length];
-
-        int IND = 0;
-        foreach (Sound s in sounds)     //adding audio sources to audioManager object
-        {
-            if (s.type == Sound.SoundType.Music)
-            {
-                s.volume = s.volume * musicVolume;
-            }
-            else if (s.type == Sound.SoundType.SFX)
-            {
-                s.volume = s.volume * SFXVolume;
-            }
-            volumes[IND] = s.volume;
-            IND++;
-            
-        }
         soundsObjectsList = new List<GameObject>();
-        //TODO: Check with saving manager if the game is muted when started, if so call MuteAll()
+
+        if (PlayerPrefs.HasKey("masterVolume"))
+        {
+            for (int i = 0; i < sounds.Length; i++)
+            {
+                volumes[i] = sounds[i].volume;
+            }
+            MasterVolumeChanged(PlayerPrefs.GetFloat("masterVolume"));       
+        }
+        else
+        {
+            int IND = 0;
+            foreach (Sound s in sounds)     //adding audio sources to audioManager object
+            {
+                if (s.type == Sound.SoundType.Music)
+                {
+                    s.volume = s.volume * musicVolume;
+                }
+                else if (s.type == Sound.SoundType.SFX)
+                {
+                    s.volume = s.volume * SFXVolume;
+                }
+                volumes[IND] = s.volume;
+                IND++;
+            }
+        }
+    }
+    void Update()
+    {
+        //if (Input.GetKeyDown(KeyCode.UpArrow))
+        //{
+        //    MasterVolumeChanged(0.1f);
+        //}
+        //else if (Input.GetKeyDown(KeyCode.DownArrow))
+        //{
+        //    MasterVolumeChanged(0f);
+        //}
+        //else if (Input.GetKeyDown(KeyCode.Backspace))
+        //{
+        //    PlayerPrefs.DeleteKey("masterVolume");
+        //}
     }
     public GameObject Play(string name, Vector3 position = default, GameObject followObject = null)
     {
@@ -263,7 +287,6 @@ public class AudioManager : MonoBehaviour
     public void MuteAll()   //used to mute the game.
     {
         Muted = true;
-        //TODO: Notify the saving manager that the game is muted 
         foreach (Sound s in sounds)
         {
             if (s.source != null)
@@ -284,7 +307,6 @@ public class AudioManager : MonoBehaviour
     public void UnMuteAll() //used to unmute the game.
     {
         Muted = false;
-        //TODO: Notify the saving manager that the game is unmuted 
         int IND = 0;
         foreach (Sound s in sounds)
         {
@@ -311,6 +333,7 @@ public class AudioManager : MonoBehaviour
         if (float.IsNaN(newSFXVolume)) newSFXVolume = masterVolume;
         MusicVolumeChanged(newMusicVolume);
         SFXVolumeChanged(newSFXVolume);
+        PlayerPrefs.SetFloat("masterVolume", volume);
     }
 
     /// <summary>
