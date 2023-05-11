@@ -15,6 +15,7 @@ public class MainMenu : MonoBehaviour
 
     [Header("Menus")]
     [SerializeField] private GameObject optionMenu;
+    [SerializeField] private GameObject controlsMenu;
     [SerializeField] private GameObject creditsMenu;
     [SerializeField] private GameObject mainMenu;
 
@@ -79,6 +80,12 @@ public class MainMenu : MonoBehaviour
         optionMenu.SetActive(true);
         mainMenu.SetActive(false);
     }
+    public void OnControlsClicked()
+    {
+        AudioManager.instance.Play("Click");
+        controlsMenu.SetActive(true);
+        mainMenu.SetActive(false);
+    }
 
     public void OnCreditsClicked()
     {
@@ -92,6 +99,7 @@ public class MainMenu : MonoBehaviour
         AudioManager.instance.Play("Click");
         optionMenu.SetActive(false);
         creditsMenu.SetActive(false);
+        controlsMenu.SetActive(false);
         mainMenu.SetActive(true);
     }
 

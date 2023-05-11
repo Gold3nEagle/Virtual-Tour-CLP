@@ -6,11 +6,11 @@ public class AudioManager : MonoBehaviour
 {
     public static AudioManager instance;
     [Range(0f, 1f)]
-    public float masterVolume = 1;
+    public float masterVolume = 0.8f;
     [Range(0f, 1f)]
-    public float musicVolume = 1;
+    public float musicVolume = 0.8f;
     [Range(0f, 1f)]
-    public float SFXVolume = 1;
+    public float SFXVolume = 0.8f;
     public Sound[] sounds;
 
     private List<GameObject> soundsObjectsList;
@@ -93,14 +93,14 @@ public class AudioManager : MonoBehaviour
         }
 
         GameObject sound = new GameObject(name);
-        if(position == default) sound.transform.parent = followObject?.transform ?? transform;
+        if (position == default) sound.transform.parent = followObject?.transform ?? transform;
         sound.transform.position = position;
         s.source = sound.AddComponent<AudioSource>();
         s.source.clip = s.clip;
         s.source.volume = s.volume;
         s.source.pitch = s.pitch;
         s.source.loop = s.loop;
-        if(followObject != null || position != default)
+        if (followObject != null || position != default)
         {
             s.source.spatialBlend = 1;
         }
@@ -153,11 +153,11 @@ public class AudioManager : MonoBehaviour
             return;
         }
         float max = 0;
-        if(s.type == Sound.SoundType.Music)
+        if (s.type == Sound.SoundType.Music)
         {
             max = musicVolume;
         }
-        else if(s.type == Sound.SoundType.SFX)
+        else if (s.type == Sound.SoundType.SFX)
         {
             max = SFXVolume;
         }
@@ -189,11 +189,11 @@ public class AudioManager : MonoBehaviour
             Debug.LogWarning("Sound " + name + " not found!");
             return;
         }
-        if(newVolume > 1)
+        if (newVolume > 1)
         {
             s.volume = 1;
         }
-        else if(newVolume < 0)
+        else if (newVolume < 0)
         {
             s.volume = 0;
         }
@@ -256,7 +256,7 @@ public class AudioManager : MonoBehaviour
             Debug.LogWarning("Sound " + name + " not found!");
             return false;
         }
-        if(s.source == null)
+        if (s.source == null)
         {
             return false;
         }

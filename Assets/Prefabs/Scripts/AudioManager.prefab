@@ -44,9 +44,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22a62b7d202ba4d6d873345f39a85613, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  masterVolume: 1
-  musicVolume: 1
-  SFXVolume: 1
+  masterVolume: 0.8
+  musicVolume: 0.8
+  SFXVolume: 0.8
   sounds:
   - name: Click
     clip: {fileID: 8300000, guid: bc335538021524c1b8ff08a88d690c5d, type: 3}
