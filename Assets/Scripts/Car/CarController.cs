@@ -44,6 +44,7 @@ public class CarController : MonoBehaviour, ISaveable
                 noise[i] = vcam.AddCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
             }
         }
+        WaypointManager.instance.AddCarWaypoint();
     }
 
 

@@ -7,6 +7,7 @@ public class WaypointManager : MonoBehaviour
     public static WaypointManager instance;
     public GameObject waypointPrefab;
     public GameObject questWaypointPrefab;
+    public GameObject carWaypointPrefab;
     public List<Waypoint> waypointsList;
 
     void Awake()
@@ -15,6 +16,10 @@ public class WaypointManager : MonoBehaviour
         waypointsList = new List<Waypoint>();
     }
 
+    void Start()
+    {
+        
+    }
     public Waypoint AddWaypoint(string waypointID, GameObject objectToFollow)
     {
         if(GetWaypoint(waypointID) != null)
@@ -40,6 +45,16 @@ public class WaypointManager : MonoBehaviour
         GameObject waypointOBJ = Instantiate(questWaypointPrefab, transform);
         Waypoint thisWayp = waypointOBJ.GetComponent<Waypoint>();
         thisWayp.SetValues(waypointID, objectToFollow);
+        thisWayp.enabled = true;
+        waypointsList.Add(thisWayp);
+        return thisWayp;
+    }
+
+    public Waypoint AddCarWaypoint()
+    {
+        GameObject carWaypoint = Instantiate(carWaypointPrefab, transform);
+        Waypoint thisWayp = carWaypoint.GetComponent<Waypoint>();
+        thisWayp.SetValues("Car", GameManager.instance.car);
         thisWayp.enabled = true;
         waypointsList.Add(thisWayp);
         return thisWayp;

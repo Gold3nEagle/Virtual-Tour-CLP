@@ -29,7 +29,7 @@ public class GameManager : MonoBehaviour
         instance = this;
         playerControls = new PlayerControls();
     }
-
+    
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.V))
@@ -67,6 +67,7 @@ public class GameManager : MonoBehaviour
         vehicleMainCamera.SetActive(false);
         vehicleVirtualCamera.SetActive(false);
         carBody.mass = outsideCarMass;
+        WaypointManager.instance.AddCarWaypoint();
     }
 
     public void SwitchToVehicleControls()
@@ -81,6 +82,7 @@ public class GameManager : MonoBehaviour
         carBody.mass = inCarMass;
 
         HidePrompt();
+        WaypointManager.instance.RemoveWaypoint("Car");
     }
 
     public Vector3 GetPlayerOffset()
