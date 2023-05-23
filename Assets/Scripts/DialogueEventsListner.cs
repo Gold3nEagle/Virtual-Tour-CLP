@@ -11,21 +11,21 @@ public class DialogueEventsListner : MonoBehaviour
     private void Start()
     {
         counter = PlayerPrefs.GetInt("shopQItems");
-        Debug.Log(counter);
+        // Debug.Log(counter);
         Items.OnItemPurchase.AddListener(DidBuyItem);
     }
 
     private void DidBuyItem(string itemName)
     {
-        
+
         if ("Halwa Showaiter" == itemName)
         {
-            
+
             DialogueLua.SetVariable("Bab.halwa", 1);
             counter += 1;
             QuestLog.SetQuestEntryState("Bab AlBahrain", 3, "success");
             DialogueManager.SendUpdateTracker();
-           
+
         }
         if ("Basbousa" == itemName)
         {
@@ -44,7 +44,7 @@ public class DialogueEventsListner : MonoBehaviour
             DialogueManager.SendUpdateTracker();
         }
 
-        if(counter >= 3)
+        if (counter >= 3)
         {
             DialogueLua.SetVariable("Bab.Items", true);
             QuestLog.SetQuestEntryState("Bab AlBahrain", 1, "success");
@@ -54,7 +54,7 @@ public class DialogueEventsListner : MonoBehaviour
             SetQuestsWaypoints.activeWaypoints.Remove("ShopKeeper");
             WaypointManager.instance.AddWaypoint("Ali", Ali);
             SetQuestsWaypoints.AddToActiveWaypoints("Ali");
-            
+
         }
     }
     public bool CheckBuyItem(string itemName)
