@@ -22,6 +22,7 @@ public class CarController : MonoBehaviour, ISaveable
     private float maxXRotation = 60f;
     private float raycastDistance = 1.2f;   // Distance of the raycast from the car's center
     private bool isBraking;
+    private float carNormalSound;
 
     private void Awake()
     {
@@ -31,6 +32,7 @@ public class CarController : MonoBehaviour, ISaveable
     private void Start()
     {
         // Get the noise components from the three rigs of the Cinemachine FreeLook Camera
+        carNormalSound = AudioManager.instance.GetVolume("CarDriving");
         noise = new CinemachineBasicMultiChannelPerlin[3];
         for (int i = 0; i < 3; i++)
         {
@@ -42,6 +44,7 @@ public class CarController : MonoBehaviour, ISaveable
                 noise[i] = vcam.AddCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
             }
         }
+        WaypointManager.instance.AddCarWaypoint();
     }
 
 
@@ -207,9 +210,12 @@ public class CarController : MonoBehaviour, ISaveable
 
     private void HandleEngineSound()
     {
-        if (AudioManager.instance.IsPlaying("CarDriving"))
+        if (AudioManager.instance.IsPlaying("CarDriving") && AudioManager.instance.masterVolume > 0f)
         {
-            float engineSoundLevel = getSpeed / maxSpeed;
+            float speedDividedBySound = getSpeed / carNormalSound;
+            float maxSpeedDividedBySound = maxSpeed / carNormalSound;
+            float engineSoundLevel = speedDividedBySound / maxSpeedDividedBySound;
+            engineSoundLevel = Math.Clamp(engineSoundLevel, 0, carNormalSound);
             AudioManager.instance.SetSoundVolumeTo("CarDriving", engineSoundLevel);
         }
     }

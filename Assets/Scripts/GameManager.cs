@@ -30,15 +30,32 @@ public class GameManager : MonoBehaviour
         playerControls = new PlayerControls();
     }
 
+    private void OnEnable()
+    {
+        AudioManager.instance.Play("crowd");
+        AudioManager.instance.Play("park");
+    }
+
+    private void OnDisable()
+    {
+        AudioManager.instance.Stop("crowd");
+        AudioManager.instance.Stop("park");
+    }
+
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.V))
         {
             WaypointManager.instance.AddWaypoint("way1", transform.position);
         }
+        else if (Input.GetKeyDown(KeyCode.Q))
+        {
+            WaypointManager.instance.AddQuestWaypoint("qWay", new Vector3(100, 0, 100));
+        }
         else if (Input.GetKeyDown(KeyCode.B))
         {
             WaypointManager.instance.RemoveWaypoint("way1");
+            WaypointManager.instance.RemoveWaypoint("qWay");
         }
     }
 
@@ -62,6 +79,7 @@ public class GameManager : MonoBehaviour
         vehicleMainCamera.SetActive(false);
         vehicleVirtualCamera.SetActive(false);
         carBody.mass = outsideCarMass;
+        WaypointManager.instance.AddCarWaypoint();
     }
 
     public void SwitchToVehicleControls()
@@ -76,6 +94,7 @@ public class GameManager : MonoBehaviour
         carBody.mass = inCarMass;
 
         HidePrompt();
+        WaypointManager.instance.RemoveWaypoint("Car");
     }
 
     public Vector3 GetPlayerOffset()

@@ -44,9 +44,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22a62b7d202ba4d6d873345f39a85613, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  masterVolume: 1
-  musicVolume: 1
-  SFXVolume: 1
+  masterVolume: 0.8
+  musicVolume: 0.8
+  SFXVolume: 0.8
   sounds:
   - name: Click
     clip: {fileID: 8300000, guid: bc335538021524c1b8ff08a88d690c5d, type: 3}
@@ -74,7 +74,7 @@ MonoBehaviour:
     type: 0
   - name: CarDriving
     clip: {fileID: 8300000, guid: 69ec4a2f0343f44b3bab44ace897dfd3, type: 3}
-    volume: 0
+    volume: 1
     pitch: 1
     source: {fileID: 0}
     loop: 1
@@ -112,3 +112,27 @@ MonoBehaviour:
     loop: 0
     singleInstance: 0
     type: 0
+  - name: MainMenuBackground
+    clip: {fileID: 8300000, guid: baae0a34d70e4407a9bc55f911cd52f7, type: 3}
+    volume: 1
+    pitch: 1
+    source: {fileID: 0}
+    loop: 1
+    singleInstance: 0
+    type: 1
+  - name: crowd
+    clip: {fileID: 8300000, guid: 39036250c408948108698fe4acc490e8, type: 3}
+    volume: 0.5
+    pitch: 1
+    source: {fileID: 0}
+    loop: 1
+    singleInstance: 0
+    type: 1
+  - name: park
+    clip: {fileID: 8300000, guid: 677d16947b5f44542a5495b08ec31b13, type: 3}
+    volume: 0.5
+    pitch: 1
+    source: {fileID: 0}
+    loop: 1
+    singleInstance: 0
+    type: 1
