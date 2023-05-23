@@ -29,7 +29,19 @@ public class GameManager : MonoBehaviour
         instance = this;
         playerControls = new PlayerControls();
     }
-    
+
+    private void OnEnable()
+    {
+        AudioManager.instance.Play("crowd");
+        AudioManager.instance.Play("park");
+    }
+
+    private void OnDisable()
+    {
+        AudioManager.instance.Stop("crowd");
+        AudioManager.instance.Stop("park");
+    }
+
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.V))
@@ -38,7 +50,7 @@ public class GameManager : MonoBehaviour
         }
         else if (Input.GetKeyDown(KeyCode.Q))
         {
-            WaypointManager.instance.AddQuestWaypoint("qWay", new Vector3(100,0,100));
+            WaypointManager.instance.AddQuestWaypoint("qWay", new Vector3(100, 0, 100));
         }
         else if (Input.GetKeyDown(KeyCode.B))
         {

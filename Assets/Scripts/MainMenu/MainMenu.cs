@@ -19,9 +19,15 @@ public class MainMenu : MonoBehaviour
     [SerializeField] private GameObject creditsMenu;
     [SerializeField] private GameObject mainMenu;
 
+    private void OnDisable()
+    {
+        AudioManager.instance.Stop("MainMenuBackground");
+    }
+
     private void Start()
     {
         AudioManager.instance.Stop("CarDriving");
+        AudioManager.instance.Play("MainMenuBackground");
         int quality = PlayerPrefs.GetInt("currentQ");
         QualitySettings.SetQualityLevel(quality);
 
@@ -57,7 +63,7 @@ public class MainMenu : MonoBehaviour
 
     private void ResetWaypoints()
     {
-        string[] waypointsIDs = { "TreeOfLife", "Ahmed", "TicketSeller", "OldMan", "ShopKeeper", "Ali", "Masjid Al Khamis", 
+        string[] waypointsIDs = { "TreeOfLife", "Ahmed", "TicketSeller", "OldMan", "ShopKeeper", "Ali", "Masjid Al Khamis",
             "PicArea", "PicArea (1)", "Bu Yaqoob", "Metal Box", "board for fan tower", "Mohamed" };
         for (int i = 0; i < waypointsIDs.Length; i++)
         {
