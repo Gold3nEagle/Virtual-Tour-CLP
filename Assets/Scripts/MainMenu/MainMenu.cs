@@ -58,7 +58,8 @@ public class MainMenu : MonoBehaviour
         DialogueManager.ResetDatabase(DatabaseResetOptions.KeepAllLoaded);
         DialogueManager.SendUpdateTracker();
         DisableMenuButtons();
-        SceneManager.LoadScene(1);
+        //SceneManager.LoadScene(1);
+        SceneLoader.instance.LoadScene(SceneLoader.Scenes.Game);
     }
 
     private void ResetWaypoints()
@@ -77,7 +78,8 @@ public class MainMenu : MonoBehaviour
         string save = PlayerPrefs.GetString("SaveDialogue");
         PersistentDataManager.ApplySaveData(save);
         AdvancedSavingSystem.instance.Load();
-        SceneManager.LoadScene(1);
+        //SceneManager.LoadScene(1);
+        SceneLoader.instance.LoadScene(SceneLoader.Scenes.Game);
     }
 
     public void OnOptionClicked()
