@@ -54,6 +54,7 @@ public class MenuUI
 
     private void OpenMenu(int index)
     {
+        if (SceneLoader.instance.IsTransitioning()) return;
         Time.timeScale = 0.0f;
         CursorManager.instance.SetCursorVisibility(true);
         menusList[index].MenuGameObject.SetActive(true);
@@ -66,6 +67,7 @@ public class MenuUI
 
     private void CloseMenu(int index)
     {
+        if (SceneLoader.instance.IsTransitioning()) return;
         Time.timeScale = 1.0f;
         CursorManager.instance.SetCursorVisibility(false);
         menusList[index].MenuGameObject.SetActive(false);

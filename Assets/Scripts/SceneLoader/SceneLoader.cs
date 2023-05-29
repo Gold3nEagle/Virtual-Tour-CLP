@@ -8,7 +8,7 @@ public class SceneLoader : MonoBehaviour
 {
     public static SceneLoader instance;
     public float transitionSpeed = 0.8f;
-    public enum Scenes {MainMenu, LoadingScene, GameScene, SampleScene}; //the first scene in this enum should be the first scene in the game
+    public enum Scenes {MainMenu, Game}; //the first scene in this enum should be the first scene in the game
     [SerializeField] private Image loadingImage;
     private float copyTransSpeed;
     private Scenes currentScene; //it will take by default the first scene in the enum
@@ -50,7 +50,7 @@ public class SceneLoader : MonoBehaviour
         if (loadingImage.color.a >= 1f)   // check if black screen has fully appeared
         {
             SceneManager.LoadScene(currentScene.ToString());  
-            currentAction = Action.hide;  
+            currentAction = Action.hide;
         }
     }
 
